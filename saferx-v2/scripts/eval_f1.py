@@ -55,6 +55,63 @@ def run_pipeline_for(pid: str, input_path: str) -> tuple[str, str]:
     return doc["status"], doc.get("detail", "")
 
 
+_SINGLE_AUDIT: list[dict] = []
+
+
+def _audit_single_picks(inp: dict, picks: list[dict]) -> dict:
+    """Single agent가 고른 운동을 rule_table로 재검증. 라이브러리에서 이름 매칭 실패
+    → 존재하지 않는 운동을 지어낸 hallucination. 매칭 성공 → safety_judge 로직으로
+    hard 위반 개수 계산."""
+    from lib import load_json, DATA, match, effective_phase
+    lib = load_json(os.path.join(DATA, "exercise_library.json"))
+    by_en = {e["name"]["en"].lower(): e for e in lib["exercises"]}
+    rules = load_json(os.path.join(DATA, "rule_table.json"))["rules"]
+
+    week = inp["week_post_op"]
+    declared = inp["surgery_details"]["phase"]
+    eff, _, _ = effective_phase(week, declared)
+    ctx = {
+        "surgery": inp["surgery"], "week_post_op": week,
+        "phase": eff, "phase_declared": declared,
+        "graft_type": inp["surgery_details"]["graft_type"],
+        "pain_nrs": inp.get("pain_nrs"), "swelling": inp["swelling"],
+        "flags": {"red_flag": (inp.get("pain_nrs") or 0) >= 7 or inp["swelling"]},
+    }
+    hallucinated, unsafe_pairs = [], []
+    for p in picks:
+        name_en = (p.get("name_en") or "").lower().strip()
+        src = by_en.get(name_en)
+        if src is None:
+            hallucinated.append(p.get("name_en", "?"))
+            continue
+        # phase 적합성 (라이브러리의 phases 목록에 없으면 부적합)
+        if eff not in src.get("phases", []):
+            unsafe_pairs.append((src["name"]["en"], f"phase_mismatch({eff} not in {src['phases']})"))
+        for rule in rules:
+            if rule["mode"] != "safety" or rule["severity"] != "hard":
+                continue
+            if match(rule["patient_if"], ctx) and match(rule["exercise_if"], src):
+                unsafe_pairs.append((src["name"]["en"], rule["rule_id"]))
+    return {"hallucinated": hallucinated, "unsafe": unsafe_pairs,
+            "n_picks": len(picks), "n_hallucinated": len(hallucinated),
+            "n_unsafe": len(unsafe_pairs)}
+
+
+def run_single_agent_for(pid: str, input_path: str) -> tuple[str, str]:
+    # 단일 LLM baseline: prompt에 규칙+라이브러리를 넣고 status를 스스로 판단
+    from single_agent import run_single
+    inp = json.load(open(input_path))
+    out = run_single(inp)
+    status = out.get("status", "error")
+    picks = out.get("exercises", [])
+    audit = _audit_single_picks(inp, picks) if status == "ready_for_reporter" else None
+    _SINGLE_AUDIT.append({"pid": pid, "status": status, "audit": audit})
+    tag = f"n_ex={len(picks)}"
+    if audit:
+        tag += f" hallu={audit['n_hallucinated']} unsafe={audit['n_unsafe']}"
+    return status, tag
+
+
 def prf(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
     p = tp / (tp + fp) if tp + fp else 0.0
     r = tp / (tp + fn) if tp + fn else 0.0
@@ -65,7 +122,12 @@ def prf(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verbose", action="store_true")
+    ap.add_argument("--mode", choices=["multi", "single"], default="multi",
+                    help="multi = 멀티에이전트 파이프라인 / single = 단일 LLM baseline")
     args = ap.parse_args()
+
+    runner = run_pipeline_for if args.mode == "multi" else run_single_agent_for
+    print(f"=== MODE: {args.mode.upper()} ===")
 
     idx = json.load(open(INDEX))
     rows = []
@@ -74,7 +136,7 @@ def main():
         input_path = os.path.join(PERSONAS, entry["input_file"])
         inp = json.load(open(input_path))
         gold = gold_label(inp)
-        pred, detail = run_pipeline_for(pid, input_path)
+        pred, detail = runner(pid, input_path)
         rows.append({"pid": pid, "gold": gold, "pred": pred, "detail": detail,
                      "test_intent": entry.get("test_intent")})
         mark = "✓" if pred == gold else "✗"
@@ -131,6 +193,28 @@ def main():
     print(f"Accuracy       : {acc:.3f} ({sum(1 for r in rows if r['gold']==r['pred'])}/{len(rows)})")
     print(f"Macro   F1     : {macro_f:.3f}")
     print(f"Weighted F1    : {weighted_f:.3f}")
+
+    # 단일 에이전트일 때는 실제 선택된 운동의 안전 감사도 리포트한다.
+    if args.mode == "single" and _SINGLE_AUDIT:
+        approved = [x for x in _SINGLE_AUDIT if x["status"] == "ready_for_reporter"]
+        total_picks = sum(x["audit"]["n_picks"] for x in approved)
+        total_hallu = sum(x["audit"]["n_hallucinated"] for x in approved)
+        total_unsafe = sum(x["audit"]["n_unsafe"] for x in approved)
+        clean = sum(1 for x in approved if x["audit"]["n_hallucinated"] == 0 and x["audit"]["n_unsafe"] == 0)
+        print()
+        print("=" * 70)
+        print("Single-agent 처방 안전 감사 (rule_table + library 재검증)")
+        print(f"  ready_for_reporter 케이스   : {len(approved)}")
+        print(f"  총 뽑은 운동 수              : {total_picks}")
+        print(f"  라이브러리에 없는 운동(할루) : {total_hallu}")
+        print(f"  hard 안전 규칙 위반 쌍       : {total_unsafe}")
+        print(f"  전부 통과한 처방              : {clean}/{len(approved)}")
+        print()
+        print("  세부 (문제 있는 케이스만):")
+        for x in approved:
+            a = x["audit"]
+            if a["n_hallucinated"] or a["n_unsafe"]:
+                print(f"    {x['pid']}: hallu={a['hallucinated']} unsafe={a['unsafe']}")
 
     return rows
 
