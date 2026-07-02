@@ -40,6 +40,8 @@ def main(inp):
         stop("unsupported_surgery")
     if rc == 11:
         stop("manual_review_required", "concomitant_procedure")
+    if rc == 15:
+        stop("red_flag", "pain_nrs >= 6")
     if rc != 0:
         stop("error", f"extract_redact rc={rc}")
 

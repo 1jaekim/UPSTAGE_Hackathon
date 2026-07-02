@@ -134,9 +134,14 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="mt-12 border-t border-gray-200 bg-white py-6">
-        <div className="mx-auto max-w-6xl px-6 text-xs text-gray-400">
-          © 2026 Upstage Education. Harness Engineering 프로젝트 데모 — 실제 임상 사용 불가.
+      <footer className="mt-12 border-t-2 border-gray-300 bg-gray-50 py-8">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <p className="text-sm font-bold text-gray-900">
+            ⚠ 본 서비스 사용에 따른 모든 책임은 사용자에게 있습니다.
+          </p>
+          <p className="mt-2 text-xs text-gray-500">
+            © 2026 Upstage Education. Harness Engineering 프로젝트 데모 — 실제 임상 사용 불가.
+          </p>
         </div>
       </footer>
     </div>

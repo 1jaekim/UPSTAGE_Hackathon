@@ -90,6 +90,10 @@ def main(inp_path):
     if flags["manual_review_required"]:
         print("STOP: manual_review_required (concomitant_procedure)")
         sys.exit(11)
+    # NRS ≥ 6 → 즉시 red_flag 종료 (운동 추천 금지). 부종 단독은 REDFLAG-01 룰이 downstream에서 처리.
+    if pain is not None and pain >= 6:
+        print(f"STOP: red_flag (pain_nrs={pain} >= 6)")
+        sys.exit(15)
 
 
 if __name__ == "__main__":
