@@ -1,0 +1,122 @@
+import type { StageRule, SurgeryType } from "../types";
+
+// 데모/목업 데이터입니다. 실제 임상 프로토콜이 아니라 UI 시연을 위한 샘플 규칙표입니다.
+export const STAGE_RULES: StageRule[] = [
+  {
+    id: "ACL-EARLY",
+    surgeryType: "ACL_RECON",
+    stageLabel: "0~2주차 (급성기)",
+    weekMin: 0,
+    weekMax: 2,
+    romLimit: [0, 90],
+    loadLimit: "none",
+    forbiddenMovementTags: ["pivoting", "deep_squat", "open_chain_resisted"],
+    requiredMovementTags: ["quad_isometric"],
+    source: "샘플 병원 ACL 재활 프로토콜 v2.1 (데모)",
+  },
+  {
+    id: "ACL-MID",
+    surgeryType: "ACL_RECON",
+    stageLabel: "3~6주차 (아급성기)",
+    weekMin: 3,
+    weekMax: 6,
+    romLimit: [0, 120],
+    loadLimit: "light",
+    forbiddenMovementTags: ["pivoting", "deep_squat"],
+    requiredMovementTags: ["closed_chain_partial"],
+    source: "샘플 병원 ACL 재활 프로토콜 v2.1 (데모)",
+  },
+  {
+    id: "ACL-LATE",
+    surgeryType: "ACL_RECON",
+    stageLabel: "7~12주차 (기능회복기)",
+    weekMin: 7,
+    weekMax: 12,
+    romLimit: [0, 135],
+    loadLimit: "moderate",
+    forbiddenMovementTags: ["pivoting"],
+    requiredMovementTags: ["closed_chain_partial", "balance_proprioception"],
+    source: "샘플 병원 ACL 재활 프로토콜 v2.1 (데모)",
+  },
+  {
+    id: "RC-EARLY",
+    surgeryType: "ROTATOR_CUFF",
+    stageLabel: "0~3주차 (보호기)",
+    weekMin: 0,
+    weekMax: 3,
+    romLimit: [0, 90],
+    loadLimit: "none",
+    forbiddenMovementTags: ["overhead_press", "external_rotation_end_range", "open_chain_resisted"],
+    requiredMovementTags: ["passive_rom"],
+    source: "샘플 병원 회전근개 재활 프로토콜 v1.4 (데모)",
+  },
+  {
+    id: "RC-MID",
+    surgeryType: "ROTATOR_CUFF",
+    stageLabel: "4~8주차 (능동 운동기)",
+    weekMin: 4,
+    weekMax: 8,
+    romLimit: [0, 140],
+    loadLimit: "light",
+    forbiddenMovementTags: ["overhead_press"],
+    requiredMovementTags: ["active_assisted_rom"],
+    source: "샘플 병원 회전근개 재활 프로토콜 v1.4 (데모)",
+  },
+  {
+    id: "RC-LATE",
+    surgeryType: "ROTATOR_CUFF",
+    stageLabel: "9~16주차 (강화기)",
+    weekMin: 9,
+    weekMax: 16,
+    romLimit: [0, 170],
+    loadLimit: "moderate",
+    forbiddenMovementTags: [],
+    requiredMovementTags: ["resisted_strengthening"],
+    source: "샘플 병원 회전근개 재활 프로토콜 v1.4 (데모)",
+  },
+  {
+    id: "TKA-EARLY",
+    surgeryType: "TKA",
+    stageLabel: "0~2주차 (급성기)",
+    weekMin: 0,
+    weekMax: 2,
+    romLimit: [0, 90],
+    loadLimit: "light",
+    forbiddenMovementTags: ["deep_squat", "pivoting", "kneeling"],
+    requiredMovementTags: ["quad_isometric"],
+    source: "샘플 병원 TKA 재활 프로토콜 v3.0 (데모)",
+  },
+  {
+    id: "TKA-MID",
+    surgeryType: "TKA",
+    stageLabel: "3~6주차 (보행 회복기)",
+    weekMin: 3,
+    weekMax: 6,
+    romLimit: [0, 110],
+    loadLimit: "moderate",
+    forbiddenMovementTags: ["deep_squat", "pivoting"],
+    requiredMovementTags: ["closed_chain_partial", "gait_training"],
+    source: "샘플 병원 TKA 재활 프로토콜 v3.0 (데모)",
+  },
+  {
+    id: "TKA-LATE",
+    surgeryType: "TKA",
+    stageLabel: "7~12주차 (기능회복기)",
+    weekMin: 7,
+    weekMax: 12,
+    romLimit: [0, 125],
+    loadLimit: "full",
+    forbiddenMovementTags: ["pivoting"],
+    requiredMovementTags: ["balance_proprioception"],
+    source: "샘플 병원 TKA 재활 프로토콜 v3.0 (데모)",
+  },
+];
+
+export function findRule(surgeryType: SurgeryType, week: number): StageRule {
+  const candidates = STAGE_RULES.filter((r) => r.surgeryType === surgeryType);
+  const exact = candidates.find((r) => week >= r.weekMin && week <= r.weekMax);
+  if (exact) return exact;
+  // fall back to nearest stage (before earliest / after latest)
+  const sorted = [...candidates].sort((a, b) => a.weekMin - b.weekMin);
+  return week < sorted[0].weekMin ? sorted[0] : sorted[sorted.length - 1];
+}
