@@ -114,6 +114,7 @@ export type PipelineStatus =
   | "unsupported_surgery"
   | "manual_review_required"
   | "insufficient_evidence"
+  | "red_flag"
   | "failed";
 
 export const PIPELINE_STATUS_LABEL: Record<PipelineStatus, string> = {
@@ -121,6 +122,7 @@ export const PIPELINE_STATUS_LABEL: Record<PipelineStatus, string> = {
   unsupported_surgery: "지원하지 않는 수술 유형",
   manual_review_required: "PT 수동 검토 필요",
   insufficient_evidence: "근거 부족",
+  red_flag: "🚩 Red Flag — 안전 위반 다수",
   failed: "처리 실패",
 };
 

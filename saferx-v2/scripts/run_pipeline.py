@@ -8,7 +8,7 @@ reporter-subagent → report_validate.py → report-judge-subagent 순으로 진
 
 중단 상태는 work/99_status.json에 기록된다:
   unsupported_surgery / manual_review_required / insufficient_evidence /
-  failed(수동 검토) / ready_for_reporter
+  red_flag(hard 위반 ≥11) / failed(수동 검토) / ready_for_reporter
 
 usage: python3 run_pipeline.py <trigger_input.json>
 """
@@ -63,15 +63,15 @@ def main(inp):
             if rc2 != 0:
                 stop("error", f"correct rc={rc2}")
             continue
-        if rc == 21:         # failed (≥11 hard)
-            stop("failed", "hard_violations >= 11")
+        if rc == 21:         # red_flag (≥11 hard)
+            stop("red_flag", "hard_violations >= 11")
         if rc == 13:
             stop("unsupported_case", "input gate fired at judge")
         stop("error", f"safety_judge rc={rc}")
 
     rc = run("generate_rx.py")
     if rc == 14:
-        stop("failed", "fewer than 5 safe candidates after loop")
+        stop("failed", "fewer than 3 safe candidates after loop")
     if rc != 0:
         stop("error", f"generate_rx rc={rc}")
 

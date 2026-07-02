@@ -19,10 +19,28 @@ const STATUS_EXPLANATION: Record<string, string> = {
   unsupported_surgery: "입력된 수술명이 지원 범위(ACL 재건)에 해당하지 않아 즉시 종료했습니다.",
   manual_review_required: "동반 술식이 감지되어 규칙셋이 통째로 달라지므로, 자동 판정 대신 PT 수동 검토로 넘어갑니다.",
   insufficient_evidence: "이 조건에 맞는 운동을 지침 데이터에서 충분히 찾지 못해, 근거 없는 운동을 임의로 채우지 않고 중단했습니다.",
+  red_flag: "안전 규칙 hard 위반이 11건 이상 감지되어 자동 처방을 중단했습니다. 즉시 담당 PT의 검토가 필요합니다.",
   failed: "자동 교정 한도 내에서 위반이 해소되지 않았거나 리포트 품질 검수를 통과하지 못했습니다.",
 };
 
 export default function ValidationReport({ result }: Props) {
+  if (result.status === "red_flag") {
+    return (
+      <div className="rounded-2xl border-2 border-red-400 bg-red-50 p-6">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">🚩</span>
+          <h2 className="text-lg font-bold text-red-900">{PIPELINE_STATUS_LABEL.red_flag}</h2>
+        </div>
+        <p className="mt-3 text-sm text-red-800">{STATUS_EXPLANATION.red_flag}</p>
+        {result.detail && (
+          <p className="mt-2 rounded-md bg-red-100 px-3 py-1.5 text-xs font-mono text-red-700">
+            상세: {result.detail}
+          </p>
+        )}
+      </div>
+    );
+  }
+
   if (result.status !== "ready_for_reporter" || !result.report) {
     return (
       <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">

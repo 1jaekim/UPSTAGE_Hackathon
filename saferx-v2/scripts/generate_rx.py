@@ -1,6 +1,6 @@
 """generate_rx.py — 처방 조립 (코드, LLM 아님). spec §4-A, §4-I, §5.
 
-safety_checked == true 후보 중 priority 상위 5개를 선택하고, sets/reps/frequency/
+safety_checked == true 후보 중 priority 상위 3개를 선택하고, sets/reps/frequency/
 intensity/rationale/source를 **라이브러리 값 그대로 복사**한다. 생성·변형 금지 —
 이것이 §4-A(데이터 바운드)의 기계적 보장이자 dosage gap 봉합의 절반이다
 (나머지 절반은 safety_judge completeness 모드의 재검증).
@@ -12,7 +12,7 @@ usage: python3 generate_rx.py
 import sys
 from lib import load_json, save_json, work_path, die
 
-N = 5
+N = 3
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
     pool = [e for e in cands["candidates"] if e["name"]["en"] in ok_names]
 
     if len(pool) < N:
-        # 정확히 5개 불충족 → 재검색 필요 신호 (지어내지 않음, §4-A)
+        # N개 불충족 → 재검색 필요 신호 (지어내지 않음, §4-A)
         save_json(work_path("40_prescription.json"),
                   {"exercises": [], "short": True, "available": len(pool)})
         print(f"STOP: only {len(pool)} safe candidates (<{N}) — re-search needed")

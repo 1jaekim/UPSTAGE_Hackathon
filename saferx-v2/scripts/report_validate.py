@@ -3,7 +3,7 @@
 reporter-subagent가 쓴 work/50_report.json에 대해:
   V-PARSE  JSON 파싱 (spec §6-3 — 사실상 최우선 게이트)
   V-SCHEMA §5 필수 키·타입
-  V-J2     exercises 정확히 5개
+  V-J2     exercises 정확히 3개
   V-J3     각 운동 sets/reps/frequency/intensity/rationale/source 존재
   V-J5     필수 서술 필드 ko+en 모두 비어있지 않음
   V-J6     길이 예산: 서술 텍스트 총합 ≤ 3500자 (A4 1장 프록시, DECISIONS.md #3)
@@ -60,8 +60,8 @@ def main():
     exercises = soap.get("plan", {}).get("exercises", [])
 
     # V-J2
-    if len(exercises) != 5:
-        fails.append({"check": "V-J2", "detail": f"exercises count = {len(exercises)} (must be 5)"})
+    if len(exercises) != 3:
+        fails.append({"check": "V-J2", "detail": f"exercises count = {len(exercises)} (must be 3)"})
 
     # V-J3
     for ex in exercises:

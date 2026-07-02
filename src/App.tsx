@@ -29,6 +29,14 @@ function buildAnimatedSteps(result: PipelineResult): AnimatedStep[] {
     return steps;
   }
 
+  if (result.status === "red_flag") {
+    steps.push({
+      agent: "safety-judge",
+      label: "🚩 Gate 1 안전성 검증: hard 위반 ≥ 11건 — Red Flag 즉시 종료",
+    });
+    return steps;
+  }
+
   steps.push({
     agent: "safety-judge",
     label: result.correctionUsed
@@ -51,7 +59,7 @@ function buildAnimatedSteps(result: PipelineResult): AnimatedStep[] {
     return steps;
   }
 
-  steps.push({ agent: "prescription-generator", label: "안전 통과 후보로 처방 5개 조립 (generate_rx.py)" });
+  steps.push({ agent: "prescription-generator", label: "안전 통과 후보로 처방 3개 조립 (generate_rx.py)" });
   steps.push({
     agent: "safety-judge",
     label: "완결성 재검증 (safety_judge --mode completeness)",

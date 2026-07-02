@@ -2,7 +2,7 @@
 
 두 모드:
   --mode safety        : work/10_candidates.json의 후보를 rule_table 대조
-  --mode completeness  : work/40_prescription.json의 최종 5개를
+  --mode completeness  : work/40_prescription.json의 최종 3개를
                          (a) 안전 룰 재평가 — 용량·clamp 반영 최종 상태 기준 (dosage gap 봉합)
                          (b) COMP/DOS builtin 검사 (필드 누락·용량 변조)
 
@@ -10,7 +10,7 @@
   hard_violations = FIRE된 (운동 × hard 룰) 쌍의 개수 (soft·input_gate 제외)
   0        → approved
   1 – 10   → rejected_loop  (violations + correction_hint 반환 → corrector)
-  ≥ 11     → failed         (수동 검토 에스컬레이션)
+  ≥ 11     → red_flag       (run_pipeline이 status=red_flag로 기록)
   iteration > MAX_ITERATIONS(5) → failed 강등
 
 usage: python3 safety_judge.py --mode safety|completeness
@@ -109,7 +109,7 @@ def main():
         print(f"decision={decision} hard_violations={n} iter={iteration}")
         sys.exit({"approved": 0, "rejected_loop": 20, "failed": 21}[decision])
 
-    # completeness 모드: 최종 5개에 대해 안전 룰 재평가 + builtin
+    # completeness 모드: 최종 3개에 대해 안전 룰 재평가 + builtin
     rx = load_json(work_path("40_prescription.json"))
     library = load_json(os.path.join(DATA, "exercise_library.json"))
     violations, manual_review, checked = eval_safety_rules(rules, ctx, rx["exercises"])
