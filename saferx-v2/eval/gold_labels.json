@@ -1,0 +1,57 @@
+{
+  "count": 30,
+  "gold_distribution": {
+    "unsupported_surgery": 21,
+    "ready_for_reporter": 8,
+    "manual_review_required": 1
+  },
+  "by_class": {
+    "ready_for_reporter": [
+      "P001(normal)",
+      "P002(boundary)",
+      "P003(time_vs_criteria)",
+      "P004(normal)",
+      "P005(trap_target)",
+      "P006(time_vs_criteria)",
+      "P007(normal)",
+      "P008(trap_target)"
+    ],
+    "manual_review_required": [
+      "P009(meta_rule)"
+    ],
+    "unsupported_surgery": [
+      "P010(normal)",
+      "P011(normal)",
+      "P012(trap_target)",
+      "P013(time_vs_criteria)",
+      "P014(boundary)",
+      "P015(meta_rule)",
+      "P016(meta_rule)",
+      "P017(trap_target)",
+      "P018(trap_target)",
+      "P019(normal)",
+      "P020(time_vs_criteria)",
+      "P021(boundary)",
+      "P022(normal)",
+      "P023(trap_target)",
+      "P024(trap_target)",
+      "P025(normal)",
+      "P026(boundary)",
+      "P027(trap_target)",
+      "P028(normal)",
+      "P029(normal)",
+      "P030(time_vs_criteria)"
+    ]
+  },
+  "gate_rules_snapshot": {
+    "surgery_allowlist": [
+      "ACL_RECON"
+    ],
+    "graft_allowlist": [
+      "hamstring_autograft"
+    ],
+    "concomitant_action": "manual_review_required",
+    "nrs_red_flag_threshold": 6
+  },
+  "notes": "gold_status는 saferx-v2/scripts/extract_redact.py의 현행 게이트 규칙을 그대로 옮긴 결정론적 함수로 계산됨. 규칙이 바뀌면 이 파일을 재생성해야 함. 'ready_for_reporter'는 게이트 통과를 뜻하며, 실제 파이프라인은 데이터 부족 시 insufficient_evidence로 정직하게 강등할 수 있음 (P001/P003 사례)."
+}

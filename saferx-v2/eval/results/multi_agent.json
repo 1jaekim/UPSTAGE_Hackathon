@@ -1,0 +1,33 @@
+{
+  "experiment": "multi_agent",
+  "description": "현행 파이프라인: 결정론 스크립트(extract→retrieve→safety_judge→correct→generate) + reporter LLM + report-judge LLM (분리)",
+  "dataset": "saferx-v2/eval/dataset.jsonl (30 personas)",
+  "runner_script": "saferx-v2/scripts/eval_f1.py --mode multi",
+  "metrics": {
+    "accuracy": 0.933,
+    "correct": 28,
+    "total": 30,
+    "macro_f1": 0.952,
+    "weighted_f1": 0.962
+  },
+  "per_class": {
+    "unsupported_surgery":    {"support": 21, "tp": 21, "fp": 0, "fn": 0, "precision": 1.000, "recall": 1.000, "f1": 1.000},
+    "manual_review_required": {"support":  1, "tp":  1, "fp": 0, "fn": 0, "precision": 1.000, "recall": 1.000, "f1": 1.000},
+    "ready_for_reporter":     {"support":  8, "tp":  6, "fp": 0, "fn": 2, "precision": 1.000, "recall": 0.750, "f1": 0.857},
+    "insufficient_evidence":  {"support":  0, "tp":  0, "fp": 2, "fn": 0, "precision": 0.000, "recall": 0.000, "f1": 0.000}
+  },
+  "misclassifications": [
+    {"pid": "P001", "gold": "ready_for_reporter", "pred": "insufficient_evidence", "cause": "PHASE_I isometric library gap"},
+    {"pid": "P003", "gold": "ready_for_reporter", "pred": "insufficient_evidence", "cause": "PHASE_I isometric library gap"}
+  ],
+  "safety_audit": {
+    "prescriptions_issued": 6,
+    "hard_violation_pairs": 0,
+    "clean_prescriptions": 6,
+    "note": "insufficient_evidence 처리로 데이터 공백 시 처방 안 함 → 위반 원천 차단"
+  },
+  "cost": {
+    "llm_calls_per_success": 2.0,
+    "llm_calls_per_success_note": "reporter 1회 + report_judge 1회 (재시도 없음)"
+  }
+}

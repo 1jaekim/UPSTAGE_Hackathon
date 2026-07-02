@@ -1,0 +1,34 @@
+{
+  "experiment": "judge_mode_combined",
+  "description": "결정론 파이프라인은 유지, reporter+report-judge만 하나의 LLM 콜로 병합 (SOAP 작성 + 자기 판정 동시 수행)",
+  "dataset": "saferx-v2/eval/dataset.jsonl (30 personas)",
+  "runner_script": "saferx-v2/scripts/eval_judge_mode.py",
+  "modes_compared": {
+    "split": {
+      "description": "현행 — reporter LLM 별도 + report-judge LLM 별도 (2 콜)",
+      "accuracy": 0.933,
+      "macro_f1": 0.952,
+      "weighted_f1": 0.962,
+      "approved_prescriptions": 6,
+      "avg_llm_calls_per_success": 2.00,
+      "first_attempt_pass_rate": 1.000
+    },
+    "combined": {
+      "description": "실험 — 한 LLM 콜에 SOAP + self-judge 병합 (1 콜)",
+      "accuracy": 0.933,
+      "macro_f1": 0.952,
+      "weighted_f1": 0.962,
+      "approved_prescriptions": 6,
+      "avg_llm_calls_per_success": 1.00,
+      "first_attempt_pass_rate": 1.000
+    }
+  },
+  "cross_check": {
+    "description": "combined의 6개 리포트를 독립 심사자 LLM에 재요청해 판정 일치 여부 측정",
+    "cases_checked": 6,
+    "independent_judge_disagreement": 0,
+    "agreement_rate": 1.000,
+    "note": "이 정상 케이스 셋에서는 self-serving bias 관측 안 됨"
+  },
+  "verdict": "F1·검출률 완전 동일, LLM 호출 반토막 → 데모/저비용 배포엔 combined 유리. 규제·안전 마진용은 split 유지 권장."
+}
