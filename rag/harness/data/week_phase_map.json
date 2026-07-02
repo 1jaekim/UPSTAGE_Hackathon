@@ -1,0 +1,11 @@
+{
+  "note": "⚠️ 잠정 매핑 (spec §4-G '팀 결정 필요' 미결 사항). 표준 ACL 프로토콜의 통상적 구간을 초안으로 넣음. 팀 프로토콜 확정 후 교체할 것.",
+  "phase_order": ["PHASE_I", "PHASE_II", "PHASE_III", "PHASE_IV", "PHASE_V"],
+  "week_ranges": {
+    "PHASE_I":   { "min_week": 0,  "max_week": 2 },
+    "PHASE_II":  { "min_week": 3,  "max_week": 6 },
+    "PHASE_III": { "min_week": 7,  "max_week": 12 },
+    "PHASE_IV":  { "min_week": 13, "max_week": 24 },
+    "PHASE_V":   { "min_week": 25, "max_week": null }
+  }
+}

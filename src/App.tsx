@@ -9,37 +9,40 @@ import type { PatientInput, PipelineResult } from "./types";
 
 type RunState = "idle" | "running" | "done" | "error";
 
-const STEP_DELAY_MS = 480;
+const STEP_DELAY_MS = 420;
 
 function buildAnimatedSteps(result: PipelineResult): AnimatedStep[] {
-  const steps: AnimatedStep[] = [{ agent: "extractor", label: "환자 입력을 구조화된 필드로 파싱" }];
+  const steps: AnimatedStep[] = [
+    { agent: "info-extractor", label: "환자 입력 구조화 통과 + notes 마스킹 + 스코프 판정" },
+  ];
 
-  result.attempts.forEach((attempt, i) => {
-    if (i === 0) {
-      steps.push({
-        agent: "rag",
-        label: "ChromaDB(ACL 프로토콜)에서 회복 단계에 맞는 운동 검색",
-        attempt: attempt.attempt,
-      });
-    } else {
-      steps.push({
-        agent: "corrector",
-        label: "위반 피드백을 반영해 제외 목록·필터 갱신 후 RAG 재검색",
-        attempt: attempt.attempt - 1,
-      });
-    }
-    steps.push({
-      agent: "judge",
-      label:
-        attempt.issues.length === 0
-          ? "규칙표 대조 검증 완료: 위반 0건"
-          : `규칙표 대조 검증: 위반 ${attempt.issues.length}건 발견`,
-      attempt: attempt.attempt,
-    });
+  if (result.status === "unsupported_surgery" || result.status === "manual_review_required") {
+    return steps;
+  }
+
+  steps.push({ agent: "rag-recommender", label: "프로토콜 라이브러리에서 단계에 맞는 후보 검색" });
+
+  if (result.status === "insufficient_evidence") {
+    return steps;
+  }
+
+  steps.push({
+    agent: "safety-judge",
+    label: result.correctionUsed ? "규칙표 대조 검증: 위반 발견" : "규칙표 대조 검증 완료: 위반 0건",
   });
 
-  steps.push({ agent: "generator", label: "검증 통과 항목으로 최종 처방 생성" });
-  steps.push({ agent: "reporter", label: "근거·출처를 포함한 검수 리포트 작성" });
+  if (result.correctionUsed) {
+    steps.push({ agent: "corrector", label: "위반 항목 자동 교정(등척성 치환/제외/필터) 후 재검색" });
+    steps.push({ agent: "safety-judge", label: `재검증 완료 (총 ${result.iterations}회 반복)` });
+  }
+
+  if (result.status !== "ready_for_reporter") {
+    return steps;
+  }
+
+  steps.push({ agent: "prescription-generator", label: "안전성 통과 항목으로 처방 5개 조립" });
+  steps.push({ agent: "report-writer", label: "SOAP 형식 검수 리포트 서술 작성 (이중언어)" });
+  steps.push({ agent: "report-judge", label: "리포트 품질·근거 일치 검수 통과" });
   return steps;
 }
 

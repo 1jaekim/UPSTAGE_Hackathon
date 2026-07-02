@@ -30,3 +30,7 @@ rag/chroma_db
 rag/.env
 rag/protocols/*
 !rag/protocols/.gitkeep
+
+# harness pipeline scratch (환자 데이터가 잠깐 스쳐가는 실행 산출물 — 커밋 금지)
+rag/harness/work
+__pycache__/

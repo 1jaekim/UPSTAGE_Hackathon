@@ -4,7 +4,6 @@ import {
   REHAB_PHASE_LABEL,
   REHAB_PHASE_ORDER,
   SURGERY_LABEL,
-  type GraftType,
   type PatientInput,
   type RehabPhase,
 } from "../types";
@@ -14,13 +13,10 @@ interface Props {
   onSubmit: (input: PatientInput) => void;
 }
 
-const GRAFT_TYPES: GraftType[] = ["hamstring_autograft", "patellar_tendon_autograft", "allograft"];
-
 export default function PatientForm({ disabled, onSubmit }: Props) {
   const [phase, setPhase] = useState<RehabPhase>("PHASE_I");
   const [weekPostOp, setWeekPostOp] = useState(2);
   const [age, setAge] = useState(45);
-  const [graftType, setGraftType] = useState<GraftType>("hamstring_autograft");
   const [concomitantProcedure, setConcomitantProcedure] = useState("");
   const [painNrs, setPainNrs] = useState<string>("");
   const [swelling, setSwelling] = useState(false);
@@ -30,14 +26,13 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
     e.preventDefault();
     onSubmit({
       surgeryType: "ACL_RECON",
-      phase,
       weekPostOp,
       age,
-      graftType,
       concomitantProcedure: concomitantProcedure.trim() || null,
       painNrs: painNrs === "" ? null : Number(painNrs),
       swelling,
       notes,
+      surgeryDetails: { phase, graftType: "hamstring_autograft" },
     });
   }
 
@@ -105,18 +100,10 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
 
         <div>
           <label className="block text-sm font-medium text-gray-700">이식건 종류</label>
-          <select
-            value={graftType}
-            onChange={(e) => setGraftType(e.target.value as GraftType)}
-            disabled={disabled}
-            className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
-          >
-            {GRAFT_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {GRAFT_LABEL[type]}
-              </option>
-            ))}
-          </select>
+          <div className="mt-1.5 w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-600">
+            {GRAFT_LABEL.hamstring_autograft}
+            <span className="ml-2 text-xs text-gray-400">(현재 단일 지원 범위)</span>
+          </div>
         </div>
 
         <div>
