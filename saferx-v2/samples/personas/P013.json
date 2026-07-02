@@ -1,0 +1,13 @@
+{
+  "surgery": "THA_POST",
+  "week_post_op": 5,
+  "age": 70,
+  "concomitant_procedure": null,
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "5주나 됐는데 다음 단계로 넘어가도 되지 않나요?",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}

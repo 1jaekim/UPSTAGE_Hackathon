@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 2,
+  "age": 22,
+  "concomitant_procedure": null,
+  "pain_nrs": 4,
+  "swelling": true,
+  "notes": "무릎이 아직 뻣뻣하고 구부릴 때 당기는 느낌이에요. 이번 주에 할 재활 운동을 알려주세요.",
+  "surgery_details": {
+    "phase": "PHASE_I",
+    "graft_type": "hamstring_autograft"
+  }
+}

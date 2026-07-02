@@ -1,0 +1,13 @@
+{
+  "surgery": "THA_POST",
+  "week_post_op": 3,
+  "age": 65,
+  "concomitant_procedure": null,
+  "pain_nrs": 3,
+  "swelling": false,
+  "notes": "바닥에 앉아서 양말 신는 연습을 하고 싶어요. 집이 좌식 생활이라서요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "surgery": "RCR_ARTHRO",
+  "week_post_op": 3,
+  "age": 48,
+  "concomitant_procedure": "tear=small",
+  "pain_nrs": 3,
+  "swelling": false,
+  "notes": "치료사 선생님이랑 수동 운동을 시작했어요. 다음은 뭘 하게 되나요?",
+  "surgery_details": {
+    "phase": "PHASE_I",
+    "graft_type": "n/a"
+  }
+}

@@ -43,6 +43,9 @@ def main(inp):
     if rc != 0:
         stop("error", f"extract_redact rc={rc}")
 
+    # 프로토콜 근거 컨텍스트 (non-fatal — 실패해도 파이프라인 계속)
+    run("fetch_protocol.py")
+
     for it in range(1, MAX_ITER + 2):
         rc = run("retrieve.py")
         if rc == 12:

@@ -17,7 +17,7 @@ import json, sys
 from lib import work_path, save_json
 
 LENGTH_BUDGET = 3500
-EX_REQUIRED = ["sets", "reps", "intensity", "rationale", "source"]
+EX_REQUIRED = ["sets", "reps", "frequency", "intensity", "rationale", "source"]
 
 
 def bilingual_ok(node):
@@ -80,7 +80,7 @@ def main():
                      and isinstance(plan.get("en"), str) and plan["en"].strip()):
         fails.append({"check": "V-J5", "detail": "soap.plan summary not bilingual/non-empty"})
     for ex in exercises:
-        for f in ("name", "intensity", "rationale"):
+        for f in ("name", "frequency", "intensity", "rationale"):
             if not bilingual_ok(ex.get(f, {})):
                 fails.append({"check": "V-J5",
                               "detail": f'{ex.get("name", {}).get("en", "?")}: {f} not bilingual'})

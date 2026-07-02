@@ -20,7 +20,7 @@ import tempfile
 import uuid
 from pathlib import Path
 
-HARNESS_ROOT = Path(__file__).parent / "harness"
+HARNESS_ROOT = Path(__file__).resolve().parent.parent / "saferx-v2"
 HARNESS_SCRIPTS = HARNESS_ROOT / "scripts"
 PY = sys.executable
 MAX_REPORT_ATTEMPTS = 3

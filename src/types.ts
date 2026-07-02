@@ -56,6 +56,7 @@ export interface ReportExercise {
   name: Bilingual;
   sets: number;
   reps: number;
+  frequency: Bilingual;
   intensity: Bilingual;
   rationale: Bilingual;
   source: string;

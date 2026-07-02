@@ -1,0 +1,13 @@
+{
+  "surgery": "ACH_REPAIR",
+  "week_post_op": 20,
+  "age": 33,
+  "concomitant_procedure": null,
+  "pain_nrs": 1,
+  "swelling": false,
+  "notes": "이제 원심성 카프레이즈를 시작해도 될까요? 운동 영상에서 꼭 하라고 하더라고요.",
+  "surgery_details": {
+    "phase": "PHASE_V",
+    "graft_type": "n/a"
+  }
+}

@@ -507,11 +507,12 @@
       "rule_id": "COMP-01",
       "mode": "completeness",
       "severity": "hard",
-      "title": "필수 처방 필드 누락 금지 (sets/reps/intensity)",
+      "title": "필수 처방 필드 누락 금지 (sets/reps/frequency/intensity)",
       "builtin": "required_fields",
       "required": [
         "sets",
         "reps",
+        "frequency",
         "intensity"
       ],
       "quote_ref": "spec §5 / §6-1 COMP"

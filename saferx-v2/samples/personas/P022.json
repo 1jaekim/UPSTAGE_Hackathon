@@ -1,0 +1,13 @@
+{
+  "surgery": "RCR_ARTHRO",
+  "week_post_op": 8,
+  "age": 58,
+  "concomitant_procedure": "tear=medium",
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "팔을 스스로 움직이는 범위를 더 넓히고 싶습니다.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}

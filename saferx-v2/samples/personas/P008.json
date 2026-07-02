@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 24,
+  "age": 28,
+  "concomitant_procedure": null,
+  "pain_nrs": 0,
+  "swelling": false,
+  "notes": "다음 달에 아마추어 풋살 대회가 있어요. 나가도 되죠?",
+  "surgery_details": {
+    "phase": "PHASE_IV",
+    "graft_type": "hamstring_autograft"
+  }
+}

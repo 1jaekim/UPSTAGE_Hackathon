@@ -1,0 +1,13 @@
+{
+  "surgery": "THA_POST",
+  "week_post_op": 1,
+  "age": 77,
+  "concomitant_procedure": "revision_THA",
+  "pain_nrs": 4,
+  "swelling": true,
+  "notes": "재수술이라 조심스럽네요. 재활을 어떻게 시작하면 될까요?",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}

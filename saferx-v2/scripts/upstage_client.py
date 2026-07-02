@@ -13,10 +13,15 @@ _ENV_LOADED = False
 def _ensure_env():
     global _ENV_LOADED
     if not _ENV_LOADED:
-        # rag/.env를 찾는다 (scripts/의 조상 디렉토리)
+        # saferx-v2/rag/.env를 우선 시도하고, 없으면 조상의 rag/.env로 폴백.
+        # 두 위치 모두 지원해서 폴더가 이동해도 키 위치를 다시 안 잡아도 된다.
         here = os.path.dirname(os.path.abspath(__file__))
-        candidate = os.path.join(here, "..", "..", ".env")
-        load_dotenv(candidate)
+        for candidate in [
+            os.path.join(here, "..", "rag", ".env"),        # saferx-v2/rag/.env
+            os.path.join(here, "..", "..", "rag", ".env"),  # <project>/rag/.env (legacy)
+        ]:
+            if os.path.exists(candidate):
+                load_dotenv(candidate)
         _ENV_LOADED = True
 
 

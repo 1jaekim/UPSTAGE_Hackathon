@@ -1,0 +1,13 @@
+{
+  "surgery": "ACH_REPAIR",
+  "week_post_op": 5,
+  "age": 38,
+  "concomitant_procedure": null,
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "종아리가 계속 당겨요. 발등을 몸쪽으로 당기는 스트레칭을 하고 싶습니다.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}

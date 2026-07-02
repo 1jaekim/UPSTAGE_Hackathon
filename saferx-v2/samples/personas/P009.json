@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 6,
+  "age": 23,
+  "concomitant_procedure": "meniscal_repair",
+  "pain_nrs": 3,
+  "swelling": false,
+  "notes": "ACL 하면서 반월판도 같이 꿰맸다고 들었어요. 운동 처방 부탁드립니다.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

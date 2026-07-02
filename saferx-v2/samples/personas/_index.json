@@ -1,0 +1,274 @@
+[
+  {
+    "patient_id": "P001",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "중등도",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P001.json"
+  },
+  {
+    "patient_id": "P002",
+    "test_intent": "boundary",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P002.json"
+  },
+  {
+    "patient_id": "P003",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "I",
+    "swelling_grade": "중등도",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P003.json"
+  },
+  {
+    "patient_id": "P004",
+    "test_intent": "normal",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P004.json"
+  },
+  {
+    "patient_id": "P005",
+    "test_intent": "trap_target",
+    "expected_phase": "II",
+    "swelling_grade": "없음",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P005.json"
+  },
+  {
+    "patient_id": "P006",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P006.json"
+  },
+  {
+    "patient_id": "P007",
+    "test_intent": "normal",
+    "expected_phase": "III",
+    "swelling_grade": "없음",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P007.json"
+  },
+  {
+    "patient_id": "P008",
+    "test_intent": "trap_target",
+    "expected_phase": "IV",
+    "swelling_grade": "없음",
+    "converter_notes": [],
+    "expected_status": "ready_for_reporter",
+    "input_file": "P008.json"
+  },
+  {
+    "patient_id": "P009",
+    "test_intent": "meta_rule",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "manual_review_required",
+    "input_file": "P009.json"
+  },
+  {
+    "patient_id": "P010",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "중등도",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P010.json"
+  },
+  {
+    "patient_id": "P011",
+    "test_intent": "normal",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P011.json"
+  },
+  {
+    "patient_id": "P012",
+    "test_intent": "trap_target",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P012.json"
+  },
+  {
+    "patient_id": "P013",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P013.json"
+  },
+  {
+    "patient_id": "P014",
+    "test_intent": "boundary",
+    "expected_phase": "III",
+    "swelling_grade": "없음",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P014.json"
+  },
+  {
+    "patient_id": "P015",
+    "test_intent": "meta_rule",
+    "expected_phase": "II",
+    "swelling_grade": "중등도",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P015.json"
+  },
+  {
+    "patient_id": "P016",
+    "test_intent": "meta_rule",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P016.json"
+  },
+  {
+    "patient_id": "P017",
+    "test_intent": "trap_target",
+    "expected_phase": "IV",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P017.json"
+  },
+  {
+    "patient_id": "P018",
+    "test_intent": "trap_target",
+    "expected_phase": "I",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P018.json"
+  },
+  {
+    "patient_id": "P019",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P019.json"
+  },
+  {
+    "patient_id": "P020",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "I",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P020.json"
+  },
+  {
+    "patient_id": "P021",
+    "test_intent": "boundary",
+    "expected_phase": "II",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P021.json"
+  },
+  {
+    "patient_id": "P022",
+    "test_intent": "normal",
+    "expected_phase": "II",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P022.json"
+  },
+  {
+    "patient_id": "P023",
+    "test_intent": "trap_target",
+    "expected_phase": "III",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P023.json"
+  },
+  {
+    "patient_id": "P024",
+    "test_intent": "trap_target",
+    "expected_phase": "IV",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P024.json"
+  },
+  {
+    "patient_id": "P025",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P025.json"
+  },
+  {
+    "patient_id": "P026",
+    "test_intent": "boundary",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P026.json"
+  },
+  {
+    "patient_id": "P027",
+    "test_intent": "trap_target",
+    "expected_phase": "II",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P027.json"
+  },
+  {
+    "patient_id": "P028",
+    "test_intent": "normal",
+    "expected_phase": "III",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P028.json"
+  },
+  {
+    "patient_id": "P029",
+    "test_intent": "normal",
+    "expected_phase": "IV",
+    "swelling_grade": "no_mention",
+    "converter_notes": [],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P029.json"
+  },
+  {
+    "patient_id": "P030",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "VI",
+    "swelling_grade": "no_mention",
+    "converter_notes": [
+      "[converter] expected_phase VI → PHASE_V 클램프"
+    ],
+    "expected_status": "unsupported_surgery",
+    "input_file": "P030.json"
+  }
+]

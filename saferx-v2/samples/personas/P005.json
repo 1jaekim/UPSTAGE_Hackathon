@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 11,
+  "age": 27,
+  "concomitant_procedure": null,
+  "pain_nrs": 1,
+  "swelling": false,
+  "notes": "몸이 근질근질해요. 가볍게라도 러닝을 시작해도 될까요?",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

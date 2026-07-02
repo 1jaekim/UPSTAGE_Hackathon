@@ -1,0 +1,13 @@
+{
+  "surgery": "RCR_ARTHRO",
+  "week_post_op": 20,
+  "age": 63,
+  "concomitant_procedure": "tear=large_massive",
+  "pain_nrs": 1,
+  "swelling": false,
+  "notes": "주말마다 치던 테니스에 복귀하려고 합니다. 준비 운동을 알려주세요.",
+  "surgery_details": {
+    "phase": "PHASE_IV",
+    "graft_type": "n/a"
+  }
+}

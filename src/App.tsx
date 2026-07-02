@@ -13,14 +13,17 @@ const STEP_DELAY_MS = 420;
 
 function buildAnimatedSteps(result: PipelineResult): AnimatedStep[] {
   const steps: AnimatedStep[] = [
-    { agent: "info-extractor", label: "환자 입력 구조화 통과 + notes 마스킹 + 스코프 판정" },
+    { agent: "info-extractor", label: "환자 입력 구조화 + notes 마스킹 + 스코프 판정 (extract_redact.py)" },
   ];
 
   if (result.status === "unsupported_surgery" || result.status === "manual_review_required") {
     return steps;
   }
 
-  steps.push({ agent: "rag-recommender", label: "프로토콜 라이브러리에서 단계에 맞는 후보 검색" });
+  steps.push({
+    agent: "rag-recommender",
+    label: "프로토콜 근거 컨텍스트(fetch_protocol) + 단계 적합 후보 검색(retrieve)",
+  });
 
   if (result.status === "insufficient_evidence") {
     return steps;
@@ -28,21 +31,34 @@ function buildAnimatedSteps(result: PipelineResult): AnimatedStep[] {
 
   steps.push({
     agent: "safety-judge",
-    label: result.correctionUsed ? "규칙표 대조 검증: 위반 발견" : "규칙표 대조 검증 완료: 위반 0건",
+    label: result.correctionUsed
+      ? "Gate 1 안전성 검증: 위반 발견 (safety_judge --mode safety)"
+      : "Gate 1 안전성 검증 통과: 위반 0건",
   });
 
   if (result.correctionUsed) {
-    steps.push({ agent: "corrector", label: "위반 항목 자동 교정(등척성 치환/제외/필터) 후 재검색" });
-    steps.push({ agent: "safety-judge", label: `재검증 완료 (총 ${result.iterations}회 반복)` });
+    steps.push({
+      agent: "corrector",
+      label: "위반 항목 자동 교정(등척성 치환/제외/필터) + 재검색",
+    });
+    steps.push({
+      agent: "safety-judge",
+      label: `재검증 통과 (총 ${result.iterations}회 반복)`,
+    });
   }
 
   if (result.status !== "ready_for_reporter") {
     return steps;
   }
 
-  steps.push({ agent: "prescription-generator", label: "안전성 통과 항목으로 처방 5개 조립" });
-  steps.push({ agent: "report-writer", label: "SOAP 형식 검수 리포트 서술 작성 (이중언어)" });
-  steps.push({ agent: "report-judge", label: "리포트 품질·근거 일치 검수 통과" });
+  steps.push({ agent: "prescription-generator", label: "안전 통과 후보로 처방 5개 조립 (generate_rx.py)" });
+  steps.push({
+    agent: "safety-judge",
+    label: "완결성 재검증 (safety_judge --mode completeness)",
+  });
+  steps.push({ agent: "report-writer", label: "이중언어 SOAP 서술 작성 (reporter — LLM)" });
+  steps.push({ agent: "report-validator", label: "Gate 3 기계 검증: 개수·필드·이중언어·길이 (report_validate.py)" });
+  steps.push({ agent: "report-judge", label: "Gate 2 판단: 서술 품질(J1) · 근거성(J4) 통과 (report_judge — LLM)" });
   return steps;
 }
 

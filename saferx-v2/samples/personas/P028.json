@@ -1,0 +1,13 @@
+{
+  "surgery": "ACH_REPAIR",
+  "week_post_op": 8,
+  "age": 29,
+  "concomitant_procedure": null,
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "부츠 신고 이제 완전히 걷기 시작했어요. 운동을 늘려주세요.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "n/a"
+  }
+}

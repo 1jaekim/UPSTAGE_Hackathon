@@ -1,0 +1,13 @@
+{
+  "surgery": "THA_POST",
+  "week_post_op": 7,
+  "age": 59,
+  "concomitant_procedure": null,
+  "pain_nrs": 1,
+  "swelling": false,
+  "notes": "운동 강도를 올리고 싶습니다.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "n/a"
+  }
+}

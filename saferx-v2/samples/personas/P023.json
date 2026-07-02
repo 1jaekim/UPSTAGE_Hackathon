@@ -1,0 +1,13 @@
+{
+  "surgery": "RCR_ARTHRO",
+  "week_post_op": 11,
+  "age": 45,
+  "concomitant_procedure": "tear=small",
+  "pain_nrs": 1,
+  "swelling": false,
+  "notes": "이제 덤벨 사이드레이즈로 어깨 근육을 키우고 싶어요.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "n/a"
+  }
+}

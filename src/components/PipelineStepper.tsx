@@ -18,7 +18,7 @@ export default function PipelineStepper({ revealedSteps, isRunning }: Props) {
     <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-gray-900">파이프라인 진행 상태</h2>
       <p className="mt-1 text-sm text-gray-500">
-추출 → 검색 → 안전성 검증(Gate 1) → (위반 시) 자동 교정 루프 → 처방 조립 → 리포트 작성 → 품질 검수(Gate 2)
+추출 → 검색 → Gate 1 안전 판정 → (위반 시) 자동 교정 루프(≤5회) → 처방 조립 → 완결성 재검 → SOAP 서술 → Gate 3 기계 검증 → Gate 2 근거·품질 판단
       </p>
 
       <div className="mt-6 flex items-center">

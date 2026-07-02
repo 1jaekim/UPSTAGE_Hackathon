@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 13,
+  "age": 21,
+  "concomitant_procedure": null,
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "13주 됐으니까 다음 단계 운동을 받고 싶어요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

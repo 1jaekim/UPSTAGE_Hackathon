@@ -34,6 +34,7 @@ interface WireReportExercise {
   name: Bilingual;
   sets: number;
   reps: number;
+  frequency: Bilingual;
   intensity: Bilingual;
   rationale: Bilingual;
   source: string;
@@ -89,6 +90,7 @@ function toExercise(e: WireReportExercise): ReportExercise {
     name: e.name,
     sets: e.sets,
     reps: e.reps,
+    frequency: e.frequency,
     intensity: e.intensity,
     rationale: e.rationale,
     source: e.source,

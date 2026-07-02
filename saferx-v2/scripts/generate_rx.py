@@ -23,41 +23,8 @@ def main():
 
     ok_names = {c["name_en"] for c in safety["exercises_checked"] if c["safety_checked"]}
     # 검색 순서(phase-distance 우선 정렬)를 보존한다 — priority 재정렬 금지.
+    # 재정렬하면 초기 운동이 다시 앞으로 와서 후기 단계 처방이 단계 부적합해진다.
     pool = [e for e in cands["candidates"] if e["name"]["en"] in ok_names]
-
-    # ── 입력-결정론적 다양화 ──────────────────────────────────────────
-    # 문제: 상위 5개 단순 컷은 (a) 같은 phase면 항상 동일한 5개, (b) 유사 근육군 편중.
-    # 해법: target_muscle 그룹 간 라운드로빈으로 균형 잡힌 포트폴리오를 만들고,
-    #       시작 그룹을 week_post_op에서 유도해 같은 phase라도 주차가 다르면
-    #       조합이 달라지게 한다. 난수 없음 — 같은 입력이면 항상 같은 5개
-    #       (spec 재현성 불변식 유지). 그룹 순서·그룹 내 순서 모두 결정론적.
-    ctx = load_json(work_path("00_context.json"))
-    groups, order = {}, []
-    for e in pool:
-        g = e.get("target_muscle", "etc")
-        if g not in groups:
-            groups[g] = []
-            order.append(g)
-    for e in pool:
-        groups[e.get("target_muscle", "etc")].append(e)
-    week = ctx.get("week_post_op", 0)
-    if order:
-        start = week % len(order)
-        order = order[start:] + order[:start]
-    # 그룹 내부도 주차 회전 — 같은 근육군 슬롯이 주차에 따라 다른 운동으로 순환
-    # (예: 대퇴사두근 슬롯이 wk3 단축범위 → wk4 월싯 → wk5 레그프레스).
-    # 역시 난수 없음: week의 순수 함수라 재현성 유지.
-    for g in groups:
-        if len(groups[g]) > 1:
-            r = week % len(groups[g])
-            groups[g] = groups[g][r:] + groups[g][:r]
-    diversified, gi = [], 0
-    while len(diversified) < len(pool) and any(groups[g] for g in order):
-        g = order[gi % len(order)]
-        if groups[g]:
-            diversified.append(groups[g].pop(0))
-        gi += 1
-    pool = diversified
 
     if len(pool) < N:
         # 정확히 5개 불충족 → 재검색 필요 신호 (지어내지 않음, §4-A)
@@ -72,6 +39,7 @@ def main():
             "name": e["name"],
             "sets": e["dosage"]["sets"],
             "reps": e["dosage"]["reps"],
+            "frequency": e["dosage"]["frequency"],
             "intensity": dict(e["dosage"]["intensity"]),
             "rationale": e["rationale"],
             "source": e["source"],

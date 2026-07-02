@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 8,
+  "age": 19,
+  "concomitant_procedure": null,
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "이제 계단도 괜찮아요. 스쿼트 같은 하체 운동을 늘리고 싶어요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

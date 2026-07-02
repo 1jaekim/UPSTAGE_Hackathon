@@ -1,0 +1,13 @@
+{
+  "surgery": "RCR_ARTHRO",
+  "week_post_op": 6,
+  "age": 52,
+  "concomitant_procedure": "tear=small",
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "슬링을 이제 빼도 되는지, 운동은 뭘 하면 되는지 궁금해요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}

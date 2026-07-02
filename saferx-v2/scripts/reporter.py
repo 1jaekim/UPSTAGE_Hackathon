@@ -172,6 +172,7 @@ def main():
                         "name": e["name"],
                         "sets": e["sets"],
                         "reps": e["reps"],
+                        "frequency": e["frequency"],
                         "intensity": e["intensity"],
                         "rationale": e["rationale"],
                         "source": e["source"],

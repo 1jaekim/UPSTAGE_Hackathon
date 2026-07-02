@@ -3,8 +3,8 @@ import json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
-# SAFERX_WORK_DIR가 설정돼 있으면 그걸 쓴다 — 웹 서버에서 요청마다 격리된 임시
-# work 디렉토리를 지정하기 위함(동시 요청 충돌 방지). 없으면 기존처럼 ROOT/work.
+# SAFERX_WORK_DIR가 설정돼 있으면 그걸 쓴다 — 웹 서버(hooks_server.py)가 요청마다
+# 격리된 임시 work 디렉토리를 지정하기 위함(동시 요청 충돌 방지). 없으면 ROOT/work.
 WORK = os.environ.get("SAFERX_WORK_DIR") or os.path.join(ROOT, "work")
 
 

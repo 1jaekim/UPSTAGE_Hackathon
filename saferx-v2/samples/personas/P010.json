@@ -1,0 +1,13 @@
+{
+  "surgery": "THA_POST",
+  "week_post_op": 0,
+  "age": 68,
+  "concomitant_procedure": null,
+  "pain_nrs": 5,
+  "swelling": true,
+  "notes": "내일모레 퇴원이라는데, 집에서 뭘 하면 되는지 알려주세요.",
+  "surgery_details": {
+    "phase": "PHASE_I",
+    "graft_type": "n/a"
+  }
+}

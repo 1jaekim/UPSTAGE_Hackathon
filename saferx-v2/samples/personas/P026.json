@@ -1,0 +1,13 @@
+{
+  "surgery": "ACH_REPAIR",
+  "week_post_op": 4,
+  "age": 41,
+  "concomitant_procedure": null,
+  "pain_nrs": 3,
+  "swelling": false,
+  "notes": "이번 주부터 발을 조금씩 디뎌보라고 들었어요. 어떻게 하면 되나요?",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}

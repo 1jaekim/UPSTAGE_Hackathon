@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 4,
+  "age": 24,
+  "concomitant_procedure": null,
+  "pain_nrs": 2,
+  "swelling": false,
+  "notes": "이제 걷는 건 거의 불편하지 않아요. 다음 단계 운동으로 넘어가고 싶습니다.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

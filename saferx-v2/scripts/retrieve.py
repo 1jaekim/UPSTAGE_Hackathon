@@ -19,7 +19,7 @@ usage: python3 retrieve.py
 import os, sys
 from lib import load_json, save_json, work_path, DATA, die
 
-MAX_CANDIDATES = 12
+MAX_CANDIDATES = 10
 MIN_REQUIRED = 5
 
 

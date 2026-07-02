@@ -1,0 +1,13 @@
+{
+  "surgery": "THA_POST",
+  "week_post_op": 2,
+  "age": 72,
+  "concomitant_procedure": null,
+  "pain_nrs": 3,
+  "swelling": false,
+  "notes": "걷는 연습을 위주로 하고 싶습니다.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "n/a"
+  }
+}
