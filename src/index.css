@@ -1,17 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  /* 1. 기본 폰트를 Pretendard로 통합 (따로 클래스를 안 줘도 기본 적용됩니다) */
   --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-
-  /* 2. 에이전트 서비스 맞춤형 컬러 테마 정의 */
-  --color-brand: #00BAA4;          /* 메인 브랜드 컬러 (신뢰감을 주는 민트/테일) */
-  --color-brand-dark: #1E293B;     /* 사이드바, 헤더 등 무거운 텍스트/배경용 슬레이트 */
-  
-  /* 안전성 검증 단계에서 반드시 쓰일 상태 컬러 */
-  --color-safe: #10B981;           /* 검증 통과 / 안전 (Green) */
-  --color-warning: #F59E0B;        /* 주의 / 확인 필요 (Amber) */
-  --color-danger: #EF4444;         /* 위험 / 처방 금지 (Red) */
+  --color-brand: #00BAA4;
+  --color-brand-dark: #1E293B;
+  --color-safe: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
 }
 
 :root {
@@ -22,12 +17,58 @@ html,
 body,
 #root {
   min-height: 100%;
-  /* 대시보드나 리포트 형태의 UI가 도드라져 보이도록 배경을 살짝 밝은 회색(#F8FAFC)으로 추천합니다. White가 좋다면 #ffffff로 유지하셔도 됩니다. */
-  background: #f8fafc; 
+  background: #f8fafc;
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* 커스텀 컴포넌트 클래스 */
+.input-default {
+  @apply w-full rounded-lg p-2.5 text-sm border border-slate-300 bg-white;
+  @apply hover:border-slate-400 focus:border-brand focus:ring-1 focus:ring-brand/50 focus:outline-none;
+  @apply transition-all duration-200;
+  @apply disabled:opacity-50 disabled:bg-slate-50;
+}
+
+.input-error {
+  @apply border-2 border-red-500 bg-red-50/30 focus:ring-red-500/20;
+}
+
+.btn-primary {
+  @apply font-bold rounded-xl transition-all shadow-lg;
+  @apply active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply text-white;
+}
+
+/* 애니메이션 */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
 }

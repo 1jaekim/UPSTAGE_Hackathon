@@ -1,12 +1,17 @@
-import { AGENT_META, AGENT_ORDER, type AnimatedStep } from "../data/agents";
-import type { AgentKey } from "../types";
+import { CheckCircle2, Zap } from "lucide-react";
+import { AGENT_META, AGENT_ORDER } from "../data/agents";
+import type { AnimatedStep, AgentKey } from "../types";
 
 interface Props {
   revealedSteps: AnimatedStep[];
   isRunning: boolean;
 }
 
-function nodeStatus(agent: AgentKey, revealedSteps: AnimatedStep[], isRunning: boolean): "pending" | "active" | "done" {
+function getNodeStatus(
+  agent: AgentKey,
+  revealedSteps: AnimatedStep[],
+  isRunning: boolean
+): "pending" | "active" | "done" {
   if (revealedSteps.length === 0) return "pending";
   const lastStep = revealedSteps[revealedSteps.length - 1];
   const hasVisited = revealedSteps.some((s) => s.agent === agent);
@@ -17,46 +22,116 @@ function nodeStatus(agent: AgentKey, revealedSteps: AnimatedStep[], isRunning: b
 export default function PipelineStepper({ revealedSteps, isRunning }: Props) {
   return (
     <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-md h-full flex flex-col justify-between">
-      <div>
-        <h2 className="text-lg font-semibold text-gray-900">파이프라인 진행 상태</h2>
-        <p className="mt-1 text-sm text-gray-500">
-          생성 → 검증 → (위반 시) 자동 교정·재검증 최대 2회 → 리포트 출력
+      
+      {/* 헤더 */}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold text-slate-900">파이프라인 진행 상태</h2>
+        <p className="mt-1 text-xs text-slate-500">
+          생성 → 검증 → (위반 시) 자동 교정·재검증 → 리포트 출력
         </p>
 
-        {/* 스테퍼 인디케이터 컬러 브랜드화 */}
-        <div className="mt-6 flex items-center">
+        {/* 진행도 바 */}
+        {revealedSteps.length > 0 && (
+          <div className="mt-4 space-y-2">
+            <div className="flex justify-between text-xs">
+              <span className="font-semibold text-slate-700">
+                {revealedSteps.length} / 5 단계 완료
+              </span>
+              <span className="text-slate-500">
+                {Math.round((revealedSteps.length / 5) * 100)}%
+              </span>
+            </div>
+            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r rounded-full transition-all duration-1000 ease-out"
+                style={{
+                  width: `${(revealedSteps.length / 5) * 100}%`,
+                  background: "linear-gradient(to right, var(--color-brand, #00BAA4), var(--color-safe, #10B981))"
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* 스테퍼 인디케이터 */}
+      <div className="mt-6">
+        <div className="flex items-center justify-between">
           {AGENT_ORDER.map((agent, i) => {
-            const status = nodeStatus(agent, revealedSteps, isRunning);
+            const status = getNodeStatus(agent, revealedSteps, isRunning);
+            const isLast = i === AGENT_ORDER.length - 1;
+            const meta = AGENT_META[agent];
+            const agentColor = `var(--color-${agent}, #00BAA4)`;
+
             return (
-              <div key={agent} className="flex flex-1 items-center last:flex-initial">
-                <div className="flex flex-col items-center gap-2">
+              <div key={agent} className="flex flex-col items-center flex-1">
+                {/* 노드 */}
+                <div className="flex flex-col items-center gap-2 mb-3 w-full">
                   <div
-                    className={
-                      "flex h-11 w-11 items-center justify-center rounded-full border-2 text-sm font-bold transition-all duration-300 " +
-                      (status === "active"
-                        ? "border-[#00BAA4] bg-[#00BAA4] text-white animate-pulse shadow-lg shadow-[#00BAA4]/20"
+                    className={`flex h-12 w-12 items-center justify-center rounded-full border-2 font-bold text-sm transition-all duration-500 relative ${
+                      status === "active"
+                        ? "animate-pulse"
                         : status === "done"
-                          ? "border-emerald-500 bg-emerald-50 text-emerald-600"
-                          : "border-gray-200 bg-gray-50 text-gray-400")
-                    }
+                          ? "bg-emerald-50"
+                          : "bg-slate-50"
+                    }`}
+                    style={{
+                      borderColor: status === "active" || status === "done" ? agentColor : "var(--color-slate-300, #cbd5e1)",
+                      backgroundColor: status === "active" 
+                        ? agentColor 
+                        : status === "done"
+                          ? "var(--color-safe, #10B981)/10"
+                          : "var(--color-slate-50, #f8fafc)",
+                      color: status === "active" 
+                        ? "white" 
+                        : status === "done"
+                          ? "var(--color-safe, #10B981)"
+                          : "var(--color-slate-400, #94a3b8)",
+                      boxShadow: status === "active" ? `0 0 20px ${agentColor}40` : "none"
+                    }}
                   >
-                    {status === "done" ? "✓" : i + 1}
+                    {status === "done" ? (
+                      <CheckCircle2 className="w-6 h-6 animate-popIn" />
+                    ) : status === "active" ? (
+                      <Zap className="w-5 h-5 animate-bounce" />
+                    ) : (
+                      <span>{i + 1}</span>
+                    )}
                   </div>
+
+                  {/* 라벨 */}
                   <span
-                    className={
-                      "text-xs font-semibold whitespace-nowrap " +
-                      (status === "pending" ? "text-gray-400" : "text-slate-700")
+                    className={`text-xs font-semibold whitespace-nowrap transition-colors duration-300 ${
+                      status === "pending"
+                        ? "text-slate-400"
+                        : status === "active"
+                          ? "font-bold"
+                          : "text-slate-700"
+                    }`}
+                    style={
+                      status === "active"
+                        ? { color: agentColor }
+                        : {}
                     }
                   >
-                    {AGENT_META[agent].label}
+                    {meta.label}
                   </span>
                 </div>
-                {i < AGENT_ORDER.length - 1 && (
+
+                {/* 커넥팅 라인 */}
+                {!isLast && (
                   <div
-                    className={
-                      "mx-2 h-0.5 flex-1 rounded transition-colors duration-500 " +
-                      (status === "done" ? "bg-emerald-400" : "bg-gray-200")
-                    }
+                    className={`h-1 flex-1 mb-3 rounded transition-all duration-500 ${
+                      status === "done" ? "" : ""
+                    }`}
+                    style={{
+                      margin: "0 4px",
+                      minWidth: "20px",
+                      backgroundColor: status === "done" 
+                        ? "var(--color-safe, #10B981)" 
+                        : "var(--color-slate-200, #e2e8f0)",
+                      animation: status === "done" ? "slideRight 600ms ease-out forwards" : "none"
+                    }}
                   />
                 )}
               </div>
@@ -65,59 +140,102 @@ export default function PipelineStepper({ revealedSteps, isRunning }: Props) {
         </div>
       </div>
 
-      {/* 하단 컨텐츠 가독성 고도화 및 최소 세로폭 유지 */}
-      <div className="mt-6 flex-1 min-h-[260px] flex flex-col justify-start overflow-y-auto pr-1">
+      {/* 단계별 진행 로그 */}
+      <div className="mt-8 flex-1 min-h-[200px] flex flex-col justify-start overflow-y-auto scrollbar-thin">
         {revealedSteps.length === 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full content-start animate-fadeIn">
-            <div className="col-span-1 md:col-span-2 text-xs font-bold text-slate-400 mb-1 flex items-center gap-1.5 select-none">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00BAA4] animate-pulse"></span>
-              시스템 가동 대기 중: 하네스 멀티 에이전트 핵심 명세
+          <div className="grid grid-cols-1 gap-2 animate-fadeIn">
+            <div className="text-xs font-bold text-slate-400 mb-2 flex items-center gap-1.5">
+              <span 
+                className="w-1.5 h-1.5 rounded-full animate-pulse"
+                style={{ backgroundColor: "var(--color-brand, #00BAA4)" }}
+              />
+              시스템 대기 중
             </div>
-            
-            <div className="border border-slate-100 bg-slate-50/60 rounded-xl p-3 text-xs flex flex-col gap-1 hover:border-slate-200 transition-colors">
-              <span className="font-bold text-slate-800 text-[13px]">1. Orchestrator <span className="text-slate-400 font-normal">(중재)</span></span>
-              <p className="text-slate-500 leading-relaxed text-[11px]">전체 안전성 검증 파이프라인의 작업 흐름을 최적화하고 스케줄링 수행.</p>
-            </div>
-            
-            <div className="border border-slate-100 bg-slate-50/60 rounded-xl p-3 text-xs flex flex-col gap-1 hover:border-slate-200 transition-colors">
-              <span className="font-bold text-slate-800 text-[13px]">2. Generator <span className="text-slate-400 font-normal">(생성)</span></span>
-              <p className="text-slate-500 leading-relaxed text-[11px]">입력된 환자 메타데이터에 가장 적합한 임상용 재활 운동 처방 초안 설계.</p>
-            </div>
-            
-            <div className="border border-slate-100 bg-slate-50/60 rounded-xl p-3 text-xs flex flex-col gap-1 hover:border-slate-200 transition-colors">
-              <span className="font-bold text-slate-800 text-[13px]">3. Validator <span className="text-slate-400 font-normal">(검증)</span></span>
-              <p className="text-slate-500 leading-relaxed text-[11px]">임상 가이드라인 가이드를 바탕으로 수술 부위별 위험 금기 요소를 전면 필터링.</p>
-            </div>
-            
-            <div className="border border-slate-100 bg-slate-50/60 rounded-xl p-3 text-xs flex flex-col gap-1 hover:border-slate-200 transition-colors">
-              <span className="font-bold text-slate-800 text-[13px]">4. Corrector <span className="text-slate-400 font-normal">(교정)</span></span>
-              <p className="text-slate-500 leading-relaxed text-[11px]">기준 위반 감지 시 실시간 피드백 루프를 가동하여 자동 교정 및 재심사 진행.</p>
-            </div>
-            
-            <div className="border border-slate-100 bg-slate-50/60 rounded-xl p-3 text-xs flex flex-col gap-1 md:col-span-2 hover:border-slate-200 transition-colors">
-              <span className="font-bold text-slate-800 text-[13px]">5. Reporter <span className="text-slate-400 font-normal">(리포트 발행)</span></span>
-              <p className="text-slate-500 leading-relaxed text-[11px]">검증을 최종 통과한 안전성 보장형 의학적 근거 중심 처방 결과 검수 보고서 추출.</p>
-            </div>
+            {[
+              { color: "var(--color-generator, #3B82F6)", label: "Orchestrator", desc: "전체 파이프라인 작업 흐름을 최적화하고 리소스를 할당합니다." },
+              { color: "var(--color-validator, #F97316)", label: "Generator", desc: "환자 데이터를 기반으로 임상용 재활 운동 처방을 설계합니다." },
+              { color: "var(--color-corrector, #8B5CF6)", label: "Validator", desc: "임상 가이드라인을 기반으로 수술 부위별 금기 사항을 검증합니다." }
+            ].map((item, idx) => (
+              <div 
+                key={idx}
+                className="rounded-lg p-3 text-xs border"
+                style={{
+                  backgroundColor: `${item.color}10`,
+                  borderColor: `${item.color}30`
+                }}
+              >
+                <p className="font-semibold text-slate-800 mb-1">{item.label}</p>
+                <p style={{ color: `${item.color}90` }} className="text-[11px]">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         ) : (
-          <div className="space-y-2.5 w-full animate-fadeIn">
+          <div className="space-y-2 animate-fadeIn">
             {revealedSteps.map((step, i) => {
-              const isLast = i === revealedSteps.length - 1;
-              const stillRunning = isLast && isRunning;
+              const isLastStep = i === revealedSteps.length - 1;
+              const isStillRunning = isLastStep && isRunning;
+              const agentColor = `var(--color-${step.agent}, #00BAA4)`;
+
               return (
                 <div
                   key={`${step.agent}-${i}`}
-                  className="flex items-center gap-3 rounded-xl bg-slate-50/80 border border-slate-100 px-3 py-2.5 text-sm transition-all"
+                  className="flex items-start gap-3 rounded-xl border p-3 hover:border-slate-200 hover:shadow-sm transition-all duration-300 animate-slideIn bg-gradient-to-r"
+                  style={{
+                    backgroundColor: "rgba(248, 250, 252, 0.5)",
+                    borderColor: "var(--color-slate-200, #e2e8f0)",
+                    backgroundImage: "linear-gradient(to right, rgba(248, 250, 252, 0.5), rgba(248, 250, 252, 0.5))"
+                  }}
                 >
-                  <span className="inline-flex w-24 shrink-0 items-center justify-center rounded-md bg-white border border-slate-200 py-0.5 text-xs font-bold text-slate-700 shadow-sm">
-                    {AGENT_META[step.agent].label}
-                  </span>
-                  <span className="flex-1 text-slate-700 font-medium text-[13px]">
-                    {step.label}
-                    {step.attempt ? ` (시도 ${step.attempt}회)` : ""}
-                  </span>
-                  <span className={"text-xs font-bold " + (stillRunning ? "text-[#00BAA4] animate-pulse" : "text-emerald-600")}>
-                    {stillRunning ? "진행 중…" : "완료"}
+                  {/* 상태 아이콘 */}
+                  <div className="flex-shrink-0 pt-0.5">
+                    {isStillRunning ? (
+                      <div 
+                        className="w-5 h-5 rounded-full border-2 border-t-transparent animate-spin"
+                        style={{
+                          borderColor: `${agentColor}40`,
+                          borderTopColor: agentColor
+                        }}
+                      />
+                    ) : (
+                      <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "var(--color-safe, #10B981)" }} />
+                    )}
+                  </div>
+
+                  {/* 콘텐츠 */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span 
+                        className="inline-flex px-2 py-1 rounded-md text-xs font-bold whitespace-nowrap"
+                        style={{
+                          backgroundColor: `${agentColor}15`,
+                          color: agentColor
+                        }}
+                      >
+                        {AGENT_META[step.agent].label}
+                      </span>
+                      {step.attempt && (
+                        <span className="text-xs text-slate-500">
+                          (시도 {step.attempt}회)
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-slate-700 font-medium text-xs leading-relaxed">
+                      {step.label}
+                    </p>
+                  </div>
+
+                  {/* 상태 텍스트 */}
+                  <span
+                    className={`text-xs font-bold whitespace-nowrap flex-shrink-0 ${
+                      isStillRunning ? "animate-pulse" : ""
+                    }`}
+                    style={{
+                      color: isStillRunning ? agentColor : "var(--color-safe, #10B981)"
+                    }}
+                  >
+                    {isStillRunning ? "진행 중…" : "✓"}
                   </span>
                 </div>
               );
