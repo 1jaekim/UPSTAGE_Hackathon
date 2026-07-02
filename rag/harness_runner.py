@@ -49,7 +49,12 @@ def _pipeline_meta(work_dir: Path) -> dict:
     return {"correction_used": iterations > 1, "iterations": iterations}
 
 
-def run_harness_pipeline(payload: dict) -> dict:
+def run_harness_pipeline(payload: dict, judge_mode: str | None = None) -> dict:
+    """judge_mode:
+      - None or "split": 현행 아키텍처 — reporter LLM과 report-judge LLM 분리
+      - "combined": 한 LLM 호출로 SOAP 작성 + 자기 판정을 동시 수행 (실험용)
+    환경변수 SAFERX_JUDGE_MODE로도 지정 가능."""
+    mode = judge_mode or os.environ.get("SAFERX_JUDGE_MODE") or "split"
     work_dir = Path(tempfile.mkdtemp(prefix="saferx_"))
     record_id = f"rec_{uuid.uuid4().hex[:8]}"
     try:
@@ -68,31 +73,58 @@ def run_harness_pipeline(payload: dict) -> dict:
         status_doc = _read_json(status_path)
         status = status_doc["status"]
         meta = _pipeline_meta(work_dir)
+        meta["judge_mode"] = mode
         if status != "ready_for_reporter":
             return {"status": status, "detail": status_doc.get("detail", ""), "report": None, **meta}
 
         fix_notes = None
+        llm_calls = 0
         for _attempt in range(1, MAX_REPORT_ATTEMPTS + 1):
-            reporter_args = ["--fix-notes", fix_notes] if fix_notes else []
-            reporter_run = _run_script("reporter.py", work_dir, *reporter_args)
-            if reporter_run.returncode != 0:
-                fix_notes = f"reporter.py crashed: {reporter_run.stderr[-500:]}"
-                continue
+            if mode == "combined":
+                # 한 콜에 작성 + 자기 판정
+                args = ["--fix-notes", fix_notes] if fix_notes else []
+                combined_run = _run_script("reporter_judge_combined.py", work_dir, *args)
+                llm_calls += 1
+                if combined_run.returncode not in (0, 1):
+                    # 크래시(2 이상) → 재시도
+                    fix_notes = f"combined.py crashed: {combined_run.stderr[-500:]}"
+                    continue
+                _run_script("report_validate.py", work_dir)
+                validation = _read_json(work_dir / "55_validation.json")
+                if not validation["pass"]:
+                    fix_notes = "; ".join(f'{f["check"]}: {f["detail"]}' for f in validation["fails"])
+                    continue
+                verdict = _read_json(work_dir / "60_judge.json")
+                if verdict.get("pass"):
+                    report = _read_json(work_dir / "50_report.json")
+                    report["report_meta"]["record_id"] = record_id
+                    meta["llm_calls"] = llm_calls
+                    return {"status": "ready_for_reporter", "detail": "", "report": report, **meta}
+                fix_notes = verdict.get("notes", "combined self-judge rejected")
+            else:
+                # split(현행): reporter → validate → judge
+                reporter_args = ["--fix-notes", fix_notes] if fix_notes else []
+                reporter_run = _run_script("reporter.py", work_dir, *reporter_args)
+                llm_calls += 1
+                if reporter_run.returncode != 0:
+                    fix_notes = f"reporter.py crashed: {reporter_run.stderr[-500:]}"
+                    continue
+                _run_script("report_validate.py", work_dir)
+                validation = _read_json(work_dir / "55_validation.json")
+                if not validation["pass"]:
+                    fix_notes = "; ".join(f'{f["check"]}: {f["detail"]}' for f in validation["fails"])
+                    continue
+                judge_run = _run_script("report_judge.py", work_dir)
+                llm_calls += 1
+                verdict = _read_json(work_dir / "60_judge.json")
+                if judge_run.returncode == 0 and verdict.get("pass"):
+                    report = _read_json(work_dir / "50_report.json")
+                    report["report_meta"]["record_id"] = record_id
+                    meta["llm_calls"] = llm_calls
+                    return {"status": "ready_for_reporter", "detail": "", "report": report, **meta}
+                fix_notes = verdict.get("notes", "report rejected by gate-2 judge")
 
-            _run_script("report_validate.py", work_dir)
-            validation = _read_json(work_dir / "55_validation.json")
-            if not validation["pass"]:
-                fix_notes = "; ".join(f'{f["check"]}: {f["detail"]}' for f in validation["fails"])
-                continue
-
-            judge_run = _run_script("report_judge.py", work_dir)
-            verdict = _read_json(work_dir / "60_judge.json")
-            if judge_run.returncode == 0 and verdict.get("pass"):
-                report = _read_json(work_dir / "50_report.json")
-                report["report_meta"]["record_id"] = record_id
-                return {"status": "ready_for_reporter", "detail": "", "report": report, **meta}
-            fix_notes = verdict.get("notes", "report rejected by gate-2 judge")
-
+        meta["llm_calls"] = llm_calls
         return {
             "status": "manual_review_required",
             "detail": f"gate2_max_attempts_exceeded: {fix_notes}",
