@@ -104,9 +104,46 @@ def build_prompt(ctx, prescription, fix_notes=None):
 """
 
 
+def _fallback_narrative(ctx):
+    """LLM 불가 시 결정론적 이중언어 서술 (opt-in). 데이터에 있는 사실만 조립한다."""
+    mism = ctx["flags"]["phase_week_mismatch"]
+    red = ctx["flags"]["red_flag"]
+    mism_ko = " 주차와 선언 단계가 불일치하여 낮은 단계를 보수적으로 채택함." if mism else ""
+    mism_en = " Week and declared phase mismatched; the lower phase was conservatively adopted." if mism else ""
+    red_ko = "Red flag 있음(통증/부종) — 등척성 위주로 구성됨." if red else "Red flag 없음."
+    red_en = "Red flag present (pain/swelling) — isometric-focused plan." if red else "No red flags."
+    band = ctx["age_band"]  # 예: "10s", "30s"
+    band_ko = band.replace("s", "대") if band.endswith("s") else band
+    band_en = "teens" if band == "10s" else band
+    return {
+        "subjective": {
+            "ko": f"{band_ko} 환자. 주호소: {ctx['notes_redacted'] or '기록 없음'}",
+            "en": f"Patient in their {band_en}. Chief complaint (patient-reported, Korean): {ctx['notes_redacted'] or 'not recorded'}",
+        },
+        "objective": {
+            "ko": f"수술 후 {ctx['week_post_op']}주차, 유효 단계 {ctx['phase']}. 부종 {'있음' if ctx['swelling'] else '없음'}, NRS {ctx['pain_nrs']}, 이식건 {ctx['graft_type']}.{mism_ko}",
+            "en": f"Post-op week {ctx['week_post_op']}, effective {ctx['phase']}. Swelling {'present' if ctx['swelling'] else 'absent'}, NRS {ctx['pain_nrs']}, graft {ctx['graft_type']}.{mism_en}",
+        },
+        "assessment": {
+            "ko": f"{ctx['phase']} 단계에 해당하는 회복 양상으로 판단됨. {red_ko} 아래 운동들은 규칙표 안전 게이트를 통과한 항목으로 제안됨(최종 판단은 담당 물리치료사).",
+            "en": f"Findings consistent with {ctx['phase']}. {red_en} The exercises below passed the deterministic safety gate and are proposed for PT review (final decision by the treating PT).",
+        },
+        "plan_summary": {
+            "ko": f"{ctx['phase']} 목표에 맞춘 5개 운동을 제안함. 통증·부종 반응을 관찰하며 진행할 것을 제안함.",
+            "en": f"Five exercises aligned with {ctx['phase']} goals are proposed; progress while monitoring pain and swelling.",
+        },
+    }
+
+
 def generate_narrative(ctx, prescription, fix_notes=None):
     prompt = build_prompt(ctx, prescription, fix_notes)
-    return chat_json(prompt)
+    try:
+        return chat_json(prompt)
+    except Exception as e:
+        if os.environ.get("SAFERX_STRICT_LLM") != "1":
+            print(f"[reporter] LLM unavailable ({type(e).__name__}) — deterministic fallback narrative")
+            return _fallback_narrative(ctx)
+        raise
 
 
 def main():

@@ -1,7 +1,10 @@
-chromadb
-openai
-requests
-python-dotenv
-beautifulsoup4
+# 필수 (하네스 서버 + LLM)
 fastapi
 uvicorn
+python-dotenv
+openai
+requests
+# 선택 — 없어도 /run-harness는 동작함 (검증 로그 훅·RAG 적재에만 필요).
+# ⚠️ Python 3.13+에서는 의존성 휠 부재로 설치가 실패할 수 있음 → 그 경우 생략하고 진행.
+chromadb
+beautifulsoup4

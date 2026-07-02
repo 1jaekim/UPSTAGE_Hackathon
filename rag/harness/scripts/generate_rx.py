@@ -22,8 +22,9 @@ def main():
         die(f"generate_rx requires approved gate (got {safety.get('decision')})")
 
     ok_names = {c["name_en"] for c in safety["exercises_checked"] if c["safety_checked"]}
+    # 검색 순서(phase-distance 우선 정렬)를 보존한다 — priority 재정렬 금지.
+    # 재정렬하면 초기 운동이 다시 앞으로 와서 후기 단계 처방이 단계 부적합해진다.
     pool = [e for e in cands["candidates"] if e["name"]["en"] in ok_names]
-    pool.sort(key=lambda e: (e["priority"], e["name"]["en"]))
 
     if len(pool) < N:
         # 정확히 5개 불충족 → 재검색 필요 신호 (지어내지 않음, §4-A)

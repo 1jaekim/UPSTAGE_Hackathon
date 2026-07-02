@@ -73,8 +73,14 @@ def main():
         iteration = corr.get("iteration", 1)
         exs = apply_correction_filters(exs, corr)
 
-    # 결정론적 정렬: priority → name_en
-    exs.sort(key=lambda e: (e["priority"], e["name"]["en"]))
+    # 결정론적 정렬: phase 거리(현 단계 도입 운동 우선) → priority → name_en
+    # min_phase 모델(해당 단계부터 허용)에서는 초기 운동이 영원히 후보로 남으므로,
+    # 현 단계에 도입된 운동을 먼저 뽑아야 단계 적합 처방이 된다.
+    ORDER = ["PHASE_I", "PHASE_II", "PHASE_III", "PHASE_IV", "PHASE_V"]
+    cur = ORDER.index(ctx["phase"])
+    def phase_dist(e):
+        return cur - ORDER.index(e.get("min_phase", e["phases"][0]))
+    exs.sort(key=lambda e: (phase_dist(e), e["priority"], e["name"]["en"]))
     exs = exs[:MAX_CANDIDATES]
 
     insufficient = len(exs) < MIN_REQUIRED

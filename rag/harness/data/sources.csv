@@ -1,0 +1,5 @@
+source_tag,type,authors,year,title,venue,identifier,supports,verified
+Escamilla2012,journal,"Escamilla RF, MacLeod TD, Wilk KE, Paulos L, Andrews JR",2012,"Anterior cruciate ligament strain and tensile forces for weight-bearing and non-weight-bearing exercises: a guide to exercise selection","J Orthop Sports Phys Ther. 2012;42(3):208-220","doi:10.2519/jospt.2012.3768; PMID:22387600","개방사슬(NWB)이 폐쇄사슬(WB)보다 ACL 부하 큼; 무릎굴곡 10-50도(특히 10-30도)에서 ACL 부하 최대; 운동방식(체간 위치 등)에 따라 부하 변동",Y
+Wilk1996,journal,"Wilk KE, Escamilla RF, Fleisig GS, Barrentine SW, Andrews JR, Boyd ML",1996,"A comparison of tibiofemoral joint forces and electromyographic activity during open and closed kinetic chain exercises","Am J Sports Med. 1996;24(4):518-527","doi:10.1177/036354659602400418; PMID:8827313","개방사슬 무릎신전 vs 폐쇄사슬 레그프레스·스쿼트의 슬관절 압박력·전단력·EMG 비교; 스쿼트 최대압박력 91도에서 발생",Y
+Brigham,protocol,"Brigham and Women's Hospital",NA,"ACL Hamstring Tendon Autograft Reconstruction Protocol","Institutional protocol",NA,"단계별 기간·ROM 제한·진행기준 등 규칙 수치의 1차 출처",N
+curated,expert,"도메인 큐레이션(물리치료)",NA,"임상 상식 기반 초안값",NA,NA,"공개 문헌으로 즉시 뒷받침되지 않는 초안; 사용자 검증 대상",N

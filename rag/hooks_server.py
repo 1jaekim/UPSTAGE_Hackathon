@@ -38,8 +38,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from chroma_client import get_chroma_client
 from harness_runner import run_harness_pipeline
+# chroma_client(→chromadb)는 로깅 훅에서만 필요하므로 지연 import한다.
+# chromadb는 설치가 무겁고(onnxruntime 등) 최신 파이썬(3.13+)에서 휠이 없어 실패하기 쉬운데,
+# 그 실패가 /run-harness까지 죽이면 안 된다.
 
 load_dotenv(Path(__file__).parent / ".env")
 
@@ -59,14 +61,23 @@ _DUMMY_EMBEDDING = [0.0]
 _LOGGED_EVENTS = {"judge_result", "corrector_changelog"}
 
 
+@app.get("/health")
+def health():
+    return {"status": "ok", "service": "saferx-harness"}
+
+
 @app.post("/run-harness")
 def run_harness(payload: dict):
-    return run_harness_pipeline(payload)
+    try:
+        return run_harness_pipeline(payload)
+    except Exception as e:  # 파이프라인 밖 예외도 프론트가 읽을 수 있는 JSON으로
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
 
 
 def get_log_collection():
     global _collection
     if _collection is None:
+        from chroma_client import get_chroma_client  # 지연 import (위 주석 참고)
         _collection = get_chroma_client().get_or_create_collection("execution_logs")
     return _collection
 
