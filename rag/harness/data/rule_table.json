@@ -1,0 +1,532 @@
+{
+  "table_id": "ACL-HS-BWH-v1",
+  "rule_count": 22,
+  "note": "⚠️ 룰 조건·수치는 표준 ACL 햄스트링 자가건 프로토콜을 참조한 초안(SAMPLE)이다. 실제 사용 전 팀의 프로토콜 원문 대조 및 임상 검증 필수.",
+  "rules": [
+    {
+      "rule_id": "GATE-01",
+      "mode": "input_gate",
+      "severity": "hard",
+      "title": "지원하지 않는 수술",
+      "patient_if": {
+        "field": "surgery",
+        "op": "ne",
+        "value": "ACL_RECON"
+      },
+      "exercise_if": {},
+      "outcome": "unsupported_case",
+      "quote_ref": "spec §3"
+    },
+    {
+      "rule_id": "GATE-02",
+      "mode": "input_gate",
+      "severity": "hard",
+      "title": "동반 시술 존재 → 수동 검토",
+      "patient_if": {
+        "field": "concomitant_procedure",
+        "op": "not_null"
+      },
+      "exercise_if": {},
+      "outcome": "manual_review_required",
+      "quote_ref": "spec §4-E"
+    },
+    {
+      "rule_id": "GATE-03",
+      "mode": "input_gate",
+      "severity": "hard",
+      "title": "지원하지 않는 이식건",
+      "patient_if": {
+        "field": "graft_type",
+        "op": "ne",
+        "value": "hamstring_autograft"
+      },
+      "exercise_if": {},
+      "outcome": "unsupported_case",
+      "quote_ref": "spec §3-2 schema"
+    },
+    {
+      "rule_id": "REDFLAG-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "Red flag(NRS≥7 또는 부종) 시 동적 운동 금지",
+      "patient_if": {
+        "any": [
+          {
+            "field": "pain_nrs",
+            "op": "gte",
+            "value": 7
+          },
+          {
+            "field": "swelling",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "exercise_if": {
+        "field": "load_type",
+        "op": "ne",
+        "value": "isometric"
+      },
+      "correction_hint": {
+        "action": "force_isometric",
+        "alternative_filter": {
+          "load_type_in": [
+            "isometric"
+          ]
+        }
+      },
+      "quote_ref": "spec §4-D"
+    },
+    {
+      "rule_id": "REDFLAG-02",
+      "mode": "safety",
+      "severity": "soft",
+      "title": "중등도 통증(NRS 5–6) 수동 확인",
+      "patient_if": {
+        "all": [
+          {
+            "field": "pain_nrs",
+            "op": "gte",
+            "value": 5
+          },
+          {
+            "field": "pain_nrs",
+            "op": "lte",
+            "value": 6
+          }
+        ]
+      },
+      "exercise_if": {},
+      "note": "카운트 제외, manual_review 플래그만",
+      "quote_ref": "spec §6-1"
+    },
+    {
+      "rule_id": "HS-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "초기(PHASE I–II) 고부하 햄스트링 로딩 금지 (공여부 보호)",
+      "patient_if": {
+        "field": "phase",
+        "op": "in",
+        "value": [
+          "PHASE_I",
+          "PHASE_II"
+        ]
+      },
+      "exercise_if": {
+        "field": "hamstring_load",
+        "op": "eq",
+        "value": "high"
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "hamstring_load_in": [
+            "none",
+            "low"
+          ]
+        }
+      },
+      "quote_ref": "HS graft donor-site protection"
+    },
+    {
+      "rule_id": "HS-02",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "12주 미만 저항성 무릎 굴곡 금지 (공여부, EX021 note)",
+      "patient_if": {
+        "field": "week_post_op",
+        "op": "lt",
+        "value": 12
+      },
+      "exercise_if": {
+        "field": "resisted_knee_flexion",
+        "op": "eq",
+        "value": true
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "resisted_knee_flexion": false
+        }
+      },
+      "quote_ref": "HS graft donor-site protection"
+    },
+    {
+      "rule_id": "HS-03",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "6주 미만 공격적 햄스트링 스트레칭 금지",
+      "patient_if": {
+        "field": "week_post_op",
+        "op": "lt",
+        "value": 6
+      },
+      "exercise_if": {
+        "all": [
+          {
+            "field": "category",
+            "op": "eq",
+            "value": "stretch"
+          },
+          {
+            "field": "stretch_target",
+            "op": "eq",
+            "value": "hamstring"
+          }
+        ]
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {}
+      },
+      "quote_ref": "HS graft donor-site protection"
+    },
+    {
+      "rule_id": "HS-04",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "PHASE I–II 원심성 햄스트링 운동 금지 (III부터는 팀 큐레이션 min_phase 따름)",
+      "patient_if": {
+        "field": "phase",
+        "op": "in",
+        "value": [
+          "PHASE_I",
+          "PHASE_II"
+        ]
+      },
+      "exercise_if": {
+        "field": "eccentric_hamstring",
+        "op": "eq",
+        "value": true
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "eccentric_hamstring": false
+        }
+      },
+      "quote_ref": "HS graft donor-site protection"
+    },
+    {
+      "rule_id": "OKC-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "PHASE I–II 개방사슬 저항성 신전 금지 (이식건 전단부하)",
+      "patient_if": {
+        "field": "phase",
+        "op": "in",
+        "value": [
+          "PHASE_I",
+          "PHASE_II"
+        ]
+      },
+      "exercise_if": {
+        "all": [
+          {
+            "field": "kinetic_chain",
+            "op": "eq",
+            "value": "OKC"
+          },
+          {
+            "field": "target_muscle",
+            "op": "eq",
+            "value": "quadriceps"
+          },
+          {
+            "field": "resisted",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "kinetic_chain_in": [
+            "CKC",
+            "none"
+          ]
+        }
+      },
+      "quote_ref": "OKC quad loading restriction"
+    },
+    {
+      "rule_id": "OKC-02",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "PHASE III OKC 신전은 90–40° 범위로 제한 (EX022 note)",
+      "patient_if": {
+        "field": "phase",
+        "op": "eq",
+        "value": "PHASE_III"
+      },
+      "exercise_if": {
+        "all": [
+          {
+            "field": "kinetic_chain",
+            "op": "eq",
+            "value": "OKC"
+          },
+          {
+            "field": "target_muscle",
+            "op": "eq",
+            "value": "quadriceps"
+          },
+          {
+            "field": "resisted",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "knee_extension_end",
+            "op": "lt",
+            "value": 40
+          }
+        ]
+      },
+      "correction_hint": {
+        "action": "clamp",
+        "clamp_field": "knee_extension_end",
+        "clamp_value": 40
+      },
+      "quote_ref": "OKC ROM limit"
+    },
+    {
+      "rule_id": "ROM-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "PHASE I 무릎 굴곡 90° 초과 금지",
+      "patient_if": {
+        "field": "phase",
+        "op": "eq",
+        "value": "PHASE_I"
+      },
+      "exercise_if": {
+        "field": "knee_flexion_max",
+        "op": "gt",
+        "value": 90
+      },
+      "correction_hint": {
+        "action": "clamp",
+        "clamp_field": "knee_flexion_max",
+        "clamp_value": 90
+      },
+      "quote_ref": "early ROM limit"
+    },
+    {
+      "rule_id": "ROM-02",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "PHASE II 무릎 굴곡 120° 초과 금지",
+      "patient_if": {
+        "field": "phase",
+        "op": "eq",
+        "value": "PHASE_II"
+      },
+      "exercise_if": {
+        "field": "knee_flexion_max",
+        "op": "gt",
+        "value": 120
+      },
+      "correction_hint": {
+        "action": "clamp",
+        "clamp_field": "knee_flexion_max",
+        "clamp_value": 120
+      },
+      "quote_ref": "ROM progression limit"
+    },
+    {
+      "rule_id": "WB-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "PHASE I 편측 동적 하중 금지",
+      "patient_if": {
+        "field": "phase",
+        "op": "eq",
+        "value": "PHASE_I"
+      },
+      "exercise_if": {
+        "field": "weight_bearing",
+        "op": "eq",
+        "value": "single_leg_dynamic"
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "weight_bearing_in": [
+            "none",
+            "bilateral",
+            "partial"
+          ]
+        }
+      },
+      "quote_ref": "WB progression"
+    },
+    {
+      "rule_id": "WB-02",
+      "mode": "safety",
+      "severity": "soft",
+      "title": "PHASE II 편측 하중은 수동 확인",
+      "patient_if": {
+        "field": "phase",
+        "op": "eq",
+        "value": "PHASE_II"
+      },
+      "exercise_if": {
+        "field": "weight_bearing",
+        "op": "in",
+        "value": [
+          "single_leg_static",
+          "single_leg_dynamic"
+        ]
+      },
+      "note": "카운트 제외, manual_review 플래그만",
+      "quote_ref": "spec §6-1 soft"
+    },
+    {
+      "rule_id": "PLYO-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "12주 미만 플라이오메트릭 금지",
+      "patient_if": {
+        "field": "week_post_op",
+        "op": "lt",
+        "value": 12
+      },
+      "exercise_if": {
+        "field": "category",
+        "op": "eq",
+        "value": "plyometric"
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "category_not": "plyometric"
+        }
+      },
+      "quote_ref": "impact progression"
+    },
+    {
+      "rule_id": "RUN-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "12주 미만 러닝 금지",
+      "patient_if": {
+        "field": "week_post_op",
+        "op": "lt",
+        "value": 12
+      },
+      "exercise_if": {
+        "field": "category",
+        "op": "eq",
+        "value": "running"
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "category_not": "running"
+        }
+      },
+      "quote_ref": "impact progression"
+    },
+    {
+      "rule_id": "RTS-01",
+      "mode": "safety",
+      "severity": "soft",
+      "title": "복귀 판정은 측정 기준(LSI 등) — PT 수동 확인",
+      "patient_if": {
+        "field": "phase",
+        "op": "eq",
+        "value": "PHASE_V"
+      },
+      "exercise_if": {
+        "field": "category",
+        "op": "eq",
+        "value": "rts"
+      },
+      "note": "측정 기반 항목은 자동 판정 제외 (spec §3-1)",
+      "quote_ref": "spec §3-1"
+    },
+    {
+      "rule_id": "DOS-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "PHASE I–II 고강도 처방 금지",
+      "patient_if": {
+        "field": "phase",
+        "op": "in",
+        "value": [
+          "PHASE_I",
+          "PHASE_II"
+        ]
+      },
+      "exercise_if": {
+        "field": "intensity_level",
+        "op": "eq",
+        "value": "high"
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {
+          "intensity_level_in": [
+            "low",
+            "moderate"
+          ]
+        }
+      },
+      "quote_ref": "dosage safety"
+    },
+    {
+      "rule_id": "DOS-02",
+      "mode": "completeness",
+      "severity": "hard",
+      "title": "처방 용량이 라이브러리 원본을 초과하면 안 됨",
+      "builtin": "dosage_matches_library",
+      "note": "generator는 라이브러리 값을 복사만 한다(§4-A). 초과/변조 시 fail.",
+      "quote_ref": "spec §4-A / dosage gap"
+    },
+    {
+      "rule_id": "GEN-01",
+      "mode": "safety",
+      "severity": "hard",
+      "title": "무출처 후보 금지",
+      "patient_if": {},
+      "exercise_if": {
+        "field": "source",
+        "op": "is_null"
+      },
+      "correction_hint": {
+        "action": "exclude",
+        "alternative_filter": {}
+      },
+      "quote_ref": "spec §4-A / §5"
+    },
+    {
+      "rule_id": "COMP-01",
+      "mode": "completeness",
+      "severity": "hard",
+      "title": "필수 처방 필드 누락 금지 (sets/reps/intensity)",
+      "builtin": "required_fields",
+      "required": [
+        "sets",
+        "reps",
+        "intensity"
+      ],
+      "quote_ref": "spec §5 / §6-1 COMP"
+    },
+    {
+      "rule_id": "COMP-02",
+      "mode": "completeness",
+      "severity": "hard",
+      "title": "rationale/source 누락 금지",
+      "builtin": "required_fields",
+      "required": [
+        "rationale",
+        "source"
+      ],
+      "quote_ref": "spec §4-I / §5"
+    }
+  ]
+}

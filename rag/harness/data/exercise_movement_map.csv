@@ -1,0 +1,31 @@
+exercise_id,exercise_name_ko,exercise_name_en,primary_joint,joint_motion,rom_min_deg,rom_max_deg,kinetic_chain,load_source,contraction_type,strain_load_dependent,graft_site_involved,acl_strain_level,injury_mechanism_risk,min_phase,phase_rationale,source,notes,status
+EX001,대퇴사두근 등척성 운동,Quadriceps set,knee,knee extension,0,0,isometric,none,isometric,N,N,low,none,I,수술직후 등척성 허용,Brigham,등척성이라 사슬 무관; 관절 미가동으로 전단력 규칙 제외,draft
+EX002,발목 펌프,Ankle pump,ankle,ankle dorsiflexion + plantarflexion,,,open,bodyweight,dynamic,N,N,low,none,I,순환목적 즉시허용,curated,무릎ROM 무관(발목운동); ACL부하 없음,draft
+EX003,하지 직거상,Straight leg raise,hip,hip flexion,,,open,bodyweight,dynamic,N,N,low,none,I,신전지연 없으면 허용,Brigham,무릎 0도 고정한 채 고관절 굴곡; ROM 무관,draft
+EX004,발뒤꿈치 밀기,Heel slide,knee,knee flexion,0,90,closed,bodyweight,dynamic,N,Y,low,none,I,Phase I 굴곡 90도 제한,Brigham,0-90도 굴곡ROM 회복,draft
+EX005,능동 무저항 슬굴근 컬,Active knee flexion (no resistance),knee,knee flexion,0,90,open,bodyweight,dynamic,N,Y,low,none,I,무저항 능동굴곡 조기허용,Brigham,체중부하 없는 능동굴곡; 공여부 저부하,draft
+EX006,옆으로누워 조개운동,Clamshell,hip,hip external rotation,,,open,band,dynamic,N,N,low,none,I,ACL부하 낮음 조기허용,curated,무릎ROM 무관(고관절운동); 사슬 논쟁적,draft
+EX007,옆으로누워 고관절 외전,Side-lying hip abduction,hip,hip abduction,,,open,bodyweight,dynamic,N,N,low,none,I,ACL부하 낮음 조기허용,curated,무릎ROM 무관(고관절운동),draft
+EX008,단축범위 대퇴사두근 신전,Short arc quad,knee,knee extension,0,30,open,bodyweight,dynamic,N,N,moderate,none,II,종말신전 구간 저부하 OKC,Escamilla2012,0-30도 개방사슬; 10-30도 ACL부하 구간 포함,draft
+EX009,미니 스쿼트,Mini squat,knee,knee extension,0,45,closed,bodyweight,dynamic,N,N,low,none,II,Phase II CKC 안전구간,Escamilla2012,0-45도 폐쇄사슬,draft
+EX010,월 싯(벽 스쿼트),Wall sit,knee,knee extension,0,60,closed,bodyweight,isometric,N,N,low,none,II,Phase II CKC 등척성,Brigham,0-60도 벽지지 등척성 유지,draft
+EX011,레그 프레스,Leg press,knee,knee extension,0,90,closed,machine,dynamic,Y,N,moderate,none,II,Phase II CKC; 규칙표서 90-30 제한,Brigham,부하량에 따라 strain low~high 변동; 기본 moderate,draft
+EX012,스텝업,Step-up,knee,knee extension,0,60,closed,bodyweight,dynamic,N,N,moderate,none,II,Phase II CKC,Brigham,0-60도 폐쇄사슬; 높이로 부하조절,draft
+EX013,고정식 자전거,Stationary bike,knee,knee flexion + extension,0,110,closed,machine,dynamic,N,N,low,none,II,ROM·유산소,Brigham,0-110도 굴신 반복; 안장높이로 굴곡조절,draft
+EX014,외발 서기 균형,Single-leg stance balance,knee,knee stabilization,,,closed,bodyweight,isometric,N,N,low,none,II,Phase II 고유수용성,Brigham,무릎ROM 무관(정적 안정화),draft
+EX015,양발 브릿지,Double-leg bridge,hip,hip extension,,,closed,bodyweight,dynamic,N,Y,low,none,II,양발지지 CKC 저부하,curated,무릎ROM 무관(고관절 신전); 공여부 저부하,draft
+EX016,서서 하는 말단 무릎신전(밴드),Standing terminal knee extension (banded),knee,knee extension,0,30,closed,band,dynamic,N,N,low,none,II,체중지지 폐쇄사슬,curated,0-30도; 서서시행 CKC(앉으면 OKC-flag),draft
+EX017,스쿼트,Squat,knee,knee extension,0,90,closed,external_free,dynamic,Y,N,moderate,none,III,심부굴곡 진행단계,Wilk1996,0-90도 폐쇄사슬; 압박력 91도 부근 최대; 중량 추가시 부하 증가,draft
+EX018,런지,Forward lunge,knee,knee extension,0,90,closed,bodyweight,dynamic,N,N,moderate,none,III,전방전단 각도주의,curated,0-90도 폐쇄사슬; ACLD 안전성 보고,draft
+EX019,스텝다운,Step-down,knee,knee extension,0,60,closed,bodyweight,eccentric,N,N,moderate,none,III,편심성 조절 진행,curated,0-60도 편심 강조; 슬개대퇴 주의,draft
+EX020,외발 브릿지,Single-leg bridge,hip,hip extension,,,closed,bodyweight,dynamic,N,Y,moderate,none,III,편측부하 진행,curated,무릎ROM 무관(고관절 신전); 편측 공여부 부하,draft
+EX021,저항성 슬굴근 컬,Resisted hamstring curl,knee,knee flexion,0,90,open,machine,dynamic,Y,Y,low,none,III,R1 슬굴근 저항 12주 이후,Brigham,0-90도 저항굴곡; 12주까지 금기(공여부),draft
+EX022,제한범위 개방사슬 무릎신전(저부하),Limited-range OKC knee extension (low load),knee,knee extension,0,90,open,machine,dynamic,Y,N,moderate,none,III,R5 OKC 12주 이후; 규칙표서 90-40 제한,Escamilla2012,운동자체 0-90도; 저부하 90-40도 제한은 규칙표,draft
+EX023,루마니안 데드리프트(경량),Romanian deadlift (light),hip,hip extension,,,closed,external_free,eccentric,Y,Y,moderate,none,III,슬굴근 편심 중강도,curated,무릎ROM 무관(고관절 힌지); 편심 강조; 공여부 부하,draft
+EX024,불안정면 균형(보수),Unstable-surface balance (BOSU),knee,knee stabilization,,,closed,bodyweight,isometric,N,N,low,none,III,동적 고유수용성 진행,curated,무릎ROM 무관(동적 안정화),draft
+EX025,카프 레이즈,Calf raise,ankle,ankle plantarflexion,,,closed,bodyweight,dynamic,N,N,low,none,III,후방사슬 강화,curated,무릎ROM 무관(발목운동),draft
+EX026,전범위 고부하 개방사슬 무릎신전,Full-range high-load OKC knee extension,knee,knee extension,0,90,open,machine,dynamic,Y,N,high,none,IV,전범위 고부하 6-9개월 제한,Escamilla2012,0-90도 고부하 OKC; 40-0도 ACL부하 최대,draft
+EX027,노르딕 슬굴근 컬,Nordic hamstring curl,knee,knee flexion,0,90,open,bodyweight,eccentric,N,Y,high,none,IV,고부하 편심; 자가건 후기,curated,무릎기준 개방사슬(정강이 위 자유이동); 발목고정 근거로 폐쇄 보는 견해도 있음-flag,draft
+EX028,박스 점프,Box jump,knee,knee extension,0,90,closed,bodyweight,dynamic,N,N,high,deceleration,IV,플라이오메트릭 Phase IV,Brigham,착지 순간 전단력 큼→high; 얕은굴곡 착지충격 기전; 후기 전용,draft
+EX029,감속·측방 어질리티 드릴,Deceleration & lateral agility drill,knee,knee multiplanar,,,closed,bodyweight,dynamic,N,N,high,valgus,V,감속·방향전환 스포츠준비,curated,무릎 다평면 부하; 외반붕괴+감속 손상기전 재현; 복귀 준비,draft
+EX030,컷팅·피벗 드릴,Cutting & pivoting drill,knee,knee rotation,,,closed,bodyweight,dynamic,N,N,high,rotation,V,스포츠복귀 회전부하,Brigham,회전·피벗 손상기전 직접재현; 얕은굴곡+외반+회전; 최종단계,draft

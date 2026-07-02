@@ -1,0 +1,1734 @@
+{
+  "library_id": "ACL-HS-EX-v2-team",
+  "note": "팀 제작 exercise_movement_map.csv 기반. 파생 필드 규칙은 scripts/build_library.py 및 DECISIONS.md #12 참고. ⚠️ dosage는 원본에 없어 전 항목 placeholder — 팀 확정 필요. status=draft: 임상 사용 전 검증 필요.",
+  "exercises": [
+    {
+      "exercise_id": "EX001",
+      "name": {
+        "ko": "대퇴사두근 등척성 운동",
+        "en": "Quadriceps set"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_I",
+      "priority": 1,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "none",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "수술직후 등척성 허용",
+        "en": "Isometric work permitted immediately post-op"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "0",
+        "load_source": "none",
+        "contraction_type": "isometric",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "등척성이라 사슬 무관; 관절 미가동으로 전단력 규칙 제외",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX002",
+      "name": {
+        "ko": "발목 펌프",
+        "en": "Ankle pump"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_I",
+      "priority": 2,
+      "category": "circulation",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "calf",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "순환목적 즉시허용",
+        "en": "Immediate use for circulation"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "ankle",
+        "joint_motion": "ankle dorsiflexion + plantarflexion",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(발목운동); ACL부하 없음",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX003",
+      "name": {
+        "ko": "하지 직거상",
+        "en": "Straight leg raise"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_I",
+      "priority": 3,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "hip_flexors",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "신전지연 없으면 허용",
+        "en": "Permitted when no extension lag"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "hip",
+        "joint_motion": "hip flexion",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎 0도 고정한 채 고관절 굴곡; ROM 무관",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX004",
+      "name": {
+        "ko": "발뒤꿈치 밀기",
+        "en": "Heel slide"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_I",
+      "priority": 4,
+      "category": "rom",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "hamstring",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "Phase I 굴곡 90도 제한",
+        "en": "Phase I flexion limited to 90°"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee flexion",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "Y",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "0-90도 굴곡ROM 회복",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX005",
+      "name": {
+        "ko": "능동 무저항 슬굴근 컬",
+        "en": "Active knee flexion (no resistance)"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_I",
+      "priority": 5,
+      "category": "balance",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "hamstring",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "무저항 능동굴곡 조기허용",
+        "en": "Early unresisted active flexion permitted"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee flexion",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "Y",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "체중부하 없는 능동굴곡; 공여부 저부하",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX006",
+      "name": {
+        "ko": "옆으로누워 조개운동",
+        "en": "Clamshell"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_I",
+      "priority": 6,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "hip_external_rotators",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "ACL부하 낮음 조기허용",
+        "en": "Early permitted — low ACL load"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "hip",
+        "joint_motion": "hip external rotation",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "band",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(고관절운동); 사슬 논쟁적",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX007",
+      "name": {
+        "ko": "옆으로누워 고관절 외전",
+        "en": "Side-lying hip abduction"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_I",
+      "priority": 7,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "hip_abductors",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "ACL부하 낮음 조기허용",
+        "en": "Early permitted — low ACL load"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "hip",
+        "joint_motion": "hip abduction",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(고관절운동)",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX008",
+      "name": {
+        "ko": "단축범위 대퇴사두근 신전",
+        "en": "Short arc quad"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 8,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 30,
+      "weight_bearing": "none",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "종말신전 구간 저부하 OKC",
+        "en": "Low-load OKC in the terminal-extension arc"
+      },
+      "source": "Escamilla2012",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "30",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "0-30도 개방사슬; 10-30도 ACL부하 구간 포함",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX009",
+      "name": {
+        "ko": "미니 스쿼트",
+        "en": "Mini squat"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 9,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 45,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "Phase II CKC 안전구간",
+        "en": "Phase II CKC within safe arc"
+      },
+      "source": "Escamilla2012",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "45",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "0-45도 폐쇄사슬",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX010",
+      "name": {
+        "ko": "월 싯(벽 스쿼트)",
+        "en": "Wall sit"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 10,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 60,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "Phase II CKC 등척성",
+        "en": "Phase II CKC isometric hold"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "60",
+        "load_source": "bodyweight",
+        "contraction_type": "isometric",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "0-60도 벽지지 등척성 유지",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX011",
+      "name": {
+        "ko": "레그 프레스",
+        "en": "Leg press"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 11,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "bilateral",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "Phase II CKC; 규칙표서 90-30 제한",
+        "en": "Phase II CKC; arc restricted by rule table"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "machine",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "Y",
+        "graft_site_involved": "N",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "부하량에 따라 strain low~high 변동; 기본 moderate",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX012",
+      "name": {
+        "ko": "스텝업",
+        "en": "Step-up"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 12,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 60,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "Phase II CKC",
+        "en": "Phase II CKC; load adjusted by step height"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "60",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "0-60도 폐쇄사슬; 높이로 부하조절",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX013",
+      "name": {
+        "ko": "고정식 자전거",
+        "en": "Stationary bike"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 13,
+      "category": "endurance",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 110,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "ROM·유산소",
+        "en": "ROM recovery plus aerobic conditioning"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee flexion + extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "110",
+        "load_source": "machine",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "0-110도 굴신 반복; 안장높이로 굴곡조절",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX014",
+      "name": {
+        "ko": "외발 서기 균형",
+        "en": "Single-leg stance balance"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 14,
+      "category": "balance",
+      "load_type": "isometric",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "single_leg_static",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "Phase II 고유수용성",
+        "en": "Phase II proprioceptive training"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee stabilization",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "isometric",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(정적 안정화)",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX015",
+      "name": {
+        "ko": "양발 브릿지",
+        "en": "Double-leg bridge"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 15,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "gluteals",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "양발지지 CKC 저부하",
+        "en": "Bilateral-support CKC, low donor-site load"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "hip",
+        "joint_motion": "hip extension",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "Y",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(고관절 신전); 공여부 저부하",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX016",
+      "name": {
+        "ko": "서서 하는 말단 무릎신전(밴드)",
+        "en": "Standing terminal knee extension (banded)"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_II",
+      "priority": 16,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 30,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "체중지지 폐쇄사슬",
+        "en": "Weight-bearing closed-chain terminal extension"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "30",
+        "load_source": "band",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "0-30도; 서서시행 CKC(앉으면 OKC-flag)",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX017",
+      "name": {
+        "ko": "스쿼트",
+        "en": "Squat"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 17,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "bilateral",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "심부굴곡 진행단계",
+        "en": "Deep-flexion progression stage"
+      },
+      "source": "Wilk1996",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "external_free",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "Y",
+        "graft_site_involved": "N",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "0-90도 폐쇄사슬; 압박력 91도 부근 최대; 중량 추가시 부하 증가",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX018",
+      "name": {
+        "ko": "런지",
+        "en": "Forward lunge"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 18,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "전방전단 각도주의",
+        "en": "Caution with anterior-shear angles"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "0-90도 폐쇄사슬; ACLD 안전성 보고",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX019",
+      "name": {
+        "ko": "스텝다운",
+        "en": "Step-down"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 19,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 60,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "편심성 조절 진행",
+        "en": "Eccentric-control progression"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "60",
+        "load_source": "bodyweight",
+        "contraction_type": "eccentric",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "0-60도 편심 강조; 슬개대퇴 주의",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX020",
+      "name": {
+        "ko": "외발 브릿지",
+        "en": "Single-leg bridge"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 20,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "gluteals",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "편측부하 진행",
+        "en": "Unilateral-loading progression"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "hip",
+        "joint_motion": "hip extension",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "Y",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(고관절 신전); 편측 공여부 부하",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX021",
+      "name": {
+        "ko": "저항성 슬굴근 컬",
+        "en": "Resisted hamstring curl"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 21,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "hamstring",
+      "resisted": true,
+      "resisted_knee_flexion": true,
+      "hamstring_load": "medium",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "R1 슬굴근 저항 12주 이후",
+        "en": "Resisted hamstring work from 12 weeks"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee flexion",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "machine",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "Y",
+        "graft_site_involved": "Y",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "0-90도 저항굴곡; 12주까지 금기(공여부)",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX022",
+      "name": {
+        "ko": "제한범위 개방사슬 무릎신전(저부하)",
+        "en": "Limited-range OKC knee extension (low load)"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 22,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "quadriceps",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "R5 OKC 12주 이후; 규칙표서 90-40 제한",
+        "en": "OKC from 12 weeks; rule table restricts to 90–40°"
+      },
+      "source": "Escamilla2012",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "machine",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "Y",
+        "graft_site_involved": "N",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "운동자체 0-90도; 저부하 90-40도 제한은 규칙표",
+        "status": "draft"
+      },
+      "knee_extension_end": 0
+    },
+    {
+      "exercise_id": "EX023",
+      "name": {
+        "ko": "루마니안 데드리프트(경량)",
+        "en": "Romanian deadlift (light)"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 23,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "gluteals",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "high",
+      "eccentric_hamstring": true,
+      "knee_flexion_max": 0,
+      "weight_bearing": "bilateral",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "슬굴근 편심 중강도",
+        "en": "Moderate eccentric hamstring loading"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "hip",
+        "joint_motion": "hip extension",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "external_free",
+        "contraction_type": "eccentric",
+        "strain_load_dependent": "Y",
+        "graft_site_involved": "Y",
+        "acl_strain_level": "moderate",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(고관절 힌지); 편심 강조; 공여부 부하",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX024",
+      "name": {
+        "ko": "불안정면 균형(보수)",
+        "en": "Unstable-surface balance (BOSU)"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 24,
+      "category": "balance",
+      "load_type": "isometric",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "동적 고유수용성 진행",
+        "en": "Dynamic proprioception progression"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee stabilization",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "isometric",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(동적 안정화)",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX025",
+      "name": {
+        "ko": "카프 레이즈",
+        "en": "Calf raise"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_III",
+      "priority": 25,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "calf",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "bilateral",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "후방사슬 강화",
+        "en": "Posterior-chain strengthening"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "ankle",
+        "joint_motion": "ankle plantarflexion",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "low",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎ROM 무관(발목운동)",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX026",
+      "name": {
+        "ko": "전범위 고부하 개방사슬 무릎신전",
+        "en": "Full-range high-load OKC knee extension"
+      },
+      "phases": [
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_IV",
+      "priority": 26,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "quadriceps",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "전범위 고부하 6-9개월 제한",
+        "en": "Full-range high load restricted to 6–9 months"
+      },
+      "source": "Escamilla2012",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "machine",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "Y",
+        "graft_site_involved": "N",
+        "acl_strain_level": "high",
+        "injury_mechanism_risk": "none",
+        "notes": "0-90도 고부하 OKC; 40-0도 ACL부하 최대",
+        "status": "draft"
+      },
+      "knee_extension_end": 0
+    },
+    {
+      "exercise_id": "EX027",
+      "name": {
+        "ko": "노르딕 슬굴근 컬",
+        "en": "Nordic hamstring curl"
+      },
+      "phases": [
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_IV",
+      "priority": 27,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "hamstring",
+      "resisted": false,
+      "resisted_knee_flexion": true,
+      "hamstring_load": "high",
+      "eccentric_hamstring": true,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "고부하 편심; 자가건 후기",
+        "en": "High-load eccentric; late stage for HS autograft"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee flexion",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "bodyweight",
+        "contraction_type": "eccentric",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "Y",
+        "acl_strain_level": "high",
+        "injury_mechanism_risk": "none",
+        "notes": "무릎기준 개방사슬(정강이 위 자유이동); 발목고정 근거로 폐쇄 보는 견해도 있음-flag",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX028",
+      "name": {
+        "ko": "박스 점프",
+        "en": "Box jump"
+      },
+      "phases": [
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_IV",
+      "priority": 28,
+      "category": "plyometric",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "bilateral",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "플라이오메트릭 Phase IV",
+        "en": "Plyometrics from Phase IV"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee extension",
+        "rom_min_deg": "0",
+        "rom_max_deg": "90",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "high",
+        "injury_mechanism_risk": "deceleration",
+        "notes": "착지 순간 전단력 큼→high; 얕은굴곡 착지충격 기전; 후기 전용",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX029",
+      "name": {
+        "ko": "감속·측방 어질리티 드릴",
+        "en": "Deceleration & lateral agility drill"
+      },
+      "phases": [
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_V",
+      "priority": 29,
+      "category": "agility",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "감속·방향전환 스포츠준비",
+        "en": "Deceleration / change-of-direction sport preparation"
+      },
+      "source": "curated",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee multiplanar",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "high",
+        "injury_mechanism_risk": "valgus",
+        "notes": "무릎 다평면 부하; 외반붕괴+감속 손상기전 재현; 복귀 준비",
+        "status": "draft"
+      }
+    },
+    {
+      "exercise_id": "EX030",
+      "name": {
+        "ko": "컷팅·피벗 드릴",
+        "en": "Cutting & pivoting drill"
+      },
+      "phases": [
+        "PHASE_V"
+      ],
+      "min_phase": "PHASE_V",
+      "priority": 30,
+      "category": "agility",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 1회 (임시값)",
+          "en": "Daily (placeholder)"
+        },
+        "intensity": {
+          "ko": "통증 없는 범위 — 용량 임시값, 팀 확정 필요",
+          "en": "Pain-free range — dosage placeholder, team to finalize"
+        }
+      },
+      "dosage_status": "placeholder",
+      "rationale": {
+        "ko": "스포츠복귀 회전부하",
+        "en": "Return-to-sport rotational loading"
+      },
+      "source": "Brigham",
+      "native": {
+        "primary_joint": "knee",
+        "joint_motion": "knee rotation",
+        "rom_min_deg": "",
+        "rom_max_deg": "",
+        "load_source": "bodyweight",
+        "contraction_type": "dynamic",
+        "strain_load_dependent": "N",
+        "graft_site_involved": "N",
+        "acl_strain_level": "high",
+        "injury_mechanism_risk": "rotation",
+        "notes": "회전·피벗 손상기전 직접재현; 얕은굴곡+외반+회전; 최종단계",
+        "status": "draft"
+      }
+    }
+  ]
+}

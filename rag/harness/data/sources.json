@@ -1,0 +1,48 @@
+{
+  "sources": [
+    {
+      "source_tag": "Escamilla2012",
+      "type": "journal",
+      "authors": "Escamilla RF, MacLeod TD, Wilk KE, Paulos L, Andrews JR",
+      "year": "2012",
+      "title": "Anterior cruciate ligament strain and tensile forces for weight-bearing and non-weight-bearing exercises: a guide to exercise selection",
+      "venue": "J Orthop Sports Phys Ther. 2012;42(3):208-220",
+      "identifier": "doi:10.2519/jospt.2012.3768; PMID:22387600",
+      "supports": "개방사슬(NWB)이 폐쇄사슬(WB)보다 ACL 부하 큼; 무릎굴곡 10-50도(특히 10-30도)에서 ACL 부하 최대; 운동방식(체간 위치 등)에 따라 부하 변동",
+      "verified": "Y"
+    },
+    {
+      "source_tag": "Wilk1996",
+      "type": "journal",
+      "authors": "Wilk KE, Escamilla RF, Fleisig GS, Barrentine SW, Andrews JR, Boyd ML",
+      "year": "1996",
+      "title": "A comparison of tibiofemoral joint forces and electromyographic activity during open and closed kinetic chain exercises",
+      "venue": "Am J Sports Med. 1996;24(4):518-527",
+      "identifier": "doi:10.1177/036354659602400418; PMID:8827313",
+      "supports": "개방사슬 무릎신전 vs 폐쇄사슬 레그프레스·스쿼트의 슬관절 압박력·전단력·EMG 비교; 스쿼트 최대압박력 91도에서 발생",
+      "verified": "Y"
+    },
+    {
+      "source_tag": "Brigham",
+      "type": "protocol",
+      "authors": "Brigham and Women's Hospital",
+      "year": "NA",
+      "title": "ACL Hamstring Tendon Autograft Reconstruction Protocol",
+      "venue": "Institutional protocol",
+      "identifier": "NA",
+      "supports": "단계별 기간·ROM 제한·진행기준 등 규칙 수치의 1차 출처",
+      "verified": "N"
+    },
+    {
+      "source_tag": "curated",
+      "type": "expert",
+      "authors": "도메인 큐레이션(물리치료)",
+      "year": "NA",
+      "title": "임상 상식 기반 초안값",
+      "venue": "NA",
+      "identifier": "NA",
+      "supports": "공개 문헌으로 즉시 뒷받침되지 않는 초안; 사용자 검증 대상",
+      "verified": "N"
+    }
+  ]
+}
