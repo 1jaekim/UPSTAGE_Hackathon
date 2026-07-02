@@ -12,7 +12,6 @@ export default function PrescriptionTable({ items }: Props) {
           <tr>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">운동</th>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">세트/반복</th>
-            <th className="px-4 py-2.5 text-left font-semibold text-gray-600">빈도</th>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">강도</th>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">근거(Rationale)</th>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">출처</th>
@@ -27,10 +26,6 @@ export default function PrescriptionTable({ items }: Props) {
               </td>
               <td className="px-4 py-2.5 text-gray-700">
                 {item.sets}세트 × {item.reps}회
-              </td>
-              <td className="px-4 py-2.5 text-gray-700">
-                {item.frequency.ko}
-                <div className="text-xs text-gray-400">{item.frequency.en}</div>
               </td>
               <td className="px-4 py-2.5 text-gray-700">
                 {item.intensity.ko}
