@@ -54,13 +54,11 @@ export interface Bilingual {
 
 export interface ReportExercise {
   name: Bilingual;
-  sets: number;
-  reps: number;
-  frequency: Bilingual;
-  intensity: Bilingual;
   rationale: Bilingual;
   source: string;
   safetyChecked: boolean;
+  // 자동 교정으로 ROM 등 속성이 clamp된 경우에만 존재 (예: "범위 제한: rom_max<=90")
+  note?: Bilingual;
 }
 
 export interface ProtocolSource {
@@ -88,6 +86,8 @@ export interface ManualReviewItem {
 
 export interface SoapPlan extends Bilingual {
   exercises: ReportExercise[];
+  // 세트·반복·빈도는 시스템이 정하지 않는다는 안내 — 담당 물리치료사의 재량 영역.
+  dosageNote: Bilingual;
 }
 
 export interface Soap {
@@ -111,6 +111,7 @@ export interface HarnessReport {
 
 export type PipelineStatus =
   | "ready_for_reporter"
+  | "unsupported_case"
   | "unsupported_surgery"
   | "manual_review_required"
   | "insufficient_evidence"
@@ -118,6 +119,7 @@ export type PipelineStatus =
 
 export const PIPELINE_STATUS_LABEL: Record<PipelineStatus, string> = {
   ready_for_reporter: "완료",
+  unsupported_case: "다른 프로토콜이 필요한 사례",
   unsupported_surgery: "지원하지 않는 수술 유형",
   manual_review_required: "PT 수동 검토 필요",
   insufficient_evidence: "근거 부족",

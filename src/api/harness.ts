@@ -32,13 +32,10 @@ import type {
 
 interface WireReportExercise {
   name: Bilingual;
-  sets: number;
-  reps: number;
-  frequency: Bilingual;
-  intensity: Bilingual;
   rationale: Bilingual;
   source: string;
   safety_checked: boolean;
+  note?: Bilingual;
 }
 
 interface WireReportMeta {
@@ -57,7 +54,7 @@ interface WireSoap {
   subjective: Bilingual;
   objective: Bilingual;
   assessment: Bilingual;
-  plan: Bilingual & { exercises: WireReportExercise[] };
+  plan: Bilingual & { exercises: WireReportExercise[]; dosage_note: Bilingual };
 }
 
 interface WireManualReviewItem {
@@ -88,13 +85,10 @@ interface WireResponse {
 function toExercise(e: WireReportExercise): ReportExercise {
   return {
     name: e.name,
-    sets: e.sets,
-    reps: e.reps,
-    frequency: e.frequency,
-    intensity: e.intensity,
     rationale: e.rationale,
     source: e.source,
     safetyChecked: e.safety_checked,
+    ...(e.note ? { note: e.note } : {}),
   };
 }
 
@@ -117,7 +111,12 @@ function toSoap(s: WireSoap): Soap {
     subjective: s.subjective,
     objective: s.objective,
     assessment: s.assessment,
-    plan: { ko: s.plan.ko, en: s.plan.en, exercises: s.plan.exercises.map(toExercise) },
+    plan: {
+      ko: s.plan.ko,
+      en: s.plan.en,
+      exercises: s.plan.exercises.map(toExercise),
+      dosageNote: s.plan.dosage_note,
+    },
   };
 }
 

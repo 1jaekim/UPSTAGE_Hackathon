@@ -1,11 +1,12 @@
 """generate_rx.py — 처방 조립 (코드, LLM 아님). spec §4-A, §4-I, §5.
 
-safety_checked == true 후보 중 priority 상위 5개를 선택하고, sets/reps/frequency/
-intensity/rationale/source를 **라이브러리 값 그대로 복사**한다. 생성·변형 금지 —
-이것이 §4-A(데이터 바운드)의 기계적 보장이자 dosage gap 봉합의 절반이다
-(나머지 절반은 safety_judge completeness 모드의 재검증).
+safety_checked == true 후보 중 priority 상위 5개를 선택하고, rationale/source를
+**라이브러리 값 그대로 복사**한다. 생성·변형 금지 — §4-A(데이터 바운드)의 기계적 보장.
 
-clamp가 적용된 후보는 intensity 서술에 제한 범위를 병기한다.
+세트·반복·빈도(dosage)는 이 시스템이 정하지 않는다 — 그건 담당 물리치료사가 환자
+상태를 보고 정할 몫이라, 애초에 처방 항목에 포함시키지 않는다(팀 결정).
+
+clamp가 적용된 후보는 note에 제한 범위를 병기한다.
 
 usage: python3 generate_rx.py
 """
@@ -37,10 +38,6 @@ def main():
     for e in pool[:N]:
         item = {
             "name": e["name"],
-            "sets": e["dosage"]["sets"],
-            "reps": e["dosage"]["reps"],
-            "frequency": e["dosage"]["frequency"],
-            "intensity": dict(e["dosage"]["intensity"]),
             "rationale": e["rationale"],
             "source": e["source"],
             "safety_checked": True,
@@ -59,8 +56,7 @@ def main():
             item["knee_extension_end"] = e["knee_extension_end"]
         if e.get("clamped"):
             lim = ", ".join(e["clamped"])
-            item["intensity"]["ko"] += f" (범위 제한: {lim})"
-            item["intensity"]["en"] += f" (clamped: {lim})"
+            item["note"] = {"ko": f"범위 제한: {lim}", "en": f"clamped: {lim}"}
             item["clamped"] = e["clamped"]
         exercises.append(item)
 

@@ -3,8 +3,8 @@
 reporter-subagent가 쓴 work/50_report.json에 대해:
   V-PARSE  JSON 파싱 (spec §6-3 — 사실상 최우선 게이트)
   V-SCHEMA §5 필수 키·타입
-  V-J2     exercises 정확히 5개
-  V-J3     각 운동 sets/reps/frequency/intensity/rationale/source 존재
+  V-J2     exercises 정확히 5개 (특이사항으로 PT에게 위임된 경우엔 0개도 허용)
+  V-J3     각 운동 rationale/source 존재 (세트/반복/빈도는 PT 재량이라 시스템이 안 다룸)
   V-J5     필수 서술 필드 ko+en 모두 비어있지 않음
   V-J6     길이 예산: 서술 텍스트 총합 ≤ 3500자 (A4 1장 프록시, DECISIONS.md #3)
   V-SAFE   safety.final_gate_passed == true, 전 운동 safety_checked == true
@@ -17,7 +17,7 @@ import json, sys
 from lib import work_path, save_json
 
 LENGTH_BUDGET = 3500
-EX_REQUIRED = ["sets", "reps", "frequency", "intensity", "rationale", "source"]
+EX_REQUIRED = ["rationale", "source"]
 
 
 def bilingual_ok(node):
@@ -59,9 +59,9 @@ def main():
 
     exercises = soap.get("plan", {}).get("exercises", [])
 
-    # V-J2
-    if len(exercises) != 5:
-        fails.append({"check": "V-J2", "detail": f"exercises count = {len(exercises)} (must be 5)"})
+    # V-J2 (0개 = 특이사항으로 PT에게 위임된 정당한 케이스)
+    if len(exercises) not in (0, 5):
+        fails.append({"check": "V-J2", "detail": f"exercises count = {len(exercises)} (must be 0 or 5)"})
 
     # V-J3
     for ex in exercises:
@@ -80,7 +80,7 @@ def main():
                      and isinstance(plan.get("en"), str) and plan["en"].strip()):
         fails.append({"check": "V-J5", "detail": "soap.plan summary not bilingual/non-empty"})
     for ex in exercises:
-        for f in ("name", "frequency", "intensity", "rationale"):
+        for f in ("name", "rationale"):
             if not bilingual_ok(ex.get(f, {})):
                 fails.append({"check": "V-J5",
                               "detail": f'{ex.get("name", {}).get("en", "?")}: {f} not bilingual'})

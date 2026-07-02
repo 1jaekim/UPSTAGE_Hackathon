@@ -90,7 +90,12 @@ def run_harness_pipeline(payload: dict) -> dict:
             if judge_run.returncode == 0 and verdict.get("pass"):
                 report = _read_json(work_dir / "50_report.json")
                 report["report_meta"]["record_id"] = record_id
-                return {"status": "ready_for_reporter", "detail": "", "report": report, **meta}
+                return {
+                    "status": "ready_for_reporter",
+                    "detail": status_doc.get("detail", ""),
+                    "report": report,
+                    **meta,
+                }
             fix_notes = verdict.get("notes", "report rejected by gate-2 judge")
 
         return {

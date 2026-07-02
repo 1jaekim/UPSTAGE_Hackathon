@@ -3,8 +3,9 @@
 두 모드:
   --mode safety        : work/10_candidates.json의 후보를 rule_table 대조
   --mode completeness  : work/40_prescription.json의 최종 5개를
-                         (a) 안전 룰 재평가 — 용량·clamp 반영 최종 상태 기준 (dosage gap 봉합)
-                         (b) COMP/DOS builtin 검사 (필드 누락·용량 변조)
+                         (a) 안전 룰 재평가 — clamp 반영 최종 상태 기준
+                         (b) COMP-02(rationale/source 누락) builtin 검사
+                         (세트/반복/빈도는 시스템이 정하지 않으므로 완전성 검사 대상 아님)
 
 판정 정책 (spec §6-1, 단위 정의는 DECISIONS.md #1):
   hard_violations = FIRE된 (운동 × hard 룰) 쌍의 개수 (soft·input_gate 제외)
@@ -43,10 +44,10 @@ def eval_safety_rules(rules, ctx, exercises):
     return violations, manual_review, checked
 
 
-def eval_completeness(rules, prescription, library):
-    """COMP-01/02 + DOS-02 builtin."""
+def eval_completeness(rules, prescription):
+    """COMP-02(rationale/source 누락 금지)의 required_fields builtin만 남음 —
+    세트/반복/빈도(dosage)는 시스템이 정하지 않기로 해서 COMP-01/DOS-02는 제거됨."""
     fails = []
-    lib_by_en = {e["name"]["en"]: e for e in library["exercises"]}
     for rule in rules:
         if rule["mode"] != "completeness":
             continue
@@ -57,17 +58,6 @@ def eval_completeness(rules, prescription, library):
                     if v is None or v == "" or v == {}:
                         fails.append({"rule_id": rule["rule_id"], "exercise": ex["name"]["en"],
                                       "missing": f})
-        elif rule.get("builtin") == "dosage_matches_library":
-            for ex in prescription["exercises"]:
-                src = lib_by_en.get(ex["name"]["en"])
-                if src is None:
-                    fails.append({"rule_id": rule["rule_id"], "exercise": ex["name"]["en"],
-                                  "missing": "library_entry (invented exercise?)"})
-                    continue
-                for f in ("sets", "reps"):
-                    if ex.get(f) is not None and ex[f] > src["dosage"][f]:
-                        fails.append({"rule_id": rule["rule_id"], "exercise": ex["name"]["en"],
-                                      "missing": f"{f} exceeds library ({ex[f]}>{src['dosage'][f]})"})
     return fails
 
 
@@ -111,9 +101,8 @@ def main():
 
     # completeness 모드: 최종 5개에 대해 안전 룰 재평가 + builtin
     rx = load_json(work_path("40_prescription.json"))
-    library = load_json(os.path.join(DATA, "exercise_library.json"))
     violations, manual_review, checked = eval_safety_rules(rules, ctx, rx["exercises"])
-    comp_fails = eval_completeness(rules, rx, library)
+    comp_fails = eval_completeness(rules, rx)
     ok = not violations and not comp_fails
     out = {"mode": "completeness", "decision": "approved" if ok else "failed_completeness",
            "safety_recheck_violations": violations, "completeness_fails": comp_fails,

@@ -35,8 +35,22 @@ def build_report_meta(ctx, prescription):
     }
 
 
-def build_manual_review(completeness):
+def build_manual_review(completeness, prescription):
     items = []
+    if prescription.get("deferred_to_pt"):
+        quote = prescription.get("defer_quote", "")
+        reason = prescription.get("defer_reason", "")
+        items.append(
+            {
+                "item": "exercise_selection_deferred_redflag",
+                "note": {
+                    "ko": f"레드플래그가 감지되어 운동 추천을 보류했습니다"
+                          f"({reason}{f' — 원문: {quote}' if quote else ''}). 담당 물리치료사가 직접 운동을 결정해주세요.",
+                    "en": f"Exercise selection was withheld due to a detected red flag "
+                          f"({reason}). The treating physical therapist should determine exercises directly.",
+                },
+            }
+        )
     if completeness:
         for mr in completeness.get("manual_review", []):
             items.append(
@@ -68,10 +82,26 @@ NARRATIVE_SCHEMA_HINT = """
 
 
 def build_prompt(ctx, prescription, fix_notes=None):
-    exercise_names = [e["name"]["en"] for e in prescription["exercises"]]
+    deferred = prescription.get("deferred_to_pt", False)
     fix_block = ""
     if fix_notes:
         fix_block = f"\n\n이전 시도가 다음 검증에 실패했다. 그 문제만 정확히 고쳐라:\n{fix_notes}\n"
+
+    if deferred:
+        plan_instruction = (
+            f"- plan_summary: 이번 요청은 특이사항에 자동 판정 밖의 내용"
+            f"({prescription.get('defer_reason', '')})이 감지되어 **운동을 추천하지 않았다**는 사실을"
+            f" 2~3문장으로 명확히 서술. 담당 물리치료사가 특이사항을 직접 확인한 뒤 운동을 결정해야 한다는"
+            f" 취지를 포함. 새로운 운동을 지어내거나 추천하지 말 것."
+        )
+        plan_block = "[운동 처방] 없음 — 특이사항으로 인해 이번 요청은 운동 추천을 보류함."
+    else:
+        exercise_names = [e["name"]["en"] for e in prescription["exercises"]]
+        plan_instruction = (
+            "- plan_summary: 이번 단계 운동 계획을 2~3문장으로 요약 (운동 목록 자체는 별도 첨부되므로"
+            " 여기선 요약 문장만)."
+        )
+        plan_block = f"[확정된 처방 운동 5개 — 이미 안전성 검증 통과, 그대로 인용만 할 것]\n{', '.join(exercise_names)}"
 
     return f"""당신은 물리치료사를 위한 재활 운동처방 검수 리포트의 서술(narrative) 작성자입니다.
 아래 데이터만 근거로 SOAP 노트의 4개 서술 섹션을 한국어+영어 이중언어로 작성하세요.
@@ -89,22 +119,20 @@ def build_prompt(ctx, prescription, fix_notes=None):
 - 부종: {ctx['swelling']}
 - red flag: {ctx['flags']['red_flag']}
 
-[확정된 처방 운동 5개 — 이미 안전성 검증 통과, 그대로 인용만 할 것]
-{', '.join(exercise_names)}
+{plan_block}
 
 [작성 지침]
 - subjective: 연령대 + 주호소(참고 메모 기반)만. 위 마스킹된 메모 외 내용 지어내지 말 것.
 - objective: 주차/유효 단계/부종/통증/이식건 등 관찰 사실. phase_week_mismatch가 true면
   "주차와 선언된 단계가 불일치하여 보수적으로 낮은 단계를 채택했다"는 취지를 명시.
 - assessment: 재활 단계 판단 근거·주의사항·red flag 여부. 진단/단정 금지, 제안+근거 톤 유지.
-- plan_summary: 이번 단계 운동 계획을 2~3문장으로 요약 (운동 목록 자체는 별도 첨부되므로
-  여기선 요약 문장만).
+{plan_instruction}
 {fix_block}
 {NARRATIVE_SCHEMA_HINT}
 """
 
 
-def _fallback_narrative(ctx):
+def _fallback_narrative(ctx, prescription):
     """LLM 불가 시 결정론적 이중언어 서술 (opt-in). 데이터에 있는 사실만 조립한다."""
     mism = ctx["flags"]["phase_week_mismatch"]
     red = ctx["flags"]["red_flag"]
@@ -115,6 +143,20 @@ def _fallback_narrative(ctx):
     band = ctx["age_band"]  # 예: "10s", "30s"
     band_ko = band.replace("s", "대") if band.endswith("s") else band
     band_en = "teens" if band == "10s" else band
+
+    if prescription.get("deferred_to_pt"):
+        plan = {
+            "ko": f"특이사항에 자동 판정 밖의 내용({prescription.get('defer_reason', '')})이 감지되어"
+                  f" 운동 추천을 보류함. 담당 물리치료사가 특이사항을 확인한 뒤 운동을 직접 결정할 것.",
+            "en": f"Exercise recommendation withheld due to notes content outside automatic judgment"
+                  f" ({prescription.get('defer_reason', '')}). The treating PT should review and determine exercises directly.",
+        }
+    else:
+        plan = {
+            "ko": f"{ctx['phase']} 목표에 맞춘 5개 운동을 제안함. 통증·부종 반응을 관찰하며 진행할 것을 제안함.",
+            "en": f"Five exercises aligned with {ctx['phase']} goals are proposed; progress while monitoring pain and swelling.",
+        }
+
     return {
         "subjective": {
             "ko": f"{band_ko} 환자. 주호소: {ctx['notes_redacted'] or '기록 없음'}",
@@ -128,10 +170,7 @@ def _fallback_narrative(ctx):
             "ko": f"{ctx['phase']} 단계에 해당하는 회복 양상으로 판단됨. {red_ko} 아래 운동들은 규칙표 안전 게이트를 통과한 항목으로 제안됨(최종 판단은 담당 물리치료사).",
             "en": f"Findings consistent with {ctx['phase']}. {red_en} The exercises below passed the deterministic safety gate and are proposed for PT review (final decision by the treating PT).",
         },
-        "plan_summary": {
-            "ko": f"{ctx['phase']} 목표에 맞춘 5개 운동을 제안함. 통증·부종 반응을 관찰하며 진행할 것을 제안함.",
-            "en": f"Five exercises aligned with {ctx['phase']} goals are proposed; progress while monitoring pain and swelling.",
-        },
+        "plan_summary": plan,
     }
 
 
@@ -142,7 +181,7 @@ def generate_narrative(ctx, prescription, fix_notes=None):
     except Exception as e:
         if os.environ.get("SAFERX_STRICT_LLM") != "1":
             print(f"[reporter] LLM unavailable ({type(e).__name__}) — deterministic fallback narrative")
-            return _fallback_narrative(ctx)
+            return _fallback_narrative(ctx, prescription)
         raise
 
 
@@ -167,22 +206,25 @@ def main():
             "plan": {
                 "ko": narrative["plan_summary"]["ko"],
                 "en": narrative["plan_summary"]["en"],
+                # 세트·반복·빈도는 이 시스템이 정하지 않는다 — 담당 물리치료사가
+                # 환자 상태를 보고 결정할 몫(팀 결정). 안전 검증 통과한 "움직임"만 제안.
+                "dosage_note": {
+                    "ko": "세트·반복·빈도는 담당 물리치료사가 환자 상태에 따라 결정합니다.",
+                    "en": "Sets, reps, and frequency are determined by the treating physical therapist based on patient status.",
+                },
                 "exercises": [
                     {
                         "name": e["name"],
-                        "sets": e["sets"],
-                        "reps": e["reps"],
-                        "frequency": e["frequency"],
-                        "intensity": e["intensity"],
                         "rationale": e["rationale"],
                         "source": e["source"],
                         "safety_checked": e["safety_checked"],
+                        **({"note": e["note"]} if e.get("note") else {}),
                     }
                     for e in prescription["exercises"]
                 ],
             },
         },
-        "manual_review": build_manual_review(completeness),
+        "manual_review": build_manual_review(completeness, prescription),
         "safety": {"final_gate_passed": True, "violations": []},
     }
 

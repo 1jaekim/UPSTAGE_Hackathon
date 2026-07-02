@@ -1,7 +1,7 @@
 {
   "table_id": "ACL-HS-BWH-v1",
-  "rule_count": 22,
-  "note": "⚠️ 룰 조건·수치는 표준 ACL 햄스트링 자가건 프로토콜을 참조한 초안(SAMPLE)이다. 실제 사용 전 팀의 프로토콜 원문 대조 및 임상 검증 필수.",
+  "rule_count": 20,
+  "note": "⚠️ 룰 조건·수치는 표준 ACL 햄스트링 자가건 프로토콜을 참조한 초안(SAMPLE)이다. 실제 사용 전 팀의 프로토콜 원문 대조 및 임상 검증 필수. dosage 관련 룰(DOS-02/COMP-01)은 세트·반복·빈도를 시스템이 정하지 않기로 해서 제거함 — 그건 담당 물리치료사의 재량. REDFLAG-01(통증/부종 -> 등척성 치환)은 run_pipeline.py의 사전 red-flag 체크로 대체되어 제거함(judge 단계 도달 전 이미 걸러짐, 위반 카운팅으로 교정 기회 없이 죽는 버그 방지).",
   "rules": [
     {
       "rule_id": "GATE-01",
@@ -43,40 +43,6 @@
       "exercise_if": {},
       "outcome": "unsupported_case",
       "quote_ref": "spec §3-2 schema"
-    },
-    {
-      "rule_id": "REDFLAG-01",
-      "mode": "safety",
-      "severity": "hard",
-      "title": "Red flag(NRS≥7 또는 부종) 시 동적 운동 금지",
-      "patient_if": {
-        "any": [
-          {
-            "field": "pain_nrs",
-            "op": "gte",
-            "value": 7
-          },
-          {
-            "field": "swelling",
-            "op": "eq",
-            "value": true
-          }
-        ]
-      },
-      "exercise_if": {
-        "field": "load_type",
-        "op": "ne",
-        "value": "isometric"
-      },
-      "correction_hint": {
-        "action": "force_isometric",
-        "alternative_filter": {
-          "load_type_in": [
-            "isometric"
-          ]
-        }
-      },
-      "quote_ref": "spec §4-D"
     },
     {
       "rule_id": "REDFLAG-02",
@@ -479,15 +445,6 @@
       "quote_ref": "dosage safety"
     },
     {
-      "rule_id": "DOS-02",
-      "mode": "completeness",
-      "severity": "hard",
-      "title": "처방 용량이 라이브러리 원본을 초과하면 안 됨",
-      "builtin": "dosage_matches_library",
-      "note": "generator는 라이브러리 값을 복사만 한다(§4-A). 초과/변조 시 fail.",
-      "quote_ref": "spec §4-A / dosage gap"
-    },
-    {
       "rule_id": "GEN-01",
       "mode": "safety",
       "severity": "hard",
@@ -502,20 +459,6 @@
         "alternative_filter": {}
       },
       "quote_ref": "spec §4-A / §5"
-    },
-    {
-      "rule_id": "COMP-01",
-      "mode": "completeness",
-      "severity": "hard",
-      "title": "필수 처방 필드 누락 금지 (sets/reps/frequency/intensity)",
-      "builtin": "required_fields",
-      "required": [
-        "sets",
-        "reps",
-        "frequency",
-        "intensity"
-      ],
-      "quote_ref": "spec §5 / §6-1 COMP"
     },
     {
       "rule_id": "COMP-02",

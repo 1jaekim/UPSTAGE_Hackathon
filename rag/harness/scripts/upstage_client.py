@@ -1,5 +1,6 @@
-"""Upstage Solar 채팅 호출 공용 헬퍼. reporter.py/report_judge.py에서만 쓴다
-(하네스의 유일한 두 LLM 지점 — 나머지 스크립트는 전부 결정론 코드)."""
+"""Upstage Solar 채팅 호출 공용 헬퍼. reporter.py/report_judge.py/notes_screen.py에서만
+쓴다(하네스의 LLM 지점 — 나머지 스크립트는 전부 결정론 코드). notes_screen.py는 안전
+판정을 직접 하지 않고 "사람이 봐야 하는가"라는 이진 신호만 내므로 이 경계를 안 깬다."""
 import json
 import os
 import re
