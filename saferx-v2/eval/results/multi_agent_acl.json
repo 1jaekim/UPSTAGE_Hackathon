@@ -1,0 +1,33 @@
+{
+  "experiment": "multi_agent_acl_only",
+  "scope": "ACL_RECON personas only (9명)",
+  "description": "결정론 파이프라인 6단 + reporter LLM + report-judge LLM. 스펙 대상 수술(ACL)로 국한한 유효 평가.",
+  "dataset": "saferx-v2/eval/dataset_acl.jsonl",
+  "runner_script": "saferx-v2/scripts/eval_f1.py --mode multi --acl-only",
+  "metrics": {
+    "accuracy": 0.778,
+    "correct": 7,
+    "total": 9,
+    "macro_f1": 0.929,
+    "weighted_f1": 0.873
+  },
+  "per_class": {
+    "ready_for_reporter":     {"support": 8, "tp": 6, "fp": 0, "fn": 2, "precision": 1.000, "recall": 0.750, "f1": 0.857},
+    "manual_review_required": {"support": 1, "tp": 1, "fp": 0, "fn": 0, "precision": 1.000, "recall": 1.000, "f1": 1.000},
+    "insufficient_evidence":  {"support": 0, "tp": 0, "fp": 2, "fn": 0, "precision": 0.000, "recall": 0.000, "f1": 0.000}
+  },
+  "misclassifications": [
+    {"pid": "P001", "gold": "ready_for_reporter", "pred": "insufficient_evidence", "cause": "PHASE_I isometric library gap (<3 candidates)"},
+    {"pid": "P003", "gold": "ready_for_reporter", "pred": "insufficient_evidence", "cause": "PHASE_I isometric library gap (<3 candidates)"}
+  ],
+  "safety_audit": {
+    "prescriptions_issued": 6,
+    "hard_violation_pairs": 0,
+    "clean_prescriptions": 6,
+    "note": "insufficient_evidence로 데이터 공백 시 처방 안 함 → 위반 원천 차단"
+  },
+  "cost": {
+    "llm_calls_per_success": 2.0,
+    "llm_calls_per_success_note": "reporter 1회 + report_judge 1회"
+  }
+}

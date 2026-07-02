@@ -124,12 +124,19 @@ def main():
     ap.add_argument("--verbose", action="store_true")
     ap.add_argument("--mode", choices=["multi", "single"], default="multi",
                     help="multi = 멀티에이전트 파이프라인 / single = 단일 LLM baseline")
+    ap.add_argument("--acl-only", action="store_true",
+                    help="ACL_RECON 페르소나 9명만 평가 (unsupported_surgery tautology 제거)")
     args = ap.parse_args()
 
     runner = run_pipeline_for if args.mode == "multi" else run_single_agent_for
-    print(f"=== MODE: {args.mode.upper()} ===")
+    scope = "ACL_RECON only (9명)" if args.acl_only else "ALL (30명)"
+    print(f"=== MODE: {args.mode.upper()} · SCOPE: {scope} ===")
 
     idx = json.load(open(INDEX))
+    if args.acl_only:
+        # ACL_RECON 페르소나만 필터
+        idx = [e for e in idx if json.load(open(os.path.join(PERSONAS, e["input_file"])))
+               .get("surgery") == "ACL_RECON"]
     rows = []
     for entry in idx:
         pid = entry["patient_id"]
