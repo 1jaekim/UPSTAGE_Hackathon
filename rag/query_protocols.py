@@ -4,16 +4,16 @@
 import os
 from pathlib import Path
 
-import chromadb
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from chroma_client import get_chroma_client
+
 load_dotenv(Path(__file__).parent / ".env")
 UPSTAGE_API_KEY = os.environ["UPSTAGE_API_KEY"]
-CHROMA_DIR = Path(__file__).parent / "chroma_db"
 
 embed_client = OpenAI(api_key=UPSTAGE_API_KEY, base_url="https://api.upstage.ai/v1/solar")
-collection = chromadb.PersistentClient(path=str(CHROMA_DIR)).get_collection("rehab_protocols")
+collection = get_chroma_client().get_collection("rehab_protocols")
 
 
 def search(query: str, condition: str | None = None, n_results: int = 3):
@@ -23,7 +23,7 @@ def search(query: str, condition: str | None = None, n_results: int = 3):
 
 
 if __name__ == "__main__":
-    result = search("급성기 어깨 재활 금기 동작", condition="SHOULDER")
+    result = search("2주차 ACL 재건 금기 동작", condition="KNEE")
     for doc, meta in zip(result["documents"][0], result["metadatas"][0]):
         print(meta)
         print(doc[:200])
