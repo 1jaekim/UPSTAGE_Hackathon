@@ -1,0 +1,785 @@
+{
+  "library_id": "ACL-HS-EX-v1",
+  "note": "⚠️ SAMPLE 데이터. 운동 선택·용량·출처는 표준 ACL 프로토콜을 참조한 자리표시자이며, 실제 사용 전 팀 보유 프로토콜 원문(예: BWH ACL HS protocol PDF)으로 교체·검증 필수. source의 페이지 번호는 임의값.",
+  "exercises": [
+    {
+      "name": {
+        "ko": "대퇴사두근 등척성 수축",
+        "en": "Quadriceps isometric set"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 1,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "none",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 3회",
+          "en": "3x daily"
+        },
+        "intensity": {
+          "ko": "통증 없는 최대 수축 5초 유지",
+          "en": "Pain-free maximal contraction, 5s hold"
+        }
+      },
+      "rationale": {
+        "ko": "초기 대퇴사두근 활성화 및 근위축 방지, 이식건 부하 낮음",
+        "en": "Early quadriceps activation, prevents atrophy, minimal graft load"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p3"
+    },
+    {
+      "name": {
+        "ko": "발목 펌프",
+        "en": "Ankle pumps"
+      },
+      "phases": [
+        "PHASE_I"
+      ],
+      "priority": 2,
+      "category": "circulation",
+      "load_type": "dynamic",
+      "kinetic_chain": "none",
+      "target_muscle": "calf",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 1,
+        "reps": 20,
+        "frequency": {
+          "ko": "매 시간",
+          "en": "Hourly"
+        },
+        "intensity": {
+          "ko": "전 범위, 통증 없이",
+          "en": "Full range, pain-free"
+        }
+      },
+      "rationale": {
+        "ko": "하지 순환 촉진 및 부종·혈전 예방",
+        "en": "Promotes circulation, reduces swelling and DVT risk"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p2"
+    },
+    {
+      "name": {
+        "ko": "종아리 등척성 수축",
+        "en": "Calf isometric set"
+      },
+      "phases": [
+        "PHASE_I"
+      ],
+      "priority": 3,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "none",
+      "target_muscle": "calf",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 2회",
+          "en": "2x daily"
+        },
+        "intensity": {
+          "ko": "통증 없는 수축 5초 유지",
+          "en": "Pain-free contraction, 5s hold"
+        }
+      },
+      "rationale": {
+        "ko": "족저굴곡근 활성 유지, 슬관절 부하 없음",
+        "en": "Maintains plantarflexor activation with no knee load"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p2"
+    },
+    {
+      "name": {
+        "ko": "하지 직거상",
+        "en": "Straight leg raise (SLR)"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 4,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 2회",
+          "en": "2x daily"
+        },
+        "intensity": {
+          "ko": "무릎 신전 유지(신전 지연 없을 때), 자중",
+          "en": "Maintain knee extension (no extension lag), bodyweight"
+        }
+      },
+      "rationale": {
+        "ko": "무릎 신전 잠금 상태의 고관절 굴곡으로 대퇴사두근·장요근 강화, 이식건 전단부하 최소",
+        "en": "Hip flexion with locked knee strengthens quads/hip flexors with minimal graft shear"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p3"
+    },
+    {
+      "name": {
+        "ko": "발뒤꿈치 밀기 (0–90°)",
+        "en": "Heel slide (0–90°)"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 5,
+      "category": "rom",
+      "load_type": "dynamic",
+      "kinetic_chain": "none",
+      "target_muscle": "knee_flexors_passive",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 2,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 3회",
+          "en": "3x daily"
+        },
+        "intensity": {
+          "ko": "통증 범위 내 천천히",
+          "en": "Slow, within pain-free range"
+        }
+      },
+      "rationale": {
+        "ko": "초기 무릎 굴곡 가동범위 회복, 유착 예방",
+        "en": "Restores early knee flexion ROM, prevents adhesion"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p2"
+    },
+    {
+      "name": {
+        "ko": "슬개골 가동술 (자가)",
+        "en": "Patellar mobilization (self)"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 6,
+      "category": "rom",
+      "load_type": "passive",
+      "kinetic_chain": "none",
+      "target_muscle": "patellofemoral",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 20,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 1,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 3회",
+          "en": "3x daily"
+        },
+        "intensity": {
+          "ko": "각 방향 부드럽게",
+          "en": "Gentle glides in each direction"
+        }
+      },
+      "rationale": {
+        "ko": "슬개골 유착 방지 및 신전 가동성 확보",
+        "en": "Prevents patellar adhesion, supports extension mobility"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p2"
+    },
+    {
+      "name": {
+        "ko": "둔근 등척성 수축",
+        "en": "Gluteal isometric set"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 7,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "none",
+      "target_muscle": "gluteals",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 2회",
+          "en": "2x daily"
+        },
+        "intensity": {
+          "ko": "5초 유지, 통증 없이",
+          "en": "5s hold, pain-free"
+        }
+      },
+      "rationale": {
+        "ko": "고관절 신전근 활성 유지, 슬관절 부하 없음",
+        "en": "Maintains hip extensor activation with no knee load"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p3"
+    },
+    {
+      "name": {
+        "ko": "내전근 등척성 수축 (볼 스퀴즈)",
+        "en": "Adductor isometric squeeze"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 8,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "none",
+      "target_muscle": "adductors",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 30,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 2회",
+          "en": "2x daily"
+        },
+        "intensity": {
+          "ko": "5초 유지",
+          "en": "5s hold"
+        }
+      },
+      "rationale": {
+        "ko": "고관절 내전근 활성, 슬관절 전단부하 없음",
+        "en": "Hip adductor activation without knee shear load"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p3"
+    },
+    {
+      "name": {
+        "ko": "고관절 외전근 등척성 수축",
+        "en": "Hip abductor isometric set"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 9,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "none",
+      "target_muscle": "hip_abductors",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 0,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "1일 2회",
+          "en": "2x daily"
+        },
+        "intensity": {
+          "ko": "5초 유지, 통증 없이",
+          "en": "5s hold, pain-free"
+        }
+      },
+      "rationale": {
+        "ko": "고관절 외측 안정근 활성 유지, 슬관절 부하 없음",
+        "en": "Maintains lateral hip stabilizer activation with no knee load"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p3"
+    },
+    {
+      "name": {
+        "ko": "다각도 대퇴사두근 등척성 수축 (30/60°)",
+        "en": "Multi-angle quadriceps isometric (30/60°)"
+      },
+      "phases": [
+        "PHASE_I",
+        "PHASE_II"
+      ],
+      "priority": 10,
+      "category": "strength",
+      "load_type": "isometric",
+      "kinetic_chain": "none",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 60,
+      "weight_bearing": "none",
+      "intensity_level": "low",
+      "dosage": {
+        "sets": 3,
+        "reps": 8,
+        "frequency": {
+          "ko": "1일 2회",
+          "en": "2x daily"
+        },
+        "intensity": {
+          "ko": "각 각도 5초 유지",
+          "en": "5s hold at each angle"
+        }
+      },
+      "rationale": {
+        "ko": "여러 각도에서 대퇴사두근 활성 — 관절 전단부하 최소로 각도별 근력 유지",
+        "en": "Quadriceps activation across angles with minimal joint shear"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p4"
+    },
+    {
+      "name": {
+        "ko": "미니 스쿼트 (0–45°)",
+        "en": "Mini squat (0–45°)"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III"
+      ],
+      "priority": 11,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 45,
+      "weight_bearing": "bilateral",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 12,
+        "frequency": {
+          "ko": "1일 1회",
+          "en": "Daily"
+        },
+        "intensity": {
+          "ko": "자중, 통증 없는 범위",
+          "en": "Bodyweight, pain-free range"
+        }
+      },
+      "rationale": {
+        "ko": "폐쇄사슬 하지 근력 강화, 이식건 전단부하 낮음",
+        "en": "CKC lower-limb strengthening with low graft shear"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p5"
+    },
+    {
+      "name": {
+        "ko": "고정식 자전거 (저부하)",
+        "en": "Stationary bike (low resistance)"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III",
+        "PHASE_IV"
+      ],
+      "priority": 12,
+      "category": "endurance",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 110,
+      "weight_bearing": "partial",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 1,
+        "reps": 1,
+        "frequency": {
+          "ko": "1일 1회 10–15분",
+          "en": "10–15 min daily"
+        },
+        "intensity": {
+          "ko": "저저항, 통증 없는 케이던스",
+          "en": "Low resistance, pain-free cadence"
+        }
+      },
+      "rationale": {
+        "ko": "가동범위 회복과 유산소 능력 유지 병행",
+        "en": "Combines ROM recovery with aerobic conditioning"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p5"
+    },
+    {
+      "name": {
+        "ko": "레그 프레스 (양측, 제한 범위)",
+        "en": "Leg press (bilateral, limited arc)"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV"
+      ],
+      "priority": 13,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "quadriceps",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "bilateral",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "주 3회",
+          "en": "3x weekly"
+        },
+        "intensity": {
+          "ko": "중등도 부하, 0–90°",
+          "en": "Moderate load, 0–90°"
+        }
+      },
+      "rationale": {
+        "ko": "폐쇄사슬 저항 강화 진행 단계",
+        "en": "Progressive CKC resisted strengthening"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p6"
+    },
+    {
+      "name": {
+        "ko": "무릎 신전 머신 (90–45°)",
+        "en": "Knee extension machine (90–45°)"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV"
+      ],
+      "priority": 14,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "quadriceps",
+      "resisted": true,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "none",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "knee_extension_end": 45,
+      "weight_bearing": "none",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "주 3회",
+          "en": "3x weekly"
+        },
+        "intensity": {
+          "ko": "저–중등도 부하, 90–45° 제한",
+          "en": "Low–moderate load, restricted to 90–45°"
+        }
+      },
+      "rationale": {
+        "ko": "제한 범위 개방사슬 신전으로 대퇴사두근 선택적 강화",
+        "en": "Restricted-arc OKC extension for targeted quadriceps strengthening"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p6"
+    },
+    {
+      "name": {
+        "ko": "편측 균형 훈련 (안정면)",
+        "en": "Single-leg balance (stable surface)"
+      },
+      "phases": [
+        "PHASE_II",
+        "PHASE_III"
+      ],
+      "priority": 15,
+      "category": "balance",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "low",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 20,
+      "weight_bearing": "single_leg_static",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 5,
+        "frequency": {
+          "ko": "1일 1회, 30초 유지",
+          "en": "Daily, 30s holds"
+        },
+        "intensity": {
+          "ko": "안정면에서 시작",
+          "en": "Begin on stable surface"
+        }
+      },
+      "rationale": {
+        "ko": "고유수용감각·신경근 조절 회복",
+        "en": "Restores proprioception and neuromuscular control"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p5"
+    },
+    {
+      "name": {
+        "ko": "햄스트링 컬 (저부하)",
+        "en": "Hamstring curl (low load)"
+      },
+      "phases": [
+        "PHASE_III",
+        "PHASE_IV"
+      ],
+      "priority": 16,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "OKC",
+      "target_muscle": "hamstring",
+      "resisted": true,
+      "resisted_knee_flexion": true,
+      "hamstring_load": "medium",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "moderate",
+      "dosage": {
+        "sets": 3,
+        "reps": 10,
+        "frequency": {
+          "ko": "주 3회",
+          "en": "3x weekly"
+        },
+        "intensity": {
+          "ko": "저부하에서 점진",
+          "en": "Progress from low load"
+        }
+      },
+      "rationale": {
+        "ko": "공여부 치유 후 햄스트링 근력 점진 회복",
+        "en": "Gradual hamstring strength recovery after donor-site healing"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p7"
+    },
+    {
+      "name": {
+        "ko": "노르딕 햄스트링 컬",
+        "en": "Nordic hamstring curl"
+      },
+      "phases": [
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "priority": 17,
+      "category": "strength",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "hamstring",
+      "resisted": true,
+      "resisted_knee_flexion": true,
+      "hamstring_load": "high",
+      "eccentric_hamstring": true,
+      "knee_flexion_max": 90,
+      "weight_bearing": "none",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 3,
+        "reps": 6,
+        "frequency": {
+          "ko": "주 2회",
+          "en": "2x weekly"
+        },
+        "intensity": {
+          "ko": "체중 원심성",
+          "en": "Bodyweight eccentric"
+        }
+      },
+      "rationale": {
+        "ko": "후기 원심성 햄스트링 강화 (재파열 예방)",
+        "en": "Late-stage eccentric hamstring strengthening (reinjury prevention)"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p8"
+    },
+    {
+      "name": {
+        "ko": "박스 점프 (양측)",
+        "en": "Box jump (bilateral)"
+      },
+      "phases": [
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "priority": 18,
+      "category": "plyometric",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "medium",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "bilateral",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 3,
+        "reps": 8,
+        "frequency": {
+          "ko": "주 2회",
+          "en": "2x weekly"
+        },
+        "intensity": {
+          "ko": "낮은 박스에서 시작",
+          "en": "Start with low box"
+        }
+      },
+      "rationale": {
+        "ko": "충격 흡수 전략 학습 및 파워 회복",
+        "en": "Teaches landing mechanics, restores power"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p8"
+    },
+    {
+      "name": {
+        "ko": "직선 러닝 프로그램",
+        "en": "Straight-line running progression"
+      },
+      "phases": [
+        "PHASE_IV",
+        "PHASE_V"
+      ],
+      "priority": 19,
+      "category": "running",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "medium",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 1,
+        "reps": 1,
+        "frequency": {
+          "ko": "주 3회, 워크-조그 인터벌",
+          "en": "3x weekly, walk-jog intervals"
+        },
+        "intensity": {
+          "ko": "통증·부종 없는 조건에서 점진",
+          "en": "Progress if pain/swelling-free"
+        }
+      },
+      "rationale": {
+        "ko": "달리기 복귀 전 점진적 충격 노출",
+        "en": "Graded impact exposure before return to running"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p8"
+    },
+    {
+      "name": {
+        "ko": "스포츠 복귀 테스트 배터리",
+        "en": "Return-to-sport test battery"
+      },
+      "phases": [
+        "PHASE_V"
+      ],
+      "priority": 20,
+      "category": "rts",
+      "load_type": "dynamic",
+      "kinetic_chain": "CKC",
+      "target_muscle": "global_lower_limb",
+      "resisted": false,
+      "resisted_knee_flexion": false,
+      "hamstring_load": "medium",
+      "eccentric_hamstring": false,
+      "knee_flexion_max": 90,
+      "weight_bearing": "single_leg_dynamic",
+      "intensity_level": "high",
+      "dosage": {
+        "sets": 1,
+        "reps": 1,
+        "frequency": {
+          "ko": "1회 (평가)",
+          "en": "Single assessment"
+        },
+        "intensity": {
+          "ko": "최대 노력",
+          "en": "Maximal effort"
+        }
+      },
+      "rationale": {
+        "ko": "홉 테스트·LSI 등 복귀 기준 평가 (PT 판정)",
+        "en": "Hop tests / LSI criteria for RTS clearance (PT-judged)"
+      },
+      "source": "SAMPLE_PROTOCOL.pdf#p9"
+    }
+  ]
+}

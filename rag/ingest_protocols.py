@@ -14,16 +14,16 @@ import os
 import re
 from pathlib import Path
 
-import chromadb
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from chroma_client import get_chroma_client
+
 load_dotenv(Path(__file__).parent / ".env")
 UPSTAGE_API_KEY = os.environ["UPSTAGE_API_KEY"]
 PROTOCOLS_DIR = Path(__file__).parent / "protocols"
-CHROMA_DIR = Path(__file__).parent / "chroma_db"
 COLLECTION_NAME = "rehab_protocols"
 
 # 파일명(확장자 제외, 소문자) -> (condition 코드, 한글 라벨)
@@ -135,7 +135,7 @@ def embed_passages(texts: list[str]) -> list[list[float]]:
 
 
 def main() -> None:
-    chroma = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    chroma = get_chroma_client()
     collection = chroma.get_or_create_collection(COLLECTION_NAME)
 
     for file_path in sorted(PROTOCOLS_DIR.glob("*")):

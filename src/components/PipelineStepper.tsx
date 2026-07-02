@@ -1,5 +1,4 @@
-import { AGENT_META, AGENT_ORDER, type AnimatedStep } from "../data/agents";
-import type { AgentKey } from "../types";
+import { AGENT_META, AGENT_ORDER, type AgentKey, type AnimatedStep } from "../data/agents";
 
 interface Props {
   revealedSteps: AnimatedStep[];
@@ -19,7 +18,7 @@ export default function PipelineStepper({ revealedSteps, isRunning }: Props) {
     <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-gray-900">파이프라인 진행 상태</h2>
       <p className="mt-1 text-sm text-gray-500">
-        생성 → 검증 → (위반 시) 자동 교정·재검증 최대 2회 → 리포트 출력
+추출 → 검색 → 안전성 검증(Gate 1) → (위반 시) 자동 교정 루프 → 처방 조립 → 리포트 작성 → 품질 검수(Gate 2)
       </p>
 
       <div className="mt-6 flex items-center">
@@ -77,10 +76,7 @@ export default function PipelineStepper({ revealedSteps, isRunning }: Props) {
               <span className="inline-flex w-24 shrink-0 items-center rounded-md bg-white px-2 py-0.5 text-xs font-semibold text-gray-600 ring-1 ring-gray-200">
                 {AGENT_META[step.agent].label}
               </span>
-              <span className="flex-1 text-gray-700">
-                {step.label}
-                {step.attempt ? ` (시도 ${step.attempt}회)` : ""}
-              </span>
+              <span className="flex-1 text-gray-700">{step.label}</span>
               <span className={"text-xs font-medium " + (stillRunning ? "text-blue-600" : "text-emerald-600")}>
                 {stillRunning ? "진행 중…" : "완료"}
               </span>
