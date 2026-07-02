@@ -15,8 +15,8 @@ interface Props {
 
 export default function PatientForm({ disabled, onSubmit }: Props) {
   const [phase, setPhase] = useState<RehabPhase>("PHASE_I");
-  const [weekPostOp, setWeekPostOp] = useState(2);
-  const [age, setAge] = useState(45);
+  const [weekPostOp, setWeekPostOp] = useState("2");
+  const [age, setAge] = useState("45");
   const [concomitantProcedure, setConcomitantProcedure] = useState("");
   const [painNrs, setPainNrs] = useState<string>("");
   const [swelling, setSwelling] = useState(false);
@@ -26,8 +26,8 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
     e.preventDefault();
     onSubmit({
       surgeryType: "ACL_RECON",
-      weekPostOp,
-      age,
+      weekPostOp: Number(weekPostOp) || 0,
+      age: Number(age) || 0,
       concomitantProcedure: concomitantProcedure.trim() || null,
       painNrs: painNrs === "" ? null : Number(painNrs),
       swelling,
@@ -79,7 +79,7 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
               min={0}
               max={16}
               value={weekPostOp}
-              onChange={(e) => setWeekPostOp(Number(e.target.value))}
+              onChange={(e) => setWeekPostOp(e.target.value)}
               disabled={disabled}
               className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
             />
@@ -91,7 +91,7 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
               min={1}
               max={110}
               value={age}
-              onChange={(e) => setAge(Number(e.target.value))}
+              onChange={(e) => setAge(e.target.value)}
               disabled={disabled}
               className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
             />

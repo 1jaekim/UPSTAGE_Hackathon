@@ -134,7 +134,7 @@ export default function ValidationReport({ result }: Props) {
       )}
 
       <p className="mt-6 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700 ring-1 ring-amber-200">
-        ⚠ 본 화면은 Harness 시연을 위한 데모입니다(규칙표·운동 데이터가 SAMPLE). 실제 임상 처방에는 사용할 수 없습니다.
+        ⚠ 이 서비스는 AI 서비스이며, 제공된 정보에 대한 최종 판단과 책임은 전적으로 사용자(담당 의료진)에게 있습니다.
       </p>
     </div>
   );

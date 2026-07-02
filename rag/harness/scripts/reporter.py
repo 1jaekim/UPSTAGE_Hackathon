@@ -101,7 +101,7 @@ def build_prompt(ctx, prescription, fix_notes=None):
             "- plan_summary: 이번 단계 운동 계획을 2~3문장으로 요약 (운동 목록 자체는 별도 첨부되므로"
             " 여기선 요약 문장만)."
         )
-        plan_block = f"[확정된 처방 운동 5개 — 이미 안전성 검증 통과, 그대로 인용만 할 것]\n{', '.join(exercise_names)}"
+        plan_block = f"[확정된 처방 운동 {len(exercise_names)}개 — 이미 안전성 검증 통과, 그대로 인용만 할 것]\n{', '.join(exercise_names)}"
 
     return f"""당신은 물리치료사를 위한 재활 운동처방 검수 리포트의 서술(narrative) 작성자입니다.
 아래 데이터만 근거로 SOAP 노트의 4개 서술 섹션을 한국어+영어 이중언어로 작성하세요.
@@ -153,8 +153,8 @@ def _fallback_narrative(ctx, prescription):
         }
     else:
         plan = {
-            "ko": f"{ctx['phase']} 목표에 맞춘 5개 운동을 제안함. 통증·부종 반응을 관찰하며 진행할 것을 제안함.",
-            "en": f"Five exercises aligned with {ctx['phase']} goals are proposed; progress while monitoring pain and swelling.",
+            "ko": f"{ctx['phase']} 목표에 맞춘 {len(prescription['exercises'])}개 운동을 제안함. 통증·부종 반응을 관찰하며 진행할 것을 제안함.",
+            "en": f"{len(prescription['exercises'])} exercises aligned with {ctx['phase']} goals are proposed; progress while monitoring pain and swelling.",
         }
 
     return {

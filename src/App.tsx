@@ -40,7 +40,7 @@ function buildAnimatedSteps(result: PipelineResult): AnimatedStep[] {
     return steps;
   }
 
-  steps.push({ agent: "prescription-generator", label: "안전성 통과 항목으로 처방 5개 조립" });
+  steps.push({ agent: "prescription-generator", label: "안전성 통과 항목으로 처방 3개 조립" });
   steps.push({ agent: "report-writer", label: "SOAP 형식 검수 리포트 서술 작성 (이중언어)" });
   steps.push({ agent: "report-judge", label: "리포트 품질·근거 일치 검수 통과" });
   return steps;
