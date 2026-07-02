@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 9,
+  "age": 17,
+  "concomitant_procedure": null,
+  "pain_nrs": 4,
+  "swelling": true,
+  "notes": "일상 활동은 다 되는데 스포츠 복귀가 걱정입니다.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "hamstring_autograft"
+  }
+}

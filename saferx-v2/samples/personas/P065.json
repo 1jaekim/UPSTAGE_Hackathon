@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 13,
+  "age": 27,
+  "concomitant_procedure": null,
+  "pain_nrs": 4,
+  "swelling": false,
+  "notes": "점프나 방향 전환 훈련을 넣고 싶어요.",
+  "surgery_details": {
+    "phase": "PHASE_IV",
+    "graft_type": "hamstring_autograft"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 5,
+  "age": 38,
+  "concomitant_procedure": null,
+  "pain_nrs": 3,
+  "swelling": true,
+  "notes": "무릎 앞쪽이 뻐근한 느낌이 남아있어요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "patellar_tendon_autograft"
+  }
+}

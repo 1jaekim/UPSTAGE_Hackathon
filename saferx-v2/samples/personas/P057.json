@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 11,
+  "age": 34,
+  "concomitant_procedure": "meniscectomy",
+  "pain_nrs": 0,
+  "swelling": false,
+  "notes": "연골 손상 수술을 병행해서 재활이 조심스러워요.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "hamstring_autograft"
+  }
+}

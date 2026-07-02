@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 20,
+  "age": 52,
+  "concomitant_procedure": null,
+  "pain_nrs": 0,
+  "swelling": false,
+  "notes": "재부상 예방을 위한 강화 운동을 원해요.",
+  "surgery_details": {
+    "phase": "PHASE_V",
+    "graft_type": "hamstring_autograft"
+  }
+}

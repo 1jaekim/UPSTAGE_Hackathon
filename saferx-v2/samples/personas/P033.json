@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 2,
+  "age": 20,
+  "concomitant_procedure": null,
+  "pain_nrs": 3,
+  "swelling": true,
+  "notes": "수술 후 통증이 남아있고 계단 오를 때 불안해요.",
+  "surgery_details": {
+    "phase": "PHASE_I",
+    "graft_type": "hamstring_autograft"
+  }
+}

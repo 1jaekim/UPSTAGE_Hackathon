@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 1,
+  "age": 19,
+  "concomitant_procedure": null,
+  "pain_nrs": 8,
+  "swelling": true,
+  "notes": "걸을 때마다 무릎이 시큰거리고 아파요.",
+  "surgery_details": {
+    "phase": "PHASE_I",
+    "graft_type": "hamstring_autograft"
+  }
+}

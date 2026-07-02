@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 3,
+  "age": 29,
+  "concomitant_procedure": null,
+  "pain_nrs": 7,
+  "swelling": true,
+  "notes": "재활 중에 통증이 오히려 심해졌어요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

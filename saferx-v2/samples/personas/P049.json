@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 2,
+  "age": 46,
+  "concomitant_procedure": null,
+  "pain_nrs": 8,
+  "swelling": true,
+  "notes": "무릎이 붓고 열이 나는 것 같습니다.",
+  "surgery_details": {
+    "phase": "PHASE_I",
+    "graft_type": "hamstring_autograft"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 7,
+  "age": 23,
+  "concomitant_procedure": null,
+  "pain_nrs": 4,
+  "swelling": false,
+  "notes": "일상 활동은 다 되는데 스포츠 복귀가 걱정입니다.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "quadriceps_tendon_autograft"
+  }
+}

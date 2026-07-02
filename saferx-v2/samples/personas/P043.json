@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 33,
+  "age": 38,
+  "concomitant_procedure": null,
+  "pain_nrs": 3,
+  "swelling": false,
+  "notes": "스포츠 복귀 직전인데 마지막 점검이 필요해요.",
+  "surgery_details": {
+    "phase": "PHASE_V",
+    "graft_type": "hamstring_autograft"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 9,
+  "age": 21,
+  "concomitant_procedure": null,
+  "pain_nrs": 0,
+  "swelling": true,
+  "notes": "런지나 스쿼트를 해도 되는지 알려주세요.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "hamstring_autograft"
+  }
+}

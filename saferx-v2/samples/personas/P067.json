@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 8,
+  "age": 30,
+  "concomitant_procedure": null,
+  "pain_nrs": 4,
+  "swelling": false,
+  "notes": "축구 복귀를 목표로 하는데 지금 단계에서 뭘 해야 할까요?",
+  "surgery_details": {
+    "phase": "PHASE_IV",
+    "graft_type": "hamstring_autograft"
+  }
+}

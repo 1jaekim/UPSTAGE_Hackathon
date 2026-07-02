@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 3,
+  "age": 24,
+  "concomitant_procedure": null,
+  "pain_nrs": 6,
+  "swelling": true,
+  "notes": "통증이 심해서 밤에 잠을 못 자요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 3,
+  "age": 20,
+  "concomitant_procedure": null,
+  "pain_nrs": 1,
+  "swelling": false,
+  "notes": "걷는 건 편해졌는데 계단이 여전히 무섭습니다.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "allograft"
+  }
+}

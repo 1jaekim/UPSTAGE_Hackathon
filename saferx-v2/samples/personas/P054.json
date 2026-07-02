@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 3,
+  "age": 44,
+  "concomitant_procedure": "PCL_reconstruction",
+  "pain_nrs": 3,
+  "swelling": false,
+  "notes": "동반 시술 때문에 일반 재활 프로토콜과 다르다고 들었어요.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

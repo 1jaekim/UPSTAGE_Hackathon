@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 17,
+  "age": 21,
+  "concomitant_procedure": null,
+  "pain_nrs": 0,
+  "swelling": false,
+  "notes": "근력은 회복됐는데 민첩성이 걱정입니다.",
+  "surgery_details": {
+    "phase": "PHASE_IV",
+    "graft_type": "hamstring_autograft"
+  }
+}

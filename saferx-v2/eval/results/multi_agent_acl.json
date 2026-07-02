@@ -1,33 +1,35 @@
 {
   "experiment": "multi_agent_acl_only",
-  "scope": "ACL_RECON personas only (9명)",
-  "description": "결정론 파이프라인 6단 + reporter LLM + report-judge LLM. 스펙 대상 수술(ACL)로 국한한 유효 평가.",
+  "scope": "ACL_RECON personas (50명, 기존 9 + 합성 41)",
+  "description": "결정론 파이프라인 6단 + reporter LLM + report-judge LLM. ACL 스코프 유효 평가.",
   "dataset": "saferx-v2/eval/dataset_acl.jsonl",
   "runner_script": "saferx-v2/scripts/eval_f1.py --mode multi --acl-only",
   "metrics": {
-    "accuracy": 0.778,
-    "correct": 7,
-    "total": 9,
-    "macro_f1": 0.929,
-    "weighted_f1": 0.873
+    "accuracy": 0.800,
+    "correct": 40,
+    "total": 50,
+    "macro_f1": 0.916,
+    "weighted_f1": 0.857
   },
   "per_class": {
-    "ready_for_reporter":     {"support": 8, "tp": 6, "fp": 0, "fn": 2, "precision": 1.000, "recall": 0.750, "f1": 0.857},
-    "manual_review_required": {"support": 1, "tp": 1, "fp": 0, "fn": 0, "precision": 1.000, "recall": 1.000, "f1": 1.000},
-    "insufficient_evidence":  {"support": 0, "tp": 0, "fp": 2, "fn": 0, "precision": 0.000, "recall": 0.000, "f1": 0.000}
+    "ready_for_reporter":     {"support": 33, "tp": 23, "fp": 0, "fn": 10, "precision": 1.000, "recall": 0.697, "f1": 0.821},
+    "red_flag":               {"support":  8, "tp":  8, "fp": 3, "fn":  0, "precision": 0.727, "recall": 1.000, "f1": 0.842},
+    "manual_review_required": {"support":  6, "tp":  6, "fp": 0, "fn":  0, "precision": 1.000, "recall": 1.000, "f1": 1.000},
+    "unsupported_case":       {"support":  3, "tp":  3, "fp": 0, "fn":  0, "precision": 1.000, "recall": 1.000, "f1": 1.000},
+    "insufficient_evidence":  {"support":  0, "tp":  0, "fp": 7, "fn":  0, "precision": 0.000, "recall": 0.000, "f1": 0.000}
   },
-  "misclassifications": [
-    {"pid": "P001", "gold": "ready_for_reporter", "pred": "insufficient_evidence", "cause": "PHASE_I isometric library gap (<3 candidates)"},
-    {"pid": "P003", "gold": "ready_for_reporter", "pred": "insufficient_evidence", "cause": "PHASE_I isometric library gap (<3 candidates)"}
-  ],
+  "misclassifications_categories": {
+    "insufficient_evidence": "7건 — PHASE I/II 라이브러리 공백. 안전 판단은 옳음(데이터 부족 시 처방 거부).",
+    "red_flag_over_triggered": "3건 — 후보 중 hard 위반이 ≥11건이라 파이프라인이 red_flag로 강등. 보수적 오탐."
+  },
   "safety_audit": {
-    "prescriptions_issued": 6,
+    "prescriptions_issued": 23,
     "hard_violation_pairs": 0,
-    "clean_prescriptions": 6,
-    "note": "insufficient_evidence로 데이터 공백 시 처방 안 함 → 위반 원천 차단"
+    "clean_prescriptions": 23,
+    "clean_prescription_rate": 1.000,
+    "note": "insufficient_evidence·red_flag로 데이터 부족·위험 상황에서 처방 안 함 → 위반 원천 차단"
   },
   "cost": {
-    "llm_calls_per_success": 2.0,
-    "llm_calls_per_success_note": "reporter 1회 + report_judge 1회"
+    "llm_calls_per_success": 2.0
   }
 }

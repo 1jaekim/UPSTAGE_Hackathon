@@ -270,5 +270,456 @@
     ],
     "expected_status": "unsupported_surgery",
     "input_file": "P030.json"
+  },
+  {
+    "patient_id": "P031",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P031.json"
+  },
+  {
+    "patient_id": "P032",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P032.json"
+  },
+  {
+    "patient_id": "P033",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P033.json"
+  },
+  {
+    "patient_id": "P034",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P034.json"
+  },
+  {
+    "patient_id": "P035",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P035.json"
+  },
+  {
+    "patient_id": "P036",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P036.json"
+  },
+  {
+    "patient_id": "P037",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P037.json"
+  },
+  {
+    "patient_id": "P038",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P038.json"
+  },
+  {
+    "patient_id": "P039",
+    "test_intent": "normal",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P039.json"
+  },
+  {
+    "patient_id": "P040",
+    "test_intent": "normal",
+    "expected_phase": "V",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P040.json"
+  },
+  {
+    "patient_id": "P041",
+    "test_intent": "normal",
+    "expected_phase": "V",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P041.json"
+  },
+  {
+    "patient_id": "P042",
+    "test_intent": "normal",
+    "expected_phase": "V",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P042.json"
+  },
+  {
+    "patient_id": "P043",
+    "test_intent": "normal",
+    "expected_phase": "V",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P043.json"
+  },
+  {
+    "patient_id": "P044",
+    "test_intent": "normal",
+    "expected_phase": "V",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P044.json"
+  },
+  {
+    "patient_id": "P045",
+    "test_intent": "normal",
+    "expected_phase": "V",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P045.json"
+  },
+  {
+    "patient_id": "P046",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P046.json"
+  },
+  {
+    "patient_id": "P047",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P047.json"
+  },
+  {
+    "patient_id": "P048",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P048.json"
+  },
+  {
+    "patient_id": "P049",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P049.json"
+  },
+  {
+    "patient_id": "P050",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P050.json"
+  },
+  {
+    "patient_id": "P051",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P051.json"
+  },
+  {
+    "patient_id": "P052",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P052.json"
+  },
+  {
+    "patient_id": "P053",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "심함",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P053.json"
+  },
+  {
+    "patient_id": "P054",
+    "test_intent": "meta_rule",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P054.json"
+  },
+  {
+    "patient_id": "P055",
+    "test_intent": "meta_rule",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P055.json"
+  },
+  {
+    "patient_id": "P056",
+    "test_intent": "meta_rule",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P056.json"
+  },
+  {
+    "patient_id": "P057",
+    "test_intent": "meta_rule",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P057.json"
+  },
+  {
+    "patient_id": "P058",
+    "test_intent": "meta_rule",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P058.json"
+  },
+  {
+    "patient_id": "P059",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P059.json"
+  },
+  {
+    "patient_id": "P060",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P060.json"
+  },
+  {
+    "patient_id": "P061",
+    "test_intent": "trap_target",
+    "expected_phase": "-",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P061.json"
+  },
+  {
+    "patient_id": "P062",
+    "test_intent": "boundary",
+    "expected_phase": "I",
+    "swelling_grade": "경미",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P062.json"
+  },
+  {
+    "patient_id": "P063",
+    "test_intent": "boundary",
+    "expected_phase": "II",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P063.json"
+  },
+  {
+    "patient_id": "P064",
+    "test_intent": "boundary",
+    "expected_phase": "III",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P064.json"
+  },
+  {
+    "patient_id": "P065",
+    "test_intent": "boundary",
+    "expected_phase": "IV",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P065.json"
+  },
+  {
+    "patient_id": "P066",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "II",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P066.json"
+  },
+  {
+    "patient_id": "P067",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "III",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P067.json"
+  },
+  {
+    "patient_id": "P068",
+    "test_intent": "time_vs_criteria",
+    "expected_phase": "IV",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P068.json"
+  },
+  {
+    "patient_id": "P069",
+    "test_intent": "trap_target",
+    "expected_phase": "II",
+    "swelling_grade": "경미",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P069.json"
+  },
+  {
+    "patient_id": "P070",
+    "test_intent": "trap_target",
+    "expected_phase": "III",
+    "swelling_grade": "경미",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P070.json"
+  },
+  {
+    "patient_id": "P071",
+    "test_intent": "trap_target",
+    "expected_phase": "I",
+    "swelling_grade": "-",
+    "converter_notes": [
+      "synthetic (generate_synthetic_personas.py, seed=42)"
+    ],
+    "expected_status": null,
+    "input_file": "P071.json"
   }
 ]

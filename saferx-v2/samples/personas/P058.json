@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 4,
+  "age": 48,
+  "concomitant_procedure": "cartilage_repair",
+  "pain_nrs": 4,
+  "swelling": false,
+  "notes": "다른 술식도 함께 받아서 물리치료사와 상의가 필요합니다.",
+  "surgery_details": {
+    "phase": "PHASE_II",
+    "graft_type": "hamstring_autograft"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 9,
+  "age": 15,
+  "concomitant_procedure": "MCL_repair",
+  "pain_nrs": 3,
+  "swelling": true,
+  "notes": "반월판 봉합도 같이 받았습니다. 어떤 운동을 해도 될까요?",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "hamstring_autograft"
+  }
+}

@@ -1,9 +1,11 @@
 {
-  "count": 30,
+  "count": 71,
   "gold_distribution": {
+    "ready_for_reporter": 33,
     "unsupported_surgery": 21,
-    "ready_for_reporter": 8,
-    "manual_review_required": 1
+    "red_flag": 8,
+    "manual_review_required": 6,
+    "unsupported_case": 3
   },
   "by_class": {
     "ready_for_reporter": [
@@ -14,10 +16,40 @@
       "P005(trap_target)",
       "P006(time_vs_criteria)",
       "P007(normal)",
-      "P008(trap_target)"
+      "P008(trap_target)",
+      "P031(normal)",
+      "P032(normal)",
+      "P033(normal)",
+      "P034(normal)",
+      "P035(normal)",
+      "P036(normal)",
+      "P037(normal)",
+      "P038(normal)",
+      "P039(normal)",
+      "P040(normal)",
+      "P041(normal)",
+      "P042(normal)",
+      "P043(normal)",
+      "P044(normal)",
+      "P045(normal)",
+      "P062(boundary)",
+      "P063(boundary)",
+      "P064(boundary)",
+      "P065(boundary)",
+      "P066(time_vs_criteria)",
+      "P067(time_vs_criteria)",
+      "P068(time_vs_criteria)",
+      "P069(trap_target)",
+      "P070(trap_target)",
+      "P071(trap_target)"
     ],
     "manual_review_required": [
-      "P009(meta_rule)"
+      "P009(meta_rule)",
+      "P054(meta_rule)",
+      "P055(meta_rule)",
+      "P056(meta_rule)",
+      "P057(meta_rule)",
+      "P058(meta_rule)"
     ],
     "unsupported_surgery": [
       "P010(normal)",
@@ -41,6 +73,21 @@
       "P028(normal)",
       "P029(normal)",
       "P030(time_vs_criteria)"
+    ],
+    "red_flag": [
+      "P046(trap_target)",
+      "P047(trap_target)",
+      "P048(trap_target)",
+      "P049(trap_target)",
+      "P050(trap_target)",
+      "P051(trap_target)",
+      "P052(trap_target)",
+      "P053(trap_target)"
+    ],
+    "unsupported_case": [
+      "P059(trap_target)",
+      "P060(trap_target)",
+      "P061(trap_target)"
     ]
   },
   "gate_rules_snapshot": {

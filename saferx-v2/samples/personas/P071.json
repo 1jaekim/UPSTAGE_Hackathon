@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 0,
+  "age": 19,
+  "concomitant_procedure": null,
+  "pain_nrs": 5,
+  "swelling": false,
+  "notes": "무릎이 뻣뻣하고 굽히기 힘들어요. 지금 할 수 있는 운동을 알려주세요.",
+  "surgery_details": {
+    "phase": "PHASE_I",
+    "graft_type": "hamstring_autograft"
+  }
+}

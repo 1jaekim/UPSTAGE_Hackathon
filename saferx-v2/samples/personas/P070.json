@@ -1,0 +1,13 @@
+{
+  "surgery": "ACL_RECON",
+  "week_post_op": 7,
+  "age": 19,
+  "concomitant_procedure": null,
+  "pain_nrs": 4,
+  "swelling": true,
+  "notes": "쪼그려 앉기까지 가능해졌는데 저항 운동을 시작해도 될지 궁금해요.",
+  "surgery_details": {
+    "phase": "PHASE_III",
+    "graft_type": "hamstring_autograft"
+  }
+}
