@@ -1,35 +1,44 @@
 import { useState } from "react";
-import { SURGERY_LABEL, type PatientInput, type SurgeryType } from "../types";
+import {
+  GRAFT_LABEL,
+  REHAB_PHASE_LABEL,
+  REHAB_PHASE_ORDER,
+  SURGERY_LABEL,
+  type GraftType,
+  type PatientInput,
+  type RehabPhase,
+} from "../types";
 
 interface Props {
   disabled: boolean;
   onSubmit: (input: PatientInput) => void;
 }
 
-const SURGERY_TYPES: SurgeryType[] = ["ACL_RECON", "ROTATOR_CUFF", "TKA"];
-
-const GRAFT_LABEL: Record<SurgeryType, string> = {
-  ACL_RECON: "이식건 종류",
-  ROTATOR_CUFF: "봉합 범위 / 특이사항",
-  TKA: "보형물 종류 / 특이사항",
-};
-
-const GRAFT_PLACEHOLDER: Record<SurgeryType, string> = {
-  ACL_RECON: "예: 자가건(BTB), 동종건",
-  ROTATOR_CUFF: "예: 극상근 전층 파열 봉합",
-  TKA: "예: 후방십자인대 보존형",
-};
+const GRAFT_TYPES: GraftType[] = ["hamstring_autograft", "patellar_tendon_autograft", "allograft"];
 
 export default function PatientForm({ disabled, onSubmit }: Props) {
-  const [surgeryType, setSurgeryType] = useState<SurgeryType>("ACL_RECON");
-  const [recoveryWeek, setRecoveryWeek] = useState(2);
+  const [phase, setPhase] = useState<RehabPhase>("PHASE_I");
+  const [weekPostOp, setWeekPostOp] = useState(2);
   const [age, setAge] = useState(45);
-  const [graftType, setGraftType] = useState("");
+  const [graftType, setGraftType] = useState<GraftType>("hamstring_autograft");
+  const [concomitantProcedure, setConcomitantProcedure] = useState("");
+  const [painNrs, setPainNrs] = useState<string>("");
+  const [swelling, setSwelling] = useState(false);
   const [notes, setNotes] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    onSubmit({ surgeryType, recoveryWeek, age, graftType, notes });
+    onSubmit({
+      surgeryType: "ACL_RECON",
+      phase,
+      weekPostOp,
+      age,
+      graftType,
+      concomitantProcedure: concomitantProcedure.trim() || null,
+      painNrs: painNrs === "" ? null : Number(painNrs),
+      swelling,
+      notes,
+    });
   }
 
   return (
@@ -39,21 +48,29 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
     >
       <h2 className="text-lg font-semibold text-gray-900">처방 입력</h2>
       <p className="mt-1 text-sm text-gray-500">
-        수술명, 회복 주차, 환자 정보를 입력하면 Generator Agent가 단계별 운동 처방 초안을 생성합니다.
+        회복 주차와 환자 정보를 입력하면 Harness가 단계별 운동 처방과 검수 리포트를 생성합니다.
       </p>
 
       <div className="mt-5 space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">수술명</label>
+          <div className="mt-1.5 w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-600">
+            {SURGERY_LABEL.ACL_RECON}
+            <span className="ml-2 text-xs text-gray-400">(현재 단일 지원 범위)</span>
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">재활 단계 (Phase)</label>
           <select
-            value={surgeryType}
-            onChange={(e) => setSurgeryType(e.target.value as SurgeryType)}
+            value={phase}
+            onChange={(e) => setPhase(e.target.value as RehabPhase)}
             disabled={disabled}
             className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
           >
-            {SURGERY_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {SURGERY_LABEL[type]}
+            {REHAB_PHASE_ORDER.map((p) => (
+              <option key={p} value={p}>
+                {REHAB_PHASE_LABEL[p]}
               </option>
             ))}
           </select>
@@ -66,8 +83,8 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
               type="number"
               min={0}
               max={16}
-              value={recoveryWeek}
-              onChange={(e) => setRecoveryWeek(Number(e.target.value))}
+              value={weekPostOp}
+              onChange={(e) => setWeekPostOp(Number(e.target.value))}
               disabled={disabled}
               className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
             />
@@ -87,15 +104,59 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">{GRAFT_LABEL[surgeryType]}</label>
+          <label className="block text-sm font-medium text-gray-700">이식건 종류</label>
+          <select
+            value={graftType}
+            onChange={(e) => setGraftType(e.target.value as GraftType)}
+            disabled={disabled}
+            className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
+          >
+            {GRAFT_TYPES.map((type) => (
+              <option key={type} value={type}>
+                {GRAFT_LABEL[type]}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">동반 술식 (선택)</label>
           <input
             type="text"
-            value={graftType}
-            onChange={(e) => setGraftType(e.target.value)}
+            value={concomitantProcedure}
+            onChange={(e) => setConcomitantProcedure(e.target.value)}
             disabled={disabled}
-            placeholder={GRAFT_PLACEHOLDER[surgeryType]}
+            placeholder="예: 반월판 봉합, 연골 손상 동반"
             className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
           />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">통증 수준 (NRS, 선택)</label>
+            <input
+              type="number"
+              min={0}
+              max={10}
+              value={painNrs}
+              onChange={(e) => setPainNrs(e.target.value)}
+              disabled={disabled}
+              placeholder="0~10"
+              className="mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
+            />
+          </div>
+          <div className="flex items-end pb-2.5">
+            <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+              <input
+                type="checkbox"
+                checked={swelling}
+                onChange={(e) => setSwelling(e.target.checked)}
+                disabled={disabled}
+                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              부종 있음
+            </label>
+          </div>
         </div>
 
         <div>
@@ -105,7 +166,7 @@ export default function PatientForm({ disabled, onSubmit }: Props) {
             onChange={(e) => setNotes(e.target.value)}
             disabled={disabled}
             rows={2}
-            placeholder="예: 통증 VAS 3/10, 부종 경미"
+            placeholder="자유 텍스트로 입력. 위 구조화 필드 외의 특이사항을 적어주세요."
             className="mt-1.5 w-full resize-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
           />
         </div>

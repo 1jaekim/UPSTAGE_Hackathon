@@ -1,4 +1,4 @@
-import { LOAD_LABEL, type PrescriptionItem } from "../types";
+import { WEIGHT_BEARING_LABEL, type PrescriptionItem } from "../types";
 
 interface Props {
   items: PrescriptionItem[];
@@ -13,8 +13,9 @@ export default function PrescriptionTable({ items }: Props) {
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">운동</th>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">설명</th>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">가동범위</th>
-            <th className="px-4 py-2.5 text-left font-semibold text-gray-600">부하 단계</th>
+            <th className="px-4 py-2.5 text-left font-semibold text-gray-600">체중부하</th>
             <th className="px-4 py-2.5 text-left font-semibold text-gray-600">세트/반복</th>
+            <th className="px-4 py-2.5 text-left font-semibold text-gray-600">근거 출처</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 bg-white">
@@ -25,8 +26,9 @@ export default function PrescriptionTable({ items }: Props) {
               <td className="px-4 py-2.5 text-gray-700">
                 {item.romMin}~{item.romMax}°
               </td>
-              <td className="px-4 py-2.5 text-gray-700">{LOAD_LABEL[item.loadLevel]}</td>
+              <td className="px-4 py-2.5 text-gray-700">{WEIGHT_BEARING_LABEL[item.weightBearing]}</td>
               <td className="px-4 py-2.5 text-gray-700">{item.setsReps}</td>
+              <td className="px-4 py-2.5 text-xs text-gray-400">{item.source}</td>
             </tr>
           ))}
         </tbody>
