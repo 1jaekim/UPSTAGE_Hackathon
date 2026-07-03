@@ -83,6 +83,9 @@ def main(inp):
         screen = load_json(work_path("05_notes_screen.json"))
         defer_to_pt(screen.get("reason", ""), screen.get("quote", ""))
 
+    # RAG 후보 발굴 보강(선택적) — 실패해도 파이프라인은 계속 진행됨(내부 fail-safe).
+    run("symptom_candidate_expand.py")
+
     for it in range(1, MAX_ITER + 2):
         rc = run("retrieve.py")
         if rc == 12:

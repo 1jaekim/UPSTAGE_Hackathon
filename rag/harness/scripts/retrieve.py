@@ -73,14 +73,23 @@ def main():
         iteration = corr.get("iteration", 1)
         exs = apply_correction_filters(exs, corr)
 
-    # 결정론적 정렬: phase 거리(현 단계 도입 운동 우선) → priority → name_en
+    # symptom_candidate_expand.py(RAG 보강, 선택적)가 만든 힌트가 있으면 정렬 우선순위에만
+    # 반영한다 — phase 필터를 통과한 exs 안에서만 순서를 당길 뿐, 새 운동을 추가하거나
+    # phase 조건을 우회하지 않는다. 안전 판정은 뒤 단계(safety_judge.py)가 그대로 재적용.
+    rag_ids = set()
+    rag_path = work_path("07_symptom_expand.json")
+    if os.path.exists(rag_path):
+        rag_ids = set(load_json(rag_path).get("rag_exercise_ids", []))
+
+    # 결정론적 정렬: RAG 힌트 여부 → phase 거리(현 단계 도입 운동 우선) → priority → name_en
     # min_phase 모델(해당 단계부터 허용)에서는 초기 운동이 영원히 후보로 남으므로,
     # 현 단계에 도입된 운동을 먼저 뽑아야 단계 적합 처방이 된다.
     ORDER = ["PHASE_I", "PHASE_II", "PHASE_III", "PHASE_IV", "PHASE_V"]
     cur = ORDER.index(ctx["phase"])
     def phase_dist(e):
         return cur - ORDER.index(e.get("min_phase", e["phases"][0]))
-    exs.sort(key=lambda e: (phase_dist(e), e["priority"], e["name"]["en"]))
+    exs.sort(key=lambda e: (0 if e["exercise_id"] in rag_ids else 1,
+                             phase_dist(e), e["priority"], e["name"]["en"]))
     exs = exs[:MAX_CANDIDATES]
 
     insufficient = len(exs) < MIN_REQUIRED

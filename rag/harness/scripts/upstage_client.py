@@ -33,9 +33,40 @@ MODEL = os.environ.get("UPSTAGE_CHAT_MODEL", "solar-pro2")
 _FENCE_RE = re.compile(r"^```(?:json)?\s*|\s*```$", re.MULTILINE)
 
 
+def _extract_json_object(text: str) -> str:
+    """모델이 지시를 어기고 JSON 뒤에 설명 문장을 덧붙이는 경우가 있어(예: solar-pro2가
+    "근거:" 같은 부연을 붙임), 첫 '{'부터 괄호 균형이 맞는 지점까지만 잘라낸다.
+    순수 JSON이면 그대로 반환(문자열 슬라이싱 오버헤드만 추가될 뿐 동작은 동일)."""
+    start = text.find("{")
+    if start == -1:
+        return text
+    depth = 0
+    in_str = False
+    escape = False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if in_str:
+            if escape:
+                escape = False
+            elif ch == "\\":
+                escape = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return text[start:i + 1]
+    return text[start:]
+
+
 def chat_json(prompt: str, temperature: float = 0.0) -> dict:
-    """프롬프트를 보내고 JSON 객체 하나를 파싱해 반환. 코드펜스가 붙어와도 벗겨낸다.
-    base_url은 현행(/v1) → legacy(/v1/solar) 순으로 시도한다."""
+    """프롬프트를 보내고 JSON 객체 하나를 파싱해 반환. 코드펜스나 JSON 뒤에 붙는 부연
+    설명이 있어도 첫 JSON 객체만 추출한다. base_url은 현행(/v1) → legacy(/v1/solar) 순."""
     _ensure_env()
     last_err = None
     for base in dict.fromkeys(BASE_URLS):  # 중복 제거, 순서 유지
@@ -48,6 +79,7 @@ def chat_json(prompt: str, temperature: float = 0.0) -> dict:
             )
             text = resp.choices[0].message.content.strip()
             text = _FENCE_RE.sub("", text).strip()
+            text = _extract_json_object(text)
             return json.loads(text)
         except Exception as e:
             last_err = e
